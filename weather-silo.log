@@ -1,0 +1,153 @@
+
+"17701231" 365 31/12/1770 -99.9 999 -99.9 999 9999.9 999 999.9 999 999.9  999 999.9 999 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 999 9999.9 999 9999.9 999
+""
+" This file is SPACE DELIMITED for easy import into both spreadsheets and programs."
+"The first line 17701231 contains dummy data and is provided to allow spreadsheets to sense the columns"
+" To read into a spreadsheet select DELIMITED and SPACE."
+" "
+" "
+"=========  The following essential information and notes should be kept in the data file =========="
+" "
+"The Data Drill system and data are copyright to the Queensland Government Department of Science, Information Technology and Innovation (DSITI)."
+"SILO data, with the exception of Patched Point data for Queensland, are supplied to the licencee only and may not be given, lent, or sold to any other party"
+" "
+"Notes:"
+" * Data Drill for Lat, Long: -35.0000 139.0000 (DECIMAL DEGREES), 35 00'S 139 00'E Your Ref: NOCOMMENT"
+" * Elevation:  230m "
+" * Extracted from Silo on 20170901"
+" * Please read the documentation on the Data Drill at http://www.longpaddock.qld.gov.au/silo"
+" "
+" * As evaporation is read at 9am, it has been shifted to the day before"
+"    ie The evaporation measured on 20 April is in row for 19 April"
+" * The 6 Source columns Smx, Smn, Srn, Sev, Ssl, Svp indicate the source of the data to their left, namely Max temp, Min temp, Rainfall, Evaporation, Radiation and Vapour Pressure respectively "
+" "
+"   25 = interpolated daily observations,     75 = interpolated long term average"
+"   26 = synthetic pan evaporation "
+" "
+" * Relative Humidity has been calculated using 9am VP, T.Max and T.Min"
+"   RHmaxT is estimated Relative Humidity at Temperature T.Max"
+"   RHminT is estimated Relative Humidity at Temperature T.Min"
+" * FAO56 = Potential Evapotranspiration calculated using the FAO Penman-Monteith formula as in"                          
+"   FAO Irrigation and Drainage paper 56,  http://www.fao.org/docrep/X0490E/X0490E00.htm"                                 
+" * Mlake = Morton evaporation over shallow lakes,                                                                        
+" * Mpotential = Morton potential evapotranspiration over land,                                                           
+" * Mactual = Morton actual evapotranspiration over land, and                                                             
+" * Mwet = Morton wet environment areal evapotranspiration over land.                                                     
+"   These were all calculated using the formulae in the 1983 Morton paper:                                                
+"   Journal of hydrology, Vol 66,page 1-77"                                                                               
+"   MSLPres = Mean Sea Level Pressure                                                                                     
+"   Span = a calibrated estimate of class A pan evaporation based on vapour pressure deficit and solar radiation          
+"   EvSp = class A evaporation (used post 1970) and synthetic pan evaporation (pre 1970)                                  
+"   As the evapotranspiration has been calculated from other data, particularly, Tmax, Tmin, Rad, and VP,"                
+"  its accuracy and source code are dependant on the source and accuracy of the data in those columns."                   
+" * The accuracy of the data depends on many factors including date, location, and variable."
+"   For consistency data is supplied using one decimal place, however it is not accurate to that precision."
+"   Further information is available from http://www.longpaddock.qld.gov.au/silo"
+"===================================================================================================="
+" "
+Date       Day Date2      T.Max Smx T.Min Smn Rain   Srn  Evap Sev Radn   Ssl VP    Svp RHmaxT RHminT  FAO56  Mlake  Mpot   Mact   Mwet  Span   Ssp   EvSp Ses MSLPres Sp  
+(yyyymmdd)  () (ddmmyyyy)  (oC)  ()  (oC)  ()   (mm)  ()  (mm)  () (MJ/m2) () (hPa)  ()   (%)    (%)    (mm)   (mm)   (mm)   (mm)   (mm)   (mm)  ()   (mm)  () (hPa)   ()
+20170831   243 31-08-2017  16.5  75   3.5  25    0.0  25   2.4  75  13.0   75   9.0  25   48.0  100.0    2.0    2.0    2.7    1.3    2.0    2.3  26    2.3  26 1028.0  25
+
+
+"17701231" 365 31/12/1770 -99.9 999 -99.9 999 9999.9 999 999.9 999 999.9  999 999.9 999 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 999 9999.9 999 9999.9 999
+""
+" This file is SPACE DELIMITED for easy import into both spreadsheets and programs."
+"The first line 17701231 contains dummy data and is provided to allow spreadsheets to sense the columns"
+" To read into a spreadsheet select DELIMITED and SPACE."
+" "
+" "
+"=========  The following essential information and notes should be kept in the data file =========="
+" "
+"The Data Drill system and data are copyright to the Queensland Government Department of Science, Information Technology and Innovation (DSITI)."
+"SILO data, with the exception of Patched Point data for Queensland, are supplied to the licencee only and may not be given, lent, or sold to any other party"
+" "
+"Notes:"
+" * Data Drill for Lat, Long: -35.0000 139.0000 (DECIMAL DEGREES), 35 00'S 139 00'E Your Ref: NOCOMMENT"
+" * Elevation:  230m "
+" * Extracted from Silo on 20170901"
+" * Please read the documentation on the Data Drill at http://www.longpaddock.qld.gov.au/silo"
+" "
+" * As evaporation is read at 9am, it has been shifted to the day before"
+"    ie The evaporation measured on 20 April is in row for 19 April"
+" * The 6 Source columns Smx, Smn, Srn, Sev, Ssl, Svp indicate the source of the data to their left, namely Max temp, Min temp, Rainfall, Evaporation, Radiation and Vapour Pressure respectively "
+" "
+"   25 = interpolated daily observations,     75 = interpolated long term average"
+"   26 = synthetic pan evaporation "
+" "
+" * Relative Humidity has been calculated using 9am VP, T.Max and T.Min"
+"   RHmaxT is estimated Relative Humidity at Temperature T.Max"
+"   RHminT is estimated Relative Humidity at Temperature T.Min"
+" * FAO56 = Potential Evapotranspiration calculated using the FAO Penman-Monteith formula as in"                          
+"   FAO Irrigation and Drainage paper 56,  http://www.fao.org/docrep/X0490E/X0490E00.htm"                                 
+" * Mlake = Morton evaporation over shallow lakes,                                                                        
+" * Mpotential = Morton potential evapotranspiration over land,                                                           
+" * Mactual = Morton actual evapotranspiration over land, and                                                             
+" * Mwet = Morton wet environment areal evapotranspiration over land.                                                     
+"   These were all calculated using the formulae in the 1983 Morton paper:                                                
+"   Journal of hydrology, Vol 66,page 1-77"                                                                               
+"   MSLPres = Mean Sea Level Pressure                                                                                     
+"   Span = a calibrated estimate of class A pan evaporation based on vapour pressure deficit and solar radiation          
+"   EvSp = class A evaporation (used post 1970) and synthetic pan evaporation (pre 1970)                                  
+"   As the evapotranspiration has been calculated from other data, particularly, Tmax, Tmin, Rad, and VP,"                
+"  its accuracy and source code are dependant on the source and accuracy of the data in those columns."                   
+" * The accuracy of the data depends on many factors including date, location, and variable."
+"   For consistency data is supplied using one decimal place, however it is not accurate to that precision."
+"   Further information is available from http://www.longpaddock.qld.gov.au/silo"
+"===================================================================================================="
+" "
+Date       Day Date2      T.Max Smx T.Min Smn Rain   Srn  Evap Sev Radn   Ssl VP    Svp RHmaxT RHminT  FAO56  Mlake  Mpot   Mact   Mwet  Span   Ssp   EvSp Ses MSLPres Sp  
+(yyyymmdd)  () (ddmmyyyy)  (oC)  ()  (oC)  ()   (mm)  ()  (mm)  () (MJ/m2) () (hPa)  ()   (%)    (%)    (mm)   (mm)   (mm)   (mm)   (mm)   (mm)  ()   (mm)  () (hPa)   ()
+20170831   243 31-08-2017  16.5  75   3.5  25    0.0  25   2.4  75  13.0   75   9.0  25   48.0  100.0    2.0    2.0    2.7    1.3    2.0    2.3  26    2.3  26 1028.0  25
+
+
+"17701231" 365 31/12/1770 -99.9 999 -99.9 999 9999.9 999 999.9 999 999.9  999 999.9 999 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 9999.9 999 9999.9 999 9999.9 999
+""
+" This file is SPACE DELIMITED for easy import into both spreadsheets and programs."
+"The first line 17701231 contains dummy data and is provided to allow spreadsheets to sense the columns"
+" To read into a spreadsheet select DELIMITED and SPACE."
+" "
+" "
+"=========  The following essential information and notes should be kept in the data file =========="
+" "
+"The Data Drill system and data are copyright to the Queensland Government Department of Science, Information Technology and Innovation (DSITI)."
+"SILO data, with the exception of Patched Point data for Queensland, are supplied to the licencee only and may not be given, lent, or sold to any other party"
+" "
+"Notes:"
+" * Data Drill for Lat, Long: -35.0000 139.0000 (DECIMAL DEGREES), 35 00'S 139 00'E Your Ref: NOCOMMENT"
+" * Elevation:  230m "
+" * Extracted from Silo on 20170901"
+" * Please read the documentation on the Data Drill at http://www.longpaddock.qld.gov.au/silo"
+" "
+" * As evaporation is read at 9am, it has been shifted to the day before"
+"    ie The evaporation measured on 20 April is in row for 19 April"
+" * The 6 Source columns Smx, Smn, Srn, Sev, Ssl, Svp indicate the source of the data to their left, namely Max temp, Min temp, Rainfall, Evaporation, Radiation and Vapour Pressure respectively "
+" "
+"   25 = interpolated daily observations,     75 = interpolated long term average"
+"   26 = synthetic pan evaporation "
+" "
+" * Relative Humidity has been calculated using 9am VP, T.Max and T.Min"
+"   RHmaxT is estimated Relative Humidity at Temperature T.Max"
+"   RHminT is estimated Relative Humidity at Temperature T.Min"
+" * FAO56 = Potential Evapotranspiration calculated using the FAO Penman-Monteith formula as in"                          
+"   FAO Irrigation and Drainage paper 56,  http://www.fao.org/docrep/X0490E/X0490E00.htm"                                 
+" * Mlake = Morton evaporation over shallow lakes,                                                                        
+" * Mpotential = Morton potential evapotranspiration over land,                                                           
+" * Mactual = Morton actual evapotranspiration over land, and                                                             
+" * Mwet = Morton wet environment areal evapotranspiration over land.                                                     
+"   These were all calculated using the formulae in the 1983 Morton paper:                                                
+"   Journal of hydrology, Vol 66,page 1-77"                                                                               
+"   MSLPres = Mean Sea Level Pressure                                                                                     
+"   Span = a calibrated estimate of class A pan evaporation based on vapour pressure deficit and solar radiation          
+"   EvSp = class A evaporation (used post 1970) and synthetic pan evaporation (pre 1970)                                  
+"   As the evapotranspiration has been calculated from other data, particularly, Tmax, Tmin, Rad, and VP,"                
+"  its accuracy and source code are dependant on the source and accuracy of the data in those columns."                   
+" * The accuracy of the data depends on many factors including date, location, and variable."
+"   For consistency data is supplied using one decimal place, however it is not accurate to that precision."
+"   Further information is available from http://www.longpaddock.qld.gov.au/silo"
+"===================================================================================================="
+" "
+Date       Day Date2      T.Max Smx T.Min Smn Rain   Srn  Evap Sev Radn   Ssl VP    Svp RHmaxT RHminT  FAO56  Mlake  Mpot   Mact   Mwet  Span   Ssp   EvSp Ses MSLPres Sp  
+(yyyymmdd)  () (ddmmyyyy)  (oC)  ()  (oC)  ()   (mm)  ()  (mm)  () (MJ/m2) () (hPa)  ()   (%)    (%)    (mm)   (mm)   (mm)   (mm)   (mm)   (mm)  ()   (mm)  () (hPa)   ()
+20170831   243 31-08-2017  16.5  75   3.5  25    0.0  25   2.4  75  13.0   75   9.0  25   48.0  100.0    2.0    2.0    2.7    1.3    2.0    2.3  26    2.3  26 1028.0  25
+

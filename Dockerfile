@@ -1,6 +1,15 @@
 FROM node:alpine
 MAINTAINER Anthony Rawlins <anthony.rawlins@unimelb.edu.au>
 
+RUN apk add --update \
+    python \
+    python-dev \
+    py-pip \
+    build-base \
+		mongodb \
+  && pip install virtualenv \
+  && rm -rf /var/cache/apk/*
+
 # Make working dir
 WORKDIR /usr/src/app
 
@@ -13,7 +22,7 @@ COPY . .
 
 # Production
 EXPOSE 1880
-CMD ["node-red"]
+CMD ["npm", "start"]
 
 # Deployment
 # EXPOSE 3000
