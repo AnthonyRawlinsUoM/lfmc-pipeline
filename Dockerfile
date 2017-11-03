@@ -16,13 +16,16 @@ WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
 
-RUN npm install 
+RUN npm install
 
 COPY . .
 
 # Production
 EXPOSE 1880
 CMD ["npm", "start"]
+
+EXPOSE 5000
+CMD ["./fuel_moisture.py", "-p=5000"]
 
 # Deployment
 # EXPOSE 3000
