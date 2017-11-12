@@ -6,9 +6,13 @@ RUN apk add --update \
     python-dev \
     py-pip \
     build-base \
-		mongodb \
+	mongodb \
+	curl \
   && pip install virtualenv \
   && rm -rf /var/cache/apk/*
+
+# RUN curl 'https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh'
+# RUN bash Anaconda3-5.0.1-Linux-x86_64.sh
 
 # Make working dir
 WORKDIR /usr/src/app

@@ -2,22 +2,22 @@
 
 from datetime import datetime
 from flask_restful import Resource
-from flask_jsonpify import jsonify
 from json_tricks import dumps
 
 from fuel_model import DeadFuelModel
 from fuel_query import SpatiotemporalQuery
+
 
 class ApiHelp(Resource):
     def get(self):
         return {"See API": "Help goes here."}  # TODO!
 
 
-class SpatioTemporalRequestHandler(Resource):
+class SpatiotemporalRequestHandler(Resource):
     """ Responds to well-formed JSON requests with JSON formatted subsets of our data. """
 
     def __init__(self):
-
+        super().__init__()
         self.models_impl = {}
         self.models_impl["nolan"] = DeadFuelModel()
         self.start = datetime.now()
@@ -36,15 +36,16 @@ class SpatioTemporalRequestHandler(Resource):
         self.lat2 = float(lat2) or 0
         self.lng2 = float(lng2) or 0
 
-        modelchoices = models.split(',')
+        model_choices = models.split(',')
 
         q = SpatiotemporalQuery(self.start, self.finish, self.lng1, self.lat1, self.lng2, self.lat2)
 
-        for i, m in enumerate(modelchoices):
+        for i, m in enumerate(model_choices):
             for k, v in self.models_impl.items():
                 if k == m:
-                    result.append(v.get_3d_array_from_query(q))
+                    result.append(v.get_3d_result_from_query(q))
 
         print(dumps(result))
         return dumps(result)
+
     pass

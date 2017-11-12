@@ -547,9 +547,9 @@ def testConfig():
 
 
 def writeNetCDF4(data):
-	#	 lon = data[:,,]
-	#	 lat = data[,:,]
-	#	 z = data[,,:]
+	lon = data[:,,]
+	lat = data[,:,]
+	z = data[,,:]
 
 	f = nc4.Dataset(DFMC_PATH + 'dfmc.nc', 'w',
 					format='NETCDF4')# 'w' stands for write

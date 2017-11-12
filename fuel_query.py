@@ -7,7 +7,7 @@ from flask_jsonpify import jsonify
 class SpatiotemporalQuery(Resource):
     def __init__(self, t1, t2, lng1, lat1, lng2, lat2):
         self.temporal = {
-                'start': t1
+            'start': t1
         }
         if t2 is not None:
             self.temporal['finish'] = t2
@@ -15,10 +15,10 @@ class SpatiotemporalQuery(Resource):
             self.temporal['finish'] = t1  # ie., the same as start date
 
         self.spatial = {
-                'left': lng1,
-                'bottom': lat2,
-                'top': lat1,
-                'right': lng2
+            'left'  : lng1,
+            'bottom': lat2,
+            'top'   : lat1,
+            'right' : lng2
         }
 
     def get(self):

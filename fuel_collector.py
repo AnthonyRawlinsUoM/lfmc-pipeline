@@ -29,8 +29,8 @@ class Collector(FileNameWrangler, TimeWrangler):
             elif hasattr(e, 'code'):
                 print('The server couldn\'t fulfill the request.')
                 print('Error code: ', e.code)
-            # else:
-            # everything is fine
+                # else:
+                # everything is fine
         print('Download complete')
         return where
 
@@ -39,9 +39,9 @@ class Collector(FileNameWrangler, TimeWrangler):
         print("Expanding: " + what + " to " + where)
         subprocess.run(["uncompress", "-k", where + what, "/dev/null"], stdout=subprocess.PIPE)
 
-    def collect(self, year):
+    def collect(self, model, year):
         """ Collects all input parameters for the model as determined by the metadata. """
-        for which in self.params:
+        for which in model.get_parameters():
             for when in TimeWrangler.datelist(year):
                 archive_name = FileNameWrangler.archived(self, which, when)
                 if not FileNameWrangler.archive_exists(self, archive_name):

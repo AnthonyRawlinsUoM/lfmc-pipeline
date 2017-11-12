@@ -2,21 +2,21 @@
 
 # OS & Web
 import argparse
-
+import os
 
 # Server
-from flask import Flask, request
-from flask_restful import Resource, Api
+from flask import Flask
+from flask_restful import Api
 
 # Fuel API
+from fuel_api import ApiHelp, SpatiotemporalRequestHandler
 
-from fuel_api import ApiHelp, SpatioTemporalRequestHandler
-from fuel_collector import FileNameWrangler
-
+THREADS = 8
+PORT = 5000
+PROJECT_ROOT = os.getcwd()
 app = Flask(__name__)
 api = Api(app)
 
-# api.add_resource(Models, '/api/models')
 
 def main():
     parser = argparse.ArgumentParser()
@@ -33,13 +33,13 @@ def main():
 
     global PROJECT_ROOT
     global PORT
+    global THREADS
 
     PORT = args.port
     THREADS = args.threads
     PROJECT_ROOT = args.data
-    #FileNameWrangler().ensure_dir(PROJECT_ROOT)  #or die("Data dir doesn't exist or not writable!")
 
-    api.add_resource(SpatioTemporalRequestHandler,
+    api.add_resource(SpatiotemporalRequestHandler,
                      '/api/fuel/models/<models>/<lng1>/<lat1>/<lng2>/<lat2>/time/<start>/<finish>')
     api.add_resource(ApiHelp, '/')
 
