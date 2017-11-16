@@ -1,27 +1,100 @@
 #!/home/anthonyrawlins/anaconda3/bin/python3
 
-import pandas as pd
+import numpy as np
 import pyproj as proj
 import xarray as xr
 from datetime import datetime
 from fuel_collector import Collector
+import netCDF4 as nc4
+from abc import abstractmethod
 
 
-class DataStore(Collector):
-    data = xr.Dataset()
+class Saver:
+    @abstractmethod
+    def save(self, where, data, file_format=""):
+        return None
+
+
+class DataStore(Collector, Saver):
+    # data = xr.Dataset()
 
     def __init__(self):
         super().__init__()
         self.gda94 = proj.Proj(init='epsg:3112')
+        self.data = np.zeros((365, 691, 886), np.float32)
         # self.data = np.zeros((1, 691, 886), dtype=np.float32)  # Initialise with a single day's values
 
-    def load(self) -> xr.Dataset:
+    @staticmethod
+    def load_as_xarray() -> xr.Dataset:
         # TODO - config path properly!
-        self.data = xr.open_mfdataset('/home/anthonyrawlins/Data/uom_data/DEAD_FM/DFMC/*_dfmc.nc', concat_dim='Time')
-        return self.data
+        return xr.open_mfdataset('/home/anthonyrawlins/Data/uom_data/DEAD_FM/DFMC/*_dfmc.nc', concat_dim='Time')
 
     @staticmethod
-    def save(data, where):
+    def load_as_numpy() -> np.ndarray:
+        return np.ndarray([0, 0, 0])
+
+    @staticmethod
+    def write_net_cdf4(data, where, from_when: datetime):
+        print("Writing NetCDF...")
+        print("Input shape is", data.shape)
+        lon = data[0, ::, 0]
+        print("Sample lon:", lon[0])
+        lat = data[0, 0, ::]
+        print("Sample lat:", lat[0])
+        z = data[::, 0, 0]
+        print("Sample date:", z[0])
+
+        f = nc4.Dataset(where, 'w',
+                        format='NETCDF4')  # 'w' stands for write
+
+        group = f.createGroup('/DFMC_data')  # in Root Group ie., "/"
+
+        group.createDimension('level', len(z))
+        group.createDimension('time', None)
+        group.createDimension('lon', len(lon))
+        group.createDimension('lat', len(lat))
+
+        print(f.groups)
+
+        print(f.dimensions)
+
+        longitude = group.createVariable('Longitude', 'f4', 'lon')
+        latitude = group.createVariable('Latitude', 'f4', 'lat')
+        level = group.createVariable('Time', 'i4', 'time')
+        time = group.createVariable('Level', 'i4', 'level')
+
+        moist = group.createVariable(
+            'Dead Fuel Moisture', 'f4', ('time', 'level', 'lon', 'lat', ))
+
+        print(f.variables)
+
+        longitude[:] = lon
+        latitude[:] = lat
+        time[:] = z
+        moist[0, :, :, :] = data
+
+        print(moist)
+
+        # Add global attributes
+        f.description = "Example data containing group moisture values by Dead Fuel Moisture Content Model Nolan et al."
+        f.history = "Created " + datetime.now().strftime("%d/%m/%y")
+
+        # Add local attributes to variable instances
+        longitude.units = 'Degrees East'
+        latitude.units = 'Degrees South'
+        time.units = 'Days since ' + str(from_when)
+        level.units = '% water by weight'
+
+        print(f)
+
+        print("Wrote: ", where)
+
+    def save(self, data, where, file_format="NetCDF"):
+        # if type(data).is_instance(np.ndarray):
+        #     # TODO - split the data into years-worth files
+        #     when = 2017  # !!!!
+        #     self.store(data, where, when)
+
         if type(data).is_instance(xr.Dataset):
             data.to_netcdf(where)
 
@@ -75,8 +148,10 @@ class DataStore(Collector):
 
         return self.pixel_coords(x, y)  # to pixels
 
-    def pixel_coords(self, x, y) -> tuple:
+    @staticmethod
+    def pixel_coords(x, y) -> tuple:
         """ Computes pixel values from given spatial bounds as determined by GDA94. """
+        # TODO - a more robust PROJ to PROJ solution (maybe transforms from pyproj)
         # Projected bounds on WGS84 (epsg:3857)
         T = -1359735.67040159
         L = -2382330.2876621974
@@ -150,3 +225,5 @@ class DataStore(Collector):
     #     if not fail:
     #         validity = True
     #     return validity
+
+    pass

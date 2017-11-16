@@ -1,5 +1,6 @@
 #!/home/anthonyrawlins/anaconda3/bin/python3
 
+from abc import abstractmethod
 import urllib.request
 from urllib.error import URLError
 import subprocess
@@ -10,15 +11,10 @@ from fuel_utils import FileNameWrangler, TimeWrangler
 
 class Collector(FileNameWrangler, TimeWrangler):
 
-    def fast_collect(self, years):
-        """ Assign a thread per year to speed up collection process. """
-        pool = multiprocessing.Pool(processes=8)
-        pool.map(self.collect, years)
-
-    def download(self, which, when):
+    def download(self, model, which, when):
         """Downloads and extracts data from BOM based on date range"""
-        what = FileNameWrangler.url(self, which, when)
-        where = FileNameWrangler.absolute_filepath(self, which, when)
+        what = FileNameWrangler.url(model, which, when)
+        where = FileNameWrangler.absolute_file_path(model, which, when)
 
         try:
             urllib.request.urlretrieve(what, where)
@@ -34,35 +30,22 @@ class Collector(FileNameWrangler, TimeWrangler):
         print('Download complete')
         return where
 
-    def expand(self, what, where):
+    @staticmethod
+    def expand(fpath):
         """ OS level decompression algorithm; spawns a subprocess. """
-        print("Expanding: " + what + " to " + where)
-        subprocess.run(["uncompress", "-k", where + what, "/dev/null"], stdout=subprocess.PIPE)
+        subprocess.run(["uncompress", "-k", fpath, "/dev/null"], stdout=subprocess.PIPE)
 
-    def collect(self, model, year):
-        """ Collects all input parameters for the model as determined by the metadata. """
-        for which in model.get_parameters():
-            for when in TimeWrangler.datelist(year):
-                archive_name = FileNameWrangler.archived(self, which, when)
-                if not FileNameWrangler.archive_exists(self, archive_name):
-                    self.download(which, when)
-                if FileNameWrangler.archive_exists(self, archive_name):
-                    self.expand(archive_name)
+    @abstractmethod
+    def collect(self, year):
+        return None
 
-    def consume(self, which, when):
+    @staticmethod
+    def consume(model, param, when):
         """ Loads the data from the file for the given parameter. """
-        fpath = FileNameWrangler.absolute_filepath(self, which, when)
-        rio = rasterio.open(fpath, 'r')
+        f_path = FileNameWrangler.absolute_file_path(model, param, when)
+        rio = rasterio.open(f_path, 'r')
         data = rio.read(1)
         rio.close()
         return data
 
-    def store(self, data, out, when):
-        """ Writes the data to an ArcGrid file """
-        # DFMC_meta = VP3pm_tmp.meta.copy()
-        profile = {}
-
-        # ArcGrid
-        with rasterio.open(FileNameWrangler.absolute_filepath(self, out, when), 'w', **profile) as dest:
-            dest.write(data, 1)
-            dest.close()
+    pass
