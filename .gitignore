@@ -45,3 +45,10 @@ Thumbs.db
 example_data/
 *.ipynb
 .ipynb_checkpoints
+
+
+# Data Cache / MODIS etc
+*.hdf
+*.h5
+*.prj
+*/modis/*.xml
