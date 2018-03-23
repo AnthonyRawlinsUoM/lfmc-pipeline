@@ -1,7 +1,7 @@
 all: build
 
 build:
-	@npm install
+	@npm install --no-optional
 	@docker build --tag=anthonyrawlinsuom/lfmc-pipeline .
 
 install:
