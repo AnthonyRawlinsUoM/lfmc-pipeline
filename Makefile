@@ -1,4 +1,4 @@
-all: build
+all: pull
 
 build:
 	@npm install --no-optional
@@ -6,6 +6,9 @@ build:
 
 install:
 	@docker push anthonyrawlinsuom/lfmc-pipeline
-
+	
+pull:
+	@docker pull anthonyrawlinsuom/lfmc-pipeline
+	
 clean:
-	@docker rmi anthonyrawlinsuom/lfmc-pipeline
+	@docker rmi --force anthonyrawlinsuom/lfmc-pipeline

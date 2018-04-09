@@ -61,6 +61,18 @@
         "name": ""
     },
     {
+        "id": "322533c2.db98dc",
+        "type": "ftp",
+        "z": "",
+        "host": "ftp.bom.gov.au",
+        "port": "",
+        "secureOptions": "",
+        "user": "bom023",
+        "connTimeout": "",
+        "pasvTimeout": "",
+        "keepalive": ""
+    },
+    {
         "id": "4518fe2.7ae9d",
         "type": "debug",
         "z": "a9caf749.eb5048",
@@ -1639,8 +1651,8 @@
         "operation": "list",
         "filename": "",
         "localFilename": "",
-        "name": "",
-        "x": 552,
+        "name": "Anon User FTP",
+        "x": 582,
         "y": 164,
         "wires": [
             [
@@ -1675,8 +1687,8 @@
         "active": true,
         "console": "false",
         "complete": "true",
-        "x": 1131,
-        "y": 294,
+        "x": 1137,
+        "y": 193,
         "wires": []
     },
     {
@@ -1684,7 +1696,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "",
-        "func": "msg.filename = \"anon/gen/fwo/\"\nreturn msg;",
+        "func": "msg.filename = \"anon/gen/fwo\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 350,
@@ -1703,12 +1715,11 @@
         "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\n  return msg.filename +\"/\"+ (item.hasOwnProperty(\"name\") && (\n        (item.name).includes('IDN65068') ||\n        (item.name).includes('IDD10730') ||\n        (item.name).includes('IDQ13015') ||\n        (item.name).includes('IDS10069') ||\n        (item.name).includes('IDT13150') ||\n        (item.name).includes('IDV18550') ||\n        (item.name).includes('IDW13050')\n    ));\n});\n\nmsg.filenames = object_shortlist.map(function(item) {\n    return item.name;    \n});\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 803,
-        "y": 179,
+        "x": 857,
+        "y": 158,
         "wires": [
             [
-                "1188b08f.0b673f",
-                "2ce1bbe5.521314"
+                "1188b08f.0b673f"
             ]
         ]
     },
@@ -1723,8 +1734,8 @@
         "output": "payload",
         "filesType": "msg",
         "directoryType": "str",
-        "x": 899,
-        "y": 394,
+        "x": 1128,
+        "y": 284,
         "wires": [
             [
                 "cfa72c7c.a06e4"
@@ -1738,9 +1749,157 @@
         "name": "",
         "active": true,
         "console": "false",
+        "complete": "true",
+        "x": 1217,
+        "y": 401,
+        "wires": []
+    },
+    {
+        "id": "f6d491d8.1c757",
+        "type": "inject",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 151,
+        "y": 198,
+        "wires": [
+            [
+                "7badd851.9e4b38"
+            ]
+        ]
+    },
+    {
+        "id": "7badd851.9e4b38",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "func": "msg.filename = \"register/bom023/rKCm6dbQ/adfd\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 341,
+        "y": 216,
+        "wires": [
+            [
+                "81b11c2b.2e155"
+            ]
+        ]
+    },
+    {
+        "id": "52275a20.2d7e44",
+        "type": "inject",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 155,
+        "y": 252,
+        "wires": [
+            [
+                "ca7dca3a.8f90d8"
+            ]
+        ]
+    },
+    {
+        "id": "ca7dca3a.8f90d8",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "func": "msg.filename = \"register/bom023/rKCm6dbQ/fwo\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 345,
+        "y": 270,
+        "wires": [
+            [
+                "66fde08e.33dc3"
+            ]
+        ]
+    },
+    {
+        "id": "81b11c2b.2e155",
+        "type": "ftp in",
+        "z": "f51feb57.6cd738",
+        "ftp": "9e4c7c6a.4728a",
+        "operation": "list",
+        "filename": "",
+        "localFilename": "",
+        "name": "Anon User FTP",
+        "x": 588,
+        "y": 224,
+        "wires": [
+            [
+                "e18b8be0.048448"
+            ]
+        ]
+    },
+    {
+        "id": "66fde08e.33dc3",
+        "type": "ftp in",
+        "z": "f51feb57.6cd738",
+        "ftp": "9e4c7c6a.4728a",
+        "operation": "list",
+        "filename": "",
+        "localFilename": "",
+        "name": "Anon User FTP",
+        "x": 589,
+        "y": 274,
+        "wires": [
+            [
+                "e18b8be0.048448"
+            ]
+        ]
+    },
+    {
+        "id": "e18b8be0.048448",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\n  return (item.hasOwnProperty(\"name\") && (\n        (item.name).includes('FFDI') ||\n        (item.name).includes('GFDI') ||\n        (item.name).includes('DF')\n    ));\n});\n\nmsg.filenames = object_shortlist.map(function(item) {\n    return msg.filename +\"/\"+item.name;    \n});\n\nmsg.password=\"\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 807,
+        "y": 252,
+        "wires": [
+            [
+                "1188b08f.0b673f",
+                "2ce1bbe5.521314"
+            ]
+        ]
+    },
+    {
+        "id": "71b87a29.9e96e4",
+        "type": "watch",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "files": "./",
+        "recursive": "",
+        "x": 521,
+        "y": 627,
+        "wires": [
+            [
+                "5f94d0bf.0d152"
+            ]
+        ]
+    },
+    {
+        "id": "5f94d0bf.0d152",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "console": "false",
         "complete": "false",
-        "x": 1152,
-        "y": 361,
+        "x": 694,
+        "y": 628,
         "wires": []
     }
 ]
