@@ -110,7 +110,9 @@
                 "4518fe2.7ae9d",
                 "386edb7c.509784"
             ],
-            []
+            [
+                "4518fe2.7ae9d"
+            ]
         ]
     },
     {
@@ -165,7 +167,7 @@
         "type": "debug",
         "z": "cc93ff07.e64b2",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "payload",
         "x": 1172,
@@ -286,7 +288,7 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
         "x": 1172,
@@ -299,8 +301,8 @@
         "z": "a9caf749.eb5048",
         "name": "",
         "pretty": true,
-        "x": 962,
-        "y": 364,
+        "x": 970,
+        "y": 400,
         "wires": [
             [
                 "85cf55a0.d7ff88",
@@ -326,37 +328,18 @@
         ]
     },
     {
-        "id": "68d67bcb.62e0a4",
-        "type": "inject",
-        "z": "a9caf749.eb5048",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 114,
-        "y": 807,
-        "wires": [
-            [
-                "828005e3.3cd768"
-            ]
-        ]
-    },
-    {
         "id": "828005e3.3cd768",
         "type": "template",
         "z": "a9caf749.eb5048",
-        "name": "Single Model",
+        "name": "Single Model -dead_fuel",
         "field": "payload",
         "fieldType": "msg",
         "format": "json",
         "syntax": "plain",
-        "template": "{\n\t\t\"type\": \"model\",\n\t\t\"rating\": \"7\",\n\t\t\"name\": \"Chen et al.\",\n\t\t\"abbr\":\"chen\",\n\t\t\"date\": \"11 July 2017\",\n\t\t\"title\": \"Development of a predictive model for estimating forest surface fuel load in Australian eucalypt forests with LiDAR data\",\n\t\t\"href\": \"https://doi-org.ezp.lib.unimelb.edu.au/10.1016/j.envsoft.2017.07.007\",\n\t\t\"version\": \"1.0\",\n\t\t\"validated\": {\n\t\t\t\"validated\": true,\n\t\t\t\"references\": [{\n\t\t\t\t\"href\": \"\",\n\t\t\t\t\"authors\": [\n\t\t\t\t\t\"Yang Chen\",\n\t\t\t\t\t\"Xuan Zhua\",\n\t\t\t\t\t \"Marta Yebrab\",\n\t\t\t\t\t \"Sarah Harrisa\",\n\t\t\t\t\t \"Nigel Tappera\"\n\t\t\t\t],\n\t\t\t\t\"date\": \"11 July 2017\"\n\t\t\t}]\n\t\t},\n\t\t\"description\": {\n\t\t\t\"author\": \"\",\n\t\t\t\"date\": \"11 July 2017\",\n\t\t\t\"abstract\": \"Accurate description of forest surface fuel load is important for understanding bushfire behaviour and suppression difficulties, predicting ongoing fires for operational activities, assessing potential fire hazards and assisting in fuel hazard-reduction burns to reduce fire risks to the community and the environment. Bushfire related studies and current operational activities have a common challenge in quantifying fuels, since the fuel load varies across the landscape. This paper developed a predictive model that efficiently and accurately estimates quantities of surface fuel in Australian southeast Eucalypt forests. Model coefficients were determined through a three-step process that attempts to evaluate how the spatial variation in surface fuel load relates to litter-bed depth, fuel characteristics, topography and previous fire disturbance. First, the forest surface fuel depth-to-load relationship was established; second, key quantitative variables of environmental factors were added; and third, important qualitative variables of fuel characteristics were included. The verification of model prediction was conducted through leave-one-out cross-validation (CV). Light Detection and Ranging was used to quantify forest structural characteristics and terrain features. The calibrated model had a R2 of 0.89 (RMSE = 20.7 g) and performed better than the currently used surface fuel load models, including McArthur's (R2 = 0.61 and RMSE = 39.6 g) and Gilroy and Tran's (R2 = 0.69 and RMSE = 36.5 g) models. This study describes a novel approach to forest surface fuel load modelling using forest characteristics and environmental factors derived from LiDAR data through statistical analysis. The model established in this study can be used as an efficient approach to assist in forest fuel management and fire related operational activities.\",\n\t\t\t\"range\": {\n\n\t\t\t},\n\t\t\t\"fuel\": {\n\n\t\t\t},\n\t\t\t\"metric\": \"\",\n\t\t\t\"index\": \"\",\n\t\t\t\"resolutions\": {\n\t\t\t\t\"minimum\": {\n\t\t\t\t\t\"spatial\": {\n\t\t\t\t\t\t\"value\": \"\",\n\t\t\t\t\t\t\"units\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"temporal\": {\n\t\t\t\t\t\t\"value\": \"\",\n\t\t\t\t\t\t\"units\": \"\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"optimum\": {\n\t\t\t\t\t\"spatial\": {\n\t\t\t\t\t\t\"value\": \"\",\n\t\t\t\t\t\t\"units\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"temporal\": {\n\t\t\t\t\t\t\"value\": \"\",\n\t\t\t\t\t\t\"units\": \"\"\n\t\t\t\t\t}\n\t\t\t\t},\n\t\t\t\t\"maximum\": {\n\t\t\t\t\t\"spatial\": {\n\t\t\t\t\t\t\"value\": \"\",\n\t\t\t\t\t\t\"units\": \"\"\n\t\t\t\t\t},\n\t\t\t\t\t\"temporal\": {\n\t\t\t\t\t\t\"value\": \"\",\n\t\t\t\t\t\t\"units\": \"\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"keywords\": {\n\t\t\t\t\"strengths\": [\n\t\t\t\t\t\"Surface fuel load\",\n\t\t\t\t\t\"Litter-bed fuel depth\",\n\t\t\t\t\t\"Airborne LiDAR\",\n\t\t\t\t\t\"Terrestrial LiDAR\",\n\t\t\t\t\t\"Multiple regression\"\n\t\t\t\t],\n\t\t\t\t\"weaknesses\": [\n\n\t\t\t\t]\n\t\t\t},\n\t\t\t\"cavaets\": \"\"\n\t\t},\n\t\t\"datasources\": [\n\t\t\t\"AWRA\",\n\t\t\t\"Observations\"\n\t\t]\n\t}",
+        "template": "{\"type\":\"model\",\"rating\":\"8\",\"name\":\"Nolan et al.\",\"abbr\":\"dead_fuel\",\"date\":\"9 September 2015\",\"title\":\"Predicting dead fine fuel moisture at regional scales using vapour pressure deficit from MODIS and gridded weather data\",\"href\":\"http://dx.doi.org/10.1016/j.rse.2015.12.010\",\"version\":\"1.0\",\"validated\":{\"validated\":true,\"references\":[{\"href\":\"\",\"authors\":\"Rachael H. Nolan, Víctor Resco de Dios, Matthias M. Boer, Gabriele Caccamo, Michael L. Goulden, Ross A. Bradstock\",\"date\":\"\"}]},\"description\":{\"date\":\"\",\"abstract\":\"Spatially explicit predictions of fuel moisture content are crucial for quantifying fire danger indices and as inputs to fire behaviour models. Remotely sensed predictions of fuel moisture have typically focused on live fuels; but regional estimates of dead fuel moisture have been less common. Here we develop and test the spatial application of a recently developed dead fuel moisture model, which is based on the exponential decline of fine fuel moisture with increasing vapour pressure deficit (D). We first compare the performance of two existing approaches to pre- dict D from satellite observations. We then use remotely sensed D, as well as D estimated from gridded daily weather observations, to predict dead fuel moisture. We calibrate and test the model at a woodland site in South East Australia, and then test the model at a range of sites in South East Australia and Southern California that vary in vegetation type, mean annual precipitation (129–1404 mm year −1 ) and leaf area index (0.1–5.7). We found that D modelled from remotely sensed land surface temperature performed slightly better than a model which also included total precipitable water (MAE b 1.16 kPa and 1.62 kPa respectively). D calculated with observations from the Moderate Resolution Imaging Spectroradiometer (MODIS) on the Terra satellite was under-predicted in areas with low leaf area index. Both D from remotely sensed data and gridded weather station data were good predictors of the moisture content of dead suspended fuels at validation sites, with mean absolute errors less than 3.9% and 6.0% respectively. The occurrence of data gaps in remotely sensed time series presents an obstacle to this approach, and assimilated or extrapolated meteorological observations may offer better continuity.\",\"range\":{},\"fuel\":{},\"metric\":\"\",\"index\":\"\",\"resolutions\":{\"minimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"24\",\"units\":\"hour\"}},\"optimum\":{\"spatial\":{\"value\":\"9\",\"units\":\"km^2\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"maximum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}}},\"keywords\":{\"strengths\":[\"test\"],\"weaknesses\":[]},\"cavaets\":\"\"},\"datasources\":[\"MODIS\",\"GW\"]}\n",
         "output": "json",
-        "x": 310,
-        "y": 810,
+        "x": 350,
+        "y": 820,
         "wires": [
             [
                 "1722bc97.40aaa3"
@@ -368,7 +351,7 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
         "x": 1121,
@@ -383,8 +366,8 @@
         "configNode": "671e12d5.6bd4fc",
         "name": "",
         "collection": "models",
-        "operation": "",
-        "x": 654,
+        "operation": "find.toArray",
+        "x": 694,
         "y": 361,
         "wires": [
             [
@@ -437,8 +420,8 @@
         "name": "",
         "collection": "datasources",
         "operation": "insertOne",
-        "x": 811,
-        "y": 905,
+        "x": 720,
+        "y": 1320,
         "wires": [
             [
                 "2aaf52da.0ca7ae"
@@ -449,15 +432,15 @@
         "id": "65af3eb8.bcb7d",
         "type": "template",
         "z": "a9caf749.eb5048",
-        "name": "New Datasource",
+        "name": "KBDI",
         "field": "payload",
         "fieldType": "msg",
         "format": "json",
         "syntax": "mustache",
-        "template": "{\n    \"last_updated\":\"{{msg.timestamp}}\",\n    \"name\":\"KBDI\",\n    \"desc\":\"Keech-Byram Drought Index\",\n    \"provider_org\":\"bom.gov.au\",\n    \"frequency\": {\n        \"value\":\"24\",\n        \"units\":\"hours\"\n    },\n    \"provides\":[]\n}",
+        "template": "{\n    \"last_updated\":\"{{msg.timestamp}}\",\n      \"name\":\"KBDI\",\n      \"desc\":\"Keech-Byram Drought Index\",\n      \"provider_org\":\"bom.gov.au\",\n      \"frequency\":{\n         \"value\":\"24\",\n         \"units\":\"hours\"\n      },\n      \"provides\":[\n         \"Indexed values\"\n      ]\n   }",
         "output": "json",
-        "x": 345,
-        "y": 901,
+        "x": 350,
+        "y": 1260,
         "wires": [
             [
                 "8f091de2.628ed"
@@ -475,8 +458,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 108,
-        "y": 895,
+        "x": 180,
+        "y": 1260,
         "wires": [
             [
                 "65af3eb8.bcb7d"
@@ -488,14 +471,15 @@
         "type": "function",
         "z": "a9caf749.eb5048",
         "name": "",
-        "func": "msg.operation = \"find.toArray\";\nmsg.payload = {\"models\": msg.req.query.name};\nreturn msg;",
+        "func": "msg.operation = \"find.toArray\";\nmsg.payload = {\"abbr\": msg.req.params.abbr};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 394,
-        "y": 547,
+        "x": 450,
+        "y": 560,
         "wires": [
             [
-                "23e4b18c.dd151e"
+                "23e4b18c.dd151e",
+                "6337f923.883258"
             ]
         ]
     },
@@ -504,31 +488,12 @@
         "type": "http in",
         "z": "a9caf749.eb5048",
         "name": "",
-        "url": "/api/model/:name/datasources",
+        "url": "/api/model/:abbr/datasources",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
         "x": 183,
         "y": 512,
-        "wires": [
-            [
-                "cf43a287.67709"
-            ]
-        ]
-    },
-    {
-        "id": "70083c33.097f94",
-        "type": "inject",
-        "z": "a9caf749.eb5048",
-        "name": "",
-        "topic": "",
-        "payload": "{\"models\":\"Boer\"}",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 140,
-        "y": 587,
         "wires": [
             [
                 "cf43a287.67709"
@@ -542,20 +507,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1390,
-        "y": 505,
-        "wires": []
-    },
-    {
-        "id": "9f34a62c.c4a978",
-        "type": "debug",
-        "z": "a9caf749.eb5048",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 1393,
-        "y": 444,
+        "x": 1830,
+        "y": 580,
         "wires": []
     },
     {
@@ -564,12 +517,11 @@
         "z": "a9caf749.eb5048",
         "name": "",
         "pretty": true,
-        "x": 1209,
-        "y": 474,
+        "x": 1690,
+        "y": 580,
         "wires": [
             [
-                "1e66111f.b9139f",
-                "9f34a62c.c4a978"
+                "1e66111f.b9139f"
             ]
         ]
     },
@@ -580,13 +532,14 @@
         "service": "_ext_",
         "configNode": "671e12d5.6bd4fc",
         "name": "",
-        "collection": "datasources",
-        "operation": "find.toArray",
-        "x": 746,
+        "collection": "models",
+        "operation": "",
+        "x": 686,
         "y": 560,
         "wires": [
             [
-                "83e9c1f8.a234f"
+                "50008711.1f9588",
+                "8d5a999b.b19038"
             ]
         ]
     },
@@ -595,7 +548,7 @@
         "type": "http in",
         "z": "a9caf749.eb5048",
         "name": "",
-        "url": "/api/model/:name",
+        "url": "/api/model/:abbr",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
@@ -612,14 +565,14 @@
         "type": "function",
         "z": "a9caf749.eb5048",
         "name": "",
-        "func": "msg.operation = \"findOne\";\nmsg.payload = {\"name\": msg.req.query.name};\nreturn msg;",
+        "func": "msg.operation = \"findOne\";\nmsg.payload = {\"abbr\": msg.req.params.abbr};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 375,
-        "y": 380,
+        "x": 390,
+        "y": 420,
         "wires": [
             [
-                "f13a5619.d820e8"
+                "88f0a86e.da59c8"
             ]
         ]
     },
@@ -647,7 +600,7 @@
         "type": "debug",
         "z": "cc93ff07.e64b2",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "payload.lastErrorObject",
         "x": 1134,
@@ -818,7 +771,7 @@
         "type": "debug",
         "z": "cc93ff07.e64b2",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
         "x": 1553,
@@ -1023,7 +976,7 @@
         "type": "debug",
         "z": "cc93ff07.e64b2",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
         "x": 1568,
@@ -1166,7 +1119,7 @@
         "type": "debug",
         "z": "cc93ff07.e64b2",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
         "x": 1228,
@@ -1262,7 +1215,7 @@
         "type": "debug",
         "z": "cc93ff07.e64b2",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
         "x": 1253,
@@ -1418,8 +1371,8 @@
         "name": "Deprecated API Response",
         "statusCode": "",
         "headers": {},
-        "x": 1215,
-        "y": 1433,
+        "x": 1120,
+        "y": 1360,
         "wires": []
     },
     {
@@ -1433,8 +1386,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 308,
-        "y": 1519,
+        "x": 350,
+        "y": 1600,
         "wires": [
             [
                 "d85f1418.1f7798"
@@ -1463,8 +1416,8 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 1162,
-        "y": 1566,
+        "x": 1070,
+        "y": 1540,
         "wires": []
     },
     {
@@ -1474,14 +1427,14 @@
         "name": "LFMC APIv1",
         "method": "GET",
         "ret": "txt",
-        "url": "http://api:8002/v1/fuel?lat1={{payload.lat1}}&lon1={{payload.lng1}}&lat2={{payload.lat2}}&lon2={{payload.lng2}}&start={{payload.start}}&finish={{payload.finish}}&models={{payload.models}}",
+        "url": "http://api:8002/v1/fuel?lat1={{payload.lat1}}&lon1={{payload.lon1}}&lat2={{payload.lat2}}&lon2={{payload.lon2}}&start={{payload.start}}&finish={{payload.finish}}&models={{payload.models}}",
         "tls": "",
-        "x": 786,
-        "y": 1439,
+        "x": 790,
+        "y": 1420,
         "wires": [
             [
                 "6ecbb57f.7b1eac",
-                "caa732f2.87f51"
+                "91e6a114.86ac7"
             ]
         ]
     },
@@ -1490,15 +1443,16 @@
         "type": "function",
         "z": "cc93ff07.e64b2",
         "name": "Testing Data",
-        "func": "msg.payload = {\n    \"models\": [\"dead_fuel\"],\n    \"start\": \"20180101\",\n    \"finish\": \"20180102\",\n    \"lng1\": 112.8500,\n    \"lat1\": -9.8600,\n    \"lng2\": 153.6900,\n    \"lat2\": -43.7000\n}\n\nreturn msg;",
+        "func": "msg.payload = {\n    \"models\": [\"dead_fuel\", \"awra\", \"ffdi\", \"gfdi\", \"kbdi\"],\n    \"start\": \"20180415\",\n    \"finish\": \"20180416\",\n    \"lon1\": 112.8500,\n    \"lat1\": -9.8600,\n    \"lon2\": 153.6900,\n    \"lat2\": -43.7000\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 563,
-        "y": 1513,
+        "x": 570,
+        "y": 1540,
         "wires": [
             [
                 "deed8dcc.d95c8",
-                "caa732f2.87f51"
+                "caa732f2.87f51",
+                "23099678.bf6e1a"
             ]
         ]
     },
@@ -1511,8 +1465,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 264,
-        "y": 1417,
+        "x": 260,
+        "y": 1420,
         "wires": [
             [
                 "d998fa8e.6b4998"
@@ -1524,14 +1478,15 @@
         "type": "function",
         "z": "cc93ff07.e64b2",
         "name": "parameter parsing",
-        "func": "msg.payload = {\n    \"models\": msg.req.params['models'],\n    \"start\": msg.req.params['start'],\n    \"finish\": msg.req.params['finish'],\n    \"lng1\": msg.req.params['lng1'],\n    \"lat1\": msg.req.params['lat1'],\n    \"lng2\": msg.req.params['lng2'],\n    \"lat2\": msg.req.params['lat2'],\n}\nreturn msg;",
+        "func": "msg.payload = {\n    \"models\": msg.req.params['models'],\n    \"start\": msg.req.params['start'],\n    \"finish\": msg.req.params['finish'],\n    \"lon1\": msg.req.params['lng1'],\n    \"lat1\": msg.req.params['lat1'],\n    \"lon2\": msg.req.params['lng2'],\n    \"lat2\": msg.req.params['lat2'],\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 560,
-        "y": 1433,
+        "x": 550,
+        "y": 1420,
         "wires": [
             [
-                "deed8dcc.d95c8"
+                "deed8dcc.d95c8",
+                "65928fc3.5809d"
             ]
         ]
     },
@@ -1544,8 +1499,8 @@
         "ret": "txt",
         "url": "http://api:8002/v1/models",
         "tls": "",
-        "x": 783,
-        "y": 1623,
+        "x": 800,
+        "y": 1600,
         "wires": [
             [
                 "caa732f2.87f51"
@@ -1563,8 +1518,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 574,
-        "y": 1617,
+        "x": 590,
+        "y": 1600,
         "wires": [
             [
                 "abc220ad.9d17d"
@@ -1580,8 +1535,8 @@
         "ret": "txt",
         "url": "http://api:8002/v1/monitors/requests",
         "tls": "",
-        "x": 816,
-        "y": 1680,
+        "x": 830,
+        "y": 1660,
         "wires": [
             [
                 "caa732f2.87f51"
@@ -1599,8 +1554,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 570,
-        "y": 1677,
+        "x": 590,
+        "y": 1660,
         "wires": [
             [
                 "4343f2d7.8365ac"
@@ -1616,8 +1571,8 @@
         "ret": "txt",
         "url": "http://api:8002/v1/monitors/processes",
         "tls": "",
-        "x": 817,
-        "y": 1737,
+        "x": 830,
+        "y": 1720,
         "wires": [
             [
                 "caa732f2.87f51"
@@ -1635,8 +1590,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 565,
-        "y": 1742,
+        "x": 590,
+        "y": 1720,
         "wires": [
             [
                 "c18f537d.412b1"
@@ -1684,7 +1639,7 @@
         "type": "debug",
         "z": "f51feb57.6cd738",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 1137,
@@ -1747,7 +1702,7 @@
         "type": "debug",
         "z": "f51feb57.6cd738",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 1217,
@@ -1895,11 +1850,727 @@
         "type": "debug",
         "z": "f51feb57.6cd738",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
         "x": 694,
         "y": 628,
         "wires": []
+    },
+    {
+        "id": "98944325.0090a",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model -JASMIN",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\"type\":\"model\",\"rating\":\"7\",\"name\":\"JASMIN\",\"abbr\":\"kumar\",\"date\":\"May 2017\",\"title\":\"Kumar and Dharssi\",\"onefloor\":\"The Joint UK Land Environment Simulator (JULES) based Australian Soil Moisture Information (JASMIN; Dharssi \\u0026 Vinodkumar, 2017) system use an advanced land surface model to provide best estimates of soil moisture for use in fire danger rating.\",\"href\":\"\",\"version\":\"1.0\",\"validated\":{\"validated\":true,\"references\":[{\"href\":\"\",\"reference\":\"Dharssi, I., and Vinodkumar, 2017: A prototype high resolution soil moisture analysis system for Australia, Bureau of Meteorology Research Report, In revision.\",\"title\":\"\",\"authors\":[\"Vinod Kumar\",\"Imtiaz Dharssi\"],\"date\":\"May 2017\"}]},\"description\":{\"author\":\"\",\"date\":\"\",\"abstract\":\"The fuel availability estimates in McArthur Forest Fire Danger Index used in Australia for issuing operational fire warnings are partly based on soil moisture deficit, calculated as either the Keetch– Byram Drought Index (KBDI) or Mount’s Soil Dryness Index (SDI). These indices are essentially simple water balance models designed to estimate soil moisture depletion in the upper soil levels. In the present study, daily values of the above two indices are calculated over Australia at 0.05o resolution from 1974 onwards. A detailed verification of these two models against in-situ soil moisture measurements from CosmOz, OzNet and OzFlux networks are performed. The validations are done using soil moisture observations that represent both surface and deeper soil moisture. The verifications for deeper soil are restricted to OzNet and OzFlux, as only these two networks provide corresponding observations. The verification results show that both KBDI and SDI have relatively low skill in estimating shallow layer (0 – approx. 30 cm) soil moisture compared to a much deeper soil profile (0 – approx. 1m). The modest sensitivity of both KBDI and SDI to weather changes indicate that they are not an accurate measure for estimating duff layer soil moisture.\",\"fuel\":{\"types\":[\"Surface\",\"Near Surface\",\"Elevated\",\"Canopy\"]},\"metric\":\"\",\"index\":\"\",\"resolutions\":{\"minimum\":{\"spatial\":{\"value\":\"0\",\"units\":\"km\"},\"temporal\":{\"value\":\"0\",\"units\":\"hr\"}},\"optimum\":{\"spatial\":{\"value\":\"5\",\"units\":\"km\"},\"temporal\":{\"value\":\"1\",\"units\":\"hr\"}},\"maximum\":{\"spatial\":{\"value\":\"5\",\"units\":\"km\"},\"temporal\":{\"value\":\"1\",\"units\":\"hr\"}}},\"keywords\":{\"strengths\":[\"Soil moisture\",\"API\",\"Comparison\",\"FFDI\"],\"weaknesses\":[]},\"cavaets\":\"\"},\"datasources\":[\"OzNet\",\"CosmOz\",\"OzFlux\",\"KBDI\",\"Observations\"]}\n",
+        "output": "json",
+        "x": 340,
+        "y": 760,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "2d3a4a3e.c13266",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model -Holgate",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\"type\":\"model\",\"rating\":\"7\",\"name\":\"Holgate et al.\",\"abbr\":\"holgate\",\"date\":\"14 September 2016\",\"title\":\"Comparison of remotely sensed and modelled soil moisture data sets across Australia\",\"href\":\"http://dx.doi.org/10.1016/j.rse.2016.09.015\",\"version\":\"1.0\",\"validated\":{\"validated\":true,\"references\":[{\"href\":\"http://dx.doi.org/10.1016/j.rse.2016.09.015\",\"authors\":[\"C.M Holgate\",\"R.A.M. De Jeu\",\"A.I.J.M van Dijk\",\"Y.Y Liu\",\"L.J. Renzullo\",\"Vinodkumar\",\"I. Dharssi\",\"R.M. Parinussa\",\"R. Van Der Schalie\",\"A. Gevaert\",\"J. Walker\",\"D. McJannet\",\"J. Cleverly\",\"V. Haverd\",\"C.M. Trudinger\",\"P.R. Briggs\"],\"date\":\"14 September 2016\"}]},\"description\":{\"author\":\"\",\"date\":\"\",\"abstract\":\"This study compared surface soil moisture from 11 separate remote sensing and modelled products across Australia in a common framework. The comparison was based on a correlation analysis between soil moisture products and in situ data collated from three separate ground-based networks: OzFlux, OzNet and CosmOz. The correlation analysis was performed using both original data sets and temporal anomalies, and was supported by examination of the time series plots. The interrelationships between the products were also explored using cluster analyses. The products considered in this study include: Soil Moisture Ocean Salinity (SMOS; both Land Parameter Retrieval Model (LPRM) and L-band Microwave Emission of the Biosphere (LMEB) algorithms), Advanced Microwave Scanning Radiometer 2 (AMSR2; both LPRM and Japan Aerospace Exploration Agency (JAXA) algorithms) and Advanced Scatterometer (ASCAT) satellite-based products, and WaterDyn, Australian Water Resource Assessment Landscape (AWRA-L), Antecedent Precipitation Index (API), Keetch-Byram Drought Index (KBDI), Mount’s Soil Dryness Index (MSDI) and CABLE/BIOS2 model-based products. The comparison of the satellite and model data sets showed variation in their ability to reflect in situ soil moisture conditions across Australia owing to individual product characteristics. The comparison showed the satellite products yielded similar ranges of correlation coefficients, with the possible exception of AMSR2 JAXA. SMOS (both algorithms) achieved slightly better agreement with in situ measurements than the alternative satellite products overall. Among the models, WaterDyn yielded the highest correlation most consistently across the different locations and climate zones considered. All products displayed a weaker performance in estimating soil moisture anomalies than the original data sets (i.e. the absolute values), showing all products to be more effective in detecting interannual and seasonal soil moisture dynamics rather than individual events. Using cluster analysis we found satellite products generally grouped together, whereas models were more similar to other models. SMOS (based on LMEB algorithm and ascending overpass) and ASCAT (descending overpass) were found to be very similar to each other in terms of their temporal soil moisture dynamics, whereas AMSR2 (based on LPRM algorithm and descending overpass) and AMSR2 (based on JAXA algorithm and ascending overpass) were dissimilar. Of the model products, WaterDyn and CABLE were similar to each other, as were the API/AWRA-L and KBDI/MSDI pairs. The clustering suggests systematic commonalities in error structure and duplication of information may exist between products. This evaluation has highlighted relative strengths, weaknesses, and complementarities between products, so the drawbacks of each may be minimised through a more informed assessment of fitness for purpose by end users.\",\"range\":{},\"fuel\":{},\"metric\":\"\",\"index\":\"\",\"resolutions\":{\"minimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"optimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"maximum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}}},\"keywords\":{\"strengths\":[\"Soil moisture\",\"API\",\"Comparison\",\"Cluster analysis\",\"In situ\"],\"weaknesses\":[]},\"cavaets\":\"\"},\"datasources\":[\"Observations\",\"SMOS\",\"AMSR2\",\"ASCAT\",\"WaterDyn\",\"CABLE\",\"AWRA-L\",\"KBDI\",\"MSDI\"]}\n",
+        "output": "json",
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "aec731e9.0c27",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model -Jurdano",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\"type\":\"model\",\"rating\":\"8\",\"name\":\"Jurdano et al.\",\"abbr\":\"jurdao\",\"date\":\"5 January 2013\",\"title\":\"Regional estimation of woodland moisture content by inverting Radiative Transfer Models\",\"href\":\"https://doi-org.ezp.lib.unimelb.edu.au/10.1016/j.rse.2013.01.004\",\"version\":\"1.0\",\"validated\":{\"validated\":true,\"references\":[{\"href\":\"https://doi-org.ezp.lib.unimelb.edu.au/10.1016/j.rse.2013.01.004\",\"authors\":[\"Sara Jurdao\",\"Marta Yebra\",\"Juan Pablo Guerschman\",\"Emilio Chuvieco\"],\"date\":\"5 January 2013\"}]},\"description\":{\"author\":\"\",\"date\":\"\",\"abstract\":\"We inverted the PROSPECT and GEOSAIL Radiative Transfer Models (RTM) using Moderate Resolution Imaging Spectrometer (MODIS) data to retrieve Live Fuel Moisture Content (LFMC) in woodlands located in the peninsular territory of Spain. Ecological rules were used to parameterize the RTM. This approach reduces the probability of an ill-posed problem in the inversion of the selected RTMs, by rejecting unrealistic combinations of input parameters. Three species representatives of each region were used to derive the ecological rules: Quercus ilex L., Quercus faginea L., and Pinus halepensis Mill. for the Mediterranean region, and Fagus sylvatica L., Quercus robur L. and Eucalyptus globulus Labill for the Eurosiberian region. Equivalent Water Thickness, Dry Matter and Chlorophyll content were taken from several data sources to separately parameterize both the Mediterranean (water-limited) and Eurosiberian (energy-limited) ecoregions of Spain. GEOSAIL was parameterized using a restricted range of Leaf Area Index (LAI) and specific canopy cover values, keeping other parameters fixed. The inversion was based on the Look Up Table technique using the minimum spectral angle as merit function. Several models were tested by using different inputs from standard MODIS products, as well as the fractional cover product developed by Guerschman et al. (2009). The model based on the reflectance bands and the Normalized Difference Infrared Index computed from the Nadir Bidirectional Reflectance Distribution Function-Adjusted Reflectance product (MCD43A4) provided the most accurate results, with a LFMC's Root Mean Square Error (RMSE) of 27.7% (RMSE = 27.3% for the Mediterranean and 28.7% for the Eurosiberian woodland). The estimation of LFMC was performed within the framework of a fire risk assessment system.\",\"range\":{},\"fuel\":{},\"metric\":\"\",\"index\":\"\",\"resolutions\":{\"minimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"optimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"maximum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}}},\"keywords\":{\"strengths\":[\"MODIS\",\"Look Up Table\",\"Water-limited\",\"Energy-limited\",\"Mediterranean\",\"Live Fuel Moisture Content\",\"Fire risk\",\"Fire danger\"],\"weaknesses\":[]},\"cavaets\":\"\"},\"datasources\":[\"MODIS\",\"PROSPECT\",\"GEOSAIL\"]}\n",
+        "output": "json",
+        "x": 340,
+        "y": 640,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "bc7a50f6.a53da",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model -Boer",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\"type\":\"model\",\"rating\":\"7\",\"name\":\"Boer et al.\",\"abbr\":\"boer\",\"date\":\"5 January 2015\",\"title\":\"A semi-mechanistic model for predicting the moisture content of fine litter\",\"href\":\"http://dx.doi.org/10.1016/j.agrformet.2015.01.002\",\"version\":\"1.0\",\"validated\":{\"validated\":true,\"references\":[{\"href\":\"http://dx.doi.org/10.1016/j.agrformet.2015.01.002\",\"authors\":\"Víctor Resco de Dios, Aaron W. Fellows, Rachael H. Nolan, Matthias M. Boer, Ross A.Bradstock, Francisco Domingo, Michael L.Goulden\",\"date\":\"5 January 2015\"}]},\"description\":{\"author\":\"\",\"date\":\"\",\"abstract\":\"The moisture content of vegetation and litter (fuel moisture) is an important determinant of fire risk, and predictions of dead fine fuel moisture content(fuel with a diameter \\u003c 25.4 mm) are particularly important.A variety of indices, as well as empirical and mechanistic models, have been proposed to predict fuel moisture, but these approaches have seldom been validated across temporally extensive datasets, or widely contrasting vegetation types.Here, we describe a semi - mechanistic model, based on the exponential decline of fuel moisture content with atmospheric vapor pressure deficit, that predicts daily minimum fuel moisture content.We calibrated the model at one site in New South Wales, Australia, and validated it at three contrasting ecosystem types in California, USA, where 10 - h fuel moisture content was continuously measured every 30 min over a year.We found that existing drought indices did not accurately predict fuel moisture, and that empirical and equilibrium models provided biased estimates. The mean absolute error(MAE) of the fuel moisture content predicted by our model across sites and years was 3.7%, which was substantially lower than for other, commonly used models.Our model’ s MAE dropped to 2.9 % when fuel moisture was below 20 % , and to 1.8 % when fuel moisture was below 10 % . Our model’ s MAE was comparable to instrumental MAE(3.1– 2.5 % ), indicating that further improvement may be limited by measurement error.The simplicity, accuracy and precision of our model makes it suitable for a range of applications, such as operational fire management and the prediction of fire risk in vegetation models, without the need for site - specific calibrations.\",\"range\":{},\"fuel\":{},\"metric\":\"\",\"index\":\"\",\"resolutions\":{\"minimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"optimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"maximum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}}},\"keywords\":{\"strengths\":[\"Dead fine fuel moisture content\",\"Model development\",\"Micrometeorology\",\"Vapor pressure deficit\",\"Temperate woodlands\",\"Mediterranean ecosystems\"],\"weaknesses\":[]},\"cavaets\":\"\"},\"datasources\":[\"KBDI\"]}",
+        "output": "json",
+        "x": 330,
+        "y": 880,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "979e7c8c.f7cf",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model -AWRA",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\"type\":\"model\",\"rating\":\"7\",\"name\":\"AWRA\",\"abbr\":\"awra\",\"date\":\"6 December 2013\",\"title\":\"The Australian Water Resource Assessment Modelling System (AWRA)\",\"href\":\"\",\"version\":\"1.0\",\"validated\":{\"validated\":true,\"references\":[{\"href\":\"\",\"authors\":[\"J. Vaze\",\"N. Viney\",\"M. Stenson\",\"L. Renzullo\",\"A. Van Dijk\",\"D. Dutta\",\"R. Crosbie\",\"J. Lerat\",\"D. Penton\",\"J. Vleeshouwer\",\"L. Peeters\",\"J. Teng\",\"S. Kim\",\"J. Hughes\",\"W. Dawes\",\"Y. Zhang\",\"B. Leighton\",\"J-M. Perraud\",\"K. Joehnk\",\"A. Yang\",\"B. Wang\",\"A. Frost\",\"A. Elmahdi\",\"A. Smith\",\"C. Daamen\"],\"date\":\"6 December 2013\"}]},\"description\":{\"author\":\"\",\"date\":\"\",\"abstract\":\"The Australian Water Resource Assessment (AWRA) modelling system has been in development since 2008 to enable the Bureau of Meteorology to meet its legislated role in providing an annual National Water Account and a regular Australian Water Resource Assessment Report. The system uses available observations and an integrated landscape-groundwater-river water balance model to estimate the stores and fluxes of the water balance required for reporting. AWRA constitutes a unique example of implementing a coupled landscape, groundwater and regulated river system model at a continental scale and rolled out at high priority regions (National Water Account (NWA) regions). The results for AWRA-L (landscape) implementation across 607 gauged catchments show that in both calibration and validation, the model typically provides streamflow predictions that are similar to those from other widely used conceptual hydrological models. The AWRA-R (river) model includes newly developed components for floodplain inundation modelling, accounting for irrigation diversions and groundwater surface water interactions. The results show that the model performs extremely well in majority of the modelling regions and it provides all the water fluxes and stores required for NWA. The software architecture developed as part of AWRA integrates the individual components in a seamless manner with transfer of fluxes between the components at a daily time step for operational implementation. The system is fully functional on the Bureau’s operating system and used for supporting the production of AWRA and NWA reports. The Bureau has used the AWRA modelling system to undertake water resource assessments across the country and already published one Water Resource Assessment (2010) and two National Water Accounts (2010, 2011). There has been a steady and continuous improvement in the AWRA model performance and the Bureau is currently undertaking the next round of Water Resource Assessments (2012) and a National Water Account (2012) using the current version of the AWRA system. It is anticipated that what-if scenario modelling and forecasting water resource availability will eventually come into scope in the next three years when the retrospective components of the system are fully implemented and operating efficiently and effectively.\",\"range\":{},\"fuel\":{},\"metric\":\"\",\"index\":\"\",\"resolutions\":{\"minimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"optimum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}},\"maximum\":{\"spatial\":{\"value\":\"\",\"units\":\"\"},\"temporal\":{\"value\":\"\",\"units\":\"\"}}},\"keywords\":{\"strengths\":[\"Soil moisture\",\"API\",\"Comparison\"],\"weaknesses\":[]},\"cavaets\":\"\"},\"datasources\":[\"AWRA\",\"Observations\"]}\n",
+        "output": "json",
+        "x": 340,
+        "y": 940,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "2a898bd3.7a8924",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "MODIS",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n      \"last_updated\":\"{{msg.timestamp}}\",\n      \"name\":\"MODIS\",\n      \"desc\":\"Moderate Resolution Imaging Spectroradiometer\",\n      \"provider_org\":\"https://modis.gsfc.nasa.gov/\",\n      \"frequency\":{\n         \"value\":\"8\",\n         \"units\":\"days\"\n      },\n      \"provides\":[\n          \"Surface Reflectance Bands\"\n      ]\n  }",
+        "output": "json",
+        "x": 360,
+        "y": 1320,
+        "wires": [
+            [
+                "8f091de2.628ed"
+            ]
+        ]
+    },
+    {
+        "id": "58fd11ec.d8d0c",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 180,
+        "y": 1320,
+        "wires": [
+            [
+                "2a898bd3.7a8924"
+            ]
+        ]
+    },
+    {
+        "id": "88f0a86e.da59c8",
+        "type": "mongodb2 in",
+        "z": "a9caf749.eb5048",
+        "service": "_ext_",
+        "configNode": "671e12d5.6bd4fc",
+        "name": "",
+        "collection": "models",
+        "operation": "",
+        "x": 670,
+        "y": 440,
+        "wires": [
+            [
+                "ccd4554e.fc87a8",
+                "89a6b072.29f9a"
+            ]
+        ]
+    },
+    {
+        "id": "50008711.1f9588",
+        "type": "function",
+        "z": "a9caf749.eb5048",
+        "name": "Just Datasources",
+        "func": "var ds = [];\n\nfor(var i in msg.payload[0].datasources) {\n    ds.push(msg.payload[0].datasources[i]);\n}\n\nmsg.operation = \"find.toArray\";\nmsg.payload = {\"abbr\": {$in : ds}};\n// msg.payload = ds;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 970,
+        "y": 560,
+        "wires": [
+            [
+                "8fcc58f0.5deed8",
+                "8967880b.798f78"
+            ]
+        ]
+    },
+    {
+        "id": "4ae5dbc7.c7db04",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "AWAP",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "mustache",
+        "template": "{\n    \"last_updated\":\"{{msg.timestamp}}\",\n    \"name\":\"AWAP\",\n     \"desc\":\"Australian Water Availability Project AWAP - Australian Gridded Climate Data ( AGCD )\",\n     \"provider_org\":\"http://www.bom.gov.au/metadata/catalogue/view/ANZCW0503900567.shtml\",\n     \"frequency\":{\n        \"value\":\"1\",\n        \"units\":\"hours\"\n     },\n     \"provides\":[\n         \"Maximum daily temperature\",\n         \"Vapour Pressure @ 3pm\"\n     ]\n  }",
+        "output": "json",
+        "x": 350,
+        "y": 1380,
+        "wires": [
+            [
+                "8f091de2.628ed"
+            ]
+        ]
+    },
+    {
+        "id": "2e773a37.5eeff6",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 180,
+        "y": 1380,
+        "wires": [
+            [
+                "4ae5dbc7.c7db04"
+            ]
+        ]
+    },
+    {
+        "id": "8fcc58f0.5deed8",
+        "type": "mongodb2 in",
+        "z": "a9caf749.eb5048",
+        "service": "_ext_",
+        "configNode": "671e12d5.6bd4fc",
+        "name": "",
+        "collection": "datasources",
+        "operation": "",
+        "x": 1310,
+        "y": 560,
+        "wires": [
+            [
+                "36f959c2.e8cd16",
+                "83e9c1f8.a234f"
+            ]
+        ]
+    },
+    {
+        "id": "8d5a999b.b19038",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 930,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "36f959c2.e8cd16",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1690,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "a40d57e2.169c78",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "true",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 630,
+        "y": 620,
+        "wires": [
+            [
+                "ac57d7df.e632f8"
+            ]
+        ]
+    },
+    {
+        "id": "ac57d7df.e632f8",
+        "type": "function",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "func": "msg={}\nmsg.payload = [{\"datasources\": [\"AWAP\",\"KBDI\"]}];\n// msg.payload = [{datasources: [{0:\"AWAP\"},{1:\"KBDI\"}]}];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 770,
+        "y": 620,
+        "wires": [
+            [
+                "50008711.1f9588"
+            ]
+        ]
+    },
+    {
+        "id": "6337f923.883258",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 650,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "8967880b.798f78",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1150,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "4d0f3f0d.32c1a",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model -KBDI",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\n   \"type\":\"model\",\n   \"rating\":\"7\",\n   \"name\":\"KBDI\",\n   \"abbr\":\"kbdi\",\n   \"date\":\"6 December 2013\",\n   \"title\":\"Keetch-Byram Drought Index\",\n   \"href\":\"\",\n   \"version\":\"1.0\",\n   \"validated\":{\n      \"validated\":true,\n      \"references\":[\n         {\n            \"href\":\"\",\n            \"authors\":[\n               \"kbdi\"\n            ],\n            \"date\":\"6 December 2013\"\n         }\n      ]\n   },\n   \"description\":{\n      \"author\":\"\",\n      \"date\":\"\",\n      \"abstract\":\"...\",\n      \"range\":{\n\n      },\n      \"fuel\":{\n\n      },\n      \"metric\":\"\",\n      \"index\":\"\",\n      \"resolutions\":{\n         \"minimum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         },\n         \"optimum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         },\n         \"maximum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         }\n      },\n      \"keywords\":{\n         \"strengths\":[\n            \"Comparison\"\n         ],\n         \"weaknesses\":[\n            \"Derivation from subjective observations.\"\n         ]\n      },\n      \"cavaets\":\"\"\n   },\n   \"datasources\":[\n      \"Observations\"\n   ]\n}",
+        "output": "json",
+        "x": 330,
+        "y": 1000,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "cdede019.e95bc",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model -FFDI",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\n   \"type\":\"model\",\n   \"rating\":\"7\",\n   \"name\":\"FFDI\",\n   \"abbr\":\"ffdi\",\n   \"date\":\"6 December 2013\",\n   \"title\":\"Forest Fire Danger Index\",\n   \"href\":\"\",\n   \"version\":\"1.0\",\n   \"validated\":{\n      \"validated\":true,\n      \"references\":[\n         {\n            \"href\":\"\",\n            \"authors\":[\n                \"FFDI\"\n            ],\n            \"date\":\"6 December 2013\"\n         }\n      ]\n   },\n   \"description\":{\n      \"author\":\"\",\n      \"date\":\"\",\n      \"abstract\":\"...\",\n      \"range\":{\n\n      },\n      \"fuel\":{\n\n      },\n      \"metric\":\"\",\n      \"index\":\"\",\n      \"resolutions\":{\n         \"minimum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         },\n         \"optimum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         },\n         \"maximum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         }\n      },\n      \"keywords\":{\n         \"strengths\":[\n            \"Comparison\"\n         ],\n         \"weaknesses\":[\n            \"Derivation from subjective obervations.\"\n         ]\n      },\n      \"cavaets\":\"\"\n   },\n   \"datasources\":[\n      \"Observations\"\n   ]\n}",
+        "output": "json",
+        "x": 330,
+        "y": 1060,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "538612c3.583bdc",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model -GFDI",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\n   \"type\":\"model\",\n   \"rating\":\"7\",\n   \"name\":\"GFDI\",\n   \"abbr\":\"gfdi\",\n   \"date\":\"6 December 2013\",\n   \"title\":\"Grass Fire Danger Index\",\n   \"href\":\"\",\n   \"version\":\"1.0\",\n   \"validated\":{\n      \"validated\":true,\n      \"references\":[\n         {\n            \"href\":\"\",\n            \"authors\":[\n               \"GFDI\"\n            ],\n            \"date\":\"6 December 2013\"\n         }\n      ]\n   },\n   \"description\":{\n      \"author\":\"\",\n      \"date\":\"\",\n      \"abstract\":\"...\",\n      \"range\":{\n\n      },\n      \"fuel\":{\n\n      },\n      \"metric\":\"\",\n      \"index\":\"\",\n      \"resolutions\":{\n         \"minimum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         },\n         \"optimum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         },\n         \"maximum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         }\n      },\n      \"keywords\":{\n         \"strengths\":[\n            \"Comparison\"\n         ],\n         \"weaknesses\":[\n            \"Derivation from subjective observations.\"\n         ]\n      },\n      \"cavaets\":\"\"\n   },\n   \"datasources\":[\n      \"Observations\"\n   ]\n}",
+        "output": "json",
+        "x": 330,
+        "y": 1120,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "cb81a92b.307258",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 640,
+        "wires": [
+            [
+                "aec731e9.0c27"
+            ]
+        ]
+    },
+    {
+        "id": "175cb15a.6bc82f",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 700,
+        "wires": [
+            [
+                "2d3a4a3e.c13266"
+            ]
+        ]
+    },
+    {
+        "id": "c362a6f6.830d98",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 760,
+        "wires": [
+            [
+                "98944325.0090a"
+            ]
+        ]
+    },
+    {
+        "id": "b03e7602.956868",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 820,
+        "wires": [
+            [
+                "828005e3.3cd768"
+            ]
+        ]
+    },
+    {
+        "id": "59fd3396.188ebc",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 880,
+        "wires": [
+            [
+                "bc7a50f6.a53da"
+            ]
+        ]
+    },
+    {
+        "id": "1967166d.260f4a",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 940,
+        "wires": [
+            [
+                "979e7c8c.f7cf"
+            ]
+        ]
+    },
+    {
+        "id": "9da38dc3.f8f47",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 1000,
+        "wires": [
+            [
+                "4d0f3f0d.32c1a"
+            ]
+        ]
+    },
+    {
+        "id": "3ec6d195.e905be",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 1060,
+        "wires": [
+            [
+                "cdede019.e95bc"
+            ]
+        ]
+    },
+    {
+        "id": "7ea42c3e.c7c234",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 1120,
+        "wires": [
+            [
+                "538612c3.583bdc"
+            ]
+        ]
+    },
+    {
+        "id": "ade41c44.8ab47",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model live_fuel",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\n   \"type\":\"model\",\n   \"rating\":\"8\",\n   \"name\":\"Live Fuels - Nolan et al.\",\n   \"abbr\":\"live_fuel\",\n   \"date\":\"9 September 2015\",\n   \"title\":\"Predicting dead fine fuel moisture at regional scales using vapour pressure deficit from MODIS and gridded weather data\",\n   \"href\":\"http://dx.doi.org/10.1016/j.rse.2015.12.010\",\n   \"version\":\"1.0\",\n   \"validated\":{\n      \"validated\":true,\n      \"references\":[\n         {\n            \"href\":\"\",\n            \"authors\":\"Rachael H. Nolan, Víctor Resco de Dios, Matthias M. Boer, Gabriele Caccamo, Michael L. Goulden, Ross A. Bradstock\",\n            \"date\":\"\"\n         }\n      ]\n   },\n   \"description\":{\n      \"date\":\"\",\n      \"abstract\":\"Spatially explicit predictions of fuel moisture content are crucial for quantifying fire danger indices and as inputs to fire behaviour models. Remotely sensed predictions of fuel moisture have typically focused on live fuels; but regional estimates of dead fuel moisture have been less common. Here we develop and test the spatial application of a recently developed dead fuel moisture model, which is based on the exponential decline of fine fuel moisture with increasing vapour pressure deficit (D). We first compare the performance of two existing approaches to pre- dict D from satellite observations. We then use remotely sensed D, as well as D estimated from gridded daily weather observations, to predict dead fuel moisture. We calibrate and test the model at a woodland site in South East Australia, and then test the model at a range of sites in South East Australia and Southern California that vary in vegetation type, mean annual precipitation (129–1404 mm year −1 ) and leaf area index (0.1–5.7). We found that D modelled from remotely sensed land surface temperature performed slightly better than a model which also included total precipitable water (MAE b 1.16 kPa and 1.62 kPa respectively). D calculated with observations from the Moderate Resolution Imaging Spectroradiometer (MODIS) on the Terra satellite was under-predicted in areas with low leaf area index. Both D from remotely sensed data and gridded weather station data were good predictors of the moisture content of dead suspended fuels at validation sites, with mean absolute errors less than 3.9% and 6.0% respectively. The occurrence of data gaps in remotely sensed time series presents an obstacle to this approach, and assimilated or extrapolated meteorological observations may offer better continuity.\",\n      \"range\":{\n\n      },\n      \"fuel\":{\n\n      },\n      \"metric\":\"\",\n      \"index\":\"\",\n      \"resolutions\":{\n         \"minimum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"24\",\n               \"units\":\"hour\"\n            }\n         },\n         \"optimum\":{\n            \"spatial\":{\n               \"value\":\"9\",\n               \"units\":\"km^2\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         },\n         \"maximum\":{\n            \"spatial\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            },\n            \"temporal\":{\n               \"value\":\"\",\n               \"units\":\"\"\n            }\n         }\n      },\n      \"keywords\":{\n         \"strengths\":[\n            \"Remotely sensed.\",\n            \"Accuracy of model.\"\n         ],\n         \"weaknesses\":[\n            \"MODIS being decommissioned soon.\"\n         ]\n      },\n      \"cavaets\":\"\"\n   },\n   \"datasources\":[\n      \"MODIS\",\n      \"AWAP\"\n   ]\n}",
+        "output": "json",
+        "x": 340,
+        "y": 1180,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "f450922a.78b8e",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 1180,
+        "wires": [
+            [
+                "ade41c44.8ab47"
+            ]
+        ]
+    },
+    {
+        "id": "b33322b5.994cd",
+        "type": "debug",
+        "z": "cc93ff07.e64b2",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1170,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "23099678.bf6e1a",
+        "type": "template",
+        "z": "cc93ff07.e64b2",
+        "name": "URL simulation",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "http://api:8002/v1/fuel?lat1={{payload.lat1}}&lon1={{payload.lon1}}&lat2={{payload.lat2}}&lon2={{payload.lon2}}&start={{payload.start}}&finish={{payload.finish}}&models={{payload.models}}",
+        "output": "str",
+        "x": 800,
+        "y": 1480,
+        "wires": [
+            [
+                "b33322b5.994cd"
+            ]
+        ]
+    },
+    {
+        "id": "c7095301.fbf03",
+        "type": "inject",
+        "z": "cc93ff07.e64b2",
+        "name": "DAILY",
+        "topic": "daily_cron_process",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "86400",
+        "crontab": "",
+        "once": false,
+        "x": 100,
+        "y": 1620,
+        "wires": [
+            [
+                "26c71637.27e59a"
+            ]
+        ]
+    },
+    {
+        "id": "6a556f68.41143",
+        "type": "function",
+        "z": "cc93ff07.e64b2",
+        "name": "Daily CRON Data",
+        "func": "function formatDate(date) {\n    var d = new Date(date),\n        month = '' + (d.getMonth() + 1),\n        day = '' + d.getDate(),\n        year = d.getFullYear();\n\n    if (month.length < 2) month = '0' + month;\n    if (day.length < 2) day = '0' + day;\n\n    return [year, month, day].join('');\n}\n\nvar tnow = +new Date();\nvar tminus24 = tnow - (24 * 60 * 60 * 1000);\n\nmsg.payload = {\n    \"models\": msg.payload[\"data\"].models,\n    \"start\": formatDate(tminus24),\n    \"finish\": formatDate(tnow),\n    \"lon1\": 112.8500,\n    \"lat1\": -9.8600,\n    \"lon2\": 153.6900,\n    \"lat2\": -43.7000\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 1480,
+        "wires": [
+            [
+                "deed8dcc.d95c8",
+                "23099678.bf6e1a"
+            ]
+        ]
+    },
+    {
+        "id": "86e94ac3.36b358",
+        "type": "inject",
+        "z": "cc93ff07.e64b2",
+        "name": "Trigger",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 90,
+        "y": 1480,
+        "wires": [
+            [
+                "26c71637.27e59a"
+            ]
+        ]
+    },
+    {
+        "id": "65928fc3.5809d",
+        "type": "debug",
+        "z": "cc93ff07.e64b2",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload.models",
+        "x": 820,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "91e6a114.86ac7",
+        "type": "json",
+        "z": "cc93ff07.e64b2",
+        "name": "",
+        "pretty": false,
+        "x": 1050,
+        "y": 1420,
+        "wires": [
+            [
+                "b33322b5.994cd"
+            ]
+        ]
+    },
+    {
+        "id": "26c71637.27e59a",
+        "type": "http request",
+        "z": "cc93ff07.e64b2",
+        "name": "APIv1 models",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api:8002/v1/models",
+        "tls": "",
+        "x": 260,
+        "y": 1480,
+        "wires": [
+            [
+                "73740313.37db6c"
+            ]
+        ]
+    },
+    {
+        "id": "73740313.37db6c",
+        "type": "json",
+        "z": "cc93ff07.e64b2",
+        "name": "",
+        "pretty": false,
+        "x": 410,
+        "y": 1480,
+        "wires": [
+            [
+                "6a556f68.41143"
+            ]
+        ]
     }
 ]

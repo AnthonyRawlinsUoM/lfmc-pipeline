@@ -1,0 +1,39 @@
+[
+   {
+      "name":"KBDI",
+      "desc":"Keech-Byram Drought Index",
+      "provider_org":"bom.gov.au",
+      "frequency":{
+         "value":"24",
+         "units":"hours"
+      },
+      "provides":[
+         "Indexed values"
+      ]
+   },
+   {
+      "name":"MODIS",
+      "desc":"Moderate Resolution Imaging Spectroradiometer",
+      "provider_org":"https://modis.gsfc.nasa.gov/",
+      "frequency":{
+         "value":"8",
+         "units":"days"
+      },
+      "provides":[
+          "Surface Reflectance Bands"
+      ]
+  },
+  {
+     "name":"AWAP",
+     "desc":"Australian Water Availability Project AWAP - Australian Gridded Climate Data ( AGCD )",
+     "provider_org":"http://www.bom.gov.au/metadata/catalogue/view/ANZCW0503900567.shtml",
+     "frequency":{
+        "value":"1",
+        "units":"hours"
+     },
+     "provides":[
+         "Maximum daily temperature",
+         "Vapour Pressure @ 3pm"
+     ]
+  }
+]
