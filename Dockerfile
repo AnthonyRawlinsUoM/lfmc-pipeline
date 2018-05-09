@@ -22,7 +22,6 @@ RUN npm install --no-optional
 
 COPY . .
 RUN mkdir /mnt/data_dir
-VOLUME /mnt/data_dir
 
 # Production
 EXPOSE 1880/tcp
