@@ -9,8 +9,10 @@ RUN apk add --update \
 	mongodb \
     git \
 	curl \
-  && pip install virtualenv \
-  && rm -rf /var/cache/apk/*
+  && pip install virtualenv
+RUN apk add --no-cache tzdata
+ENV TZ Australia/Melbourne
+RUN rm -rf /var/cache/apk/*
 
 # Make working dir
 WORKDIR /usr/src/app
@@ -22,6 +24,7 @@ RUN npm install --no-optional
 
 COPY . .
 RUN mkdir /mnt/data_dir
+RUN mkdir /mnt/awra_dir
 
 # Production
 EXPOSE 1880/tcp

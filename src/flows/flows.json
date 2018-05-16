@@ -2,35 +2,49 @@
     {
         "id": "a9caf749.eb5048",
         "type": "tab",
-        "label": "Mongo",
+        "label": "Models Wrapper",
         "disabled": false,
-        "info": ""
+        "info": "To be replaced by the HUG API Server and its associated metadata from the included Models in the Model Register."
     },
     {
         "id": "cc93ff07.e64b2",
         "type": "tab",
-        "label": "API",
+        "label": "API Wrapper to the NoSQL Server",
         "disabled": false,
         "info": ""
     },
     {
         "id": "c062f1c4.9c61",
         "type": "tab",
-        "label": "CFA",
+        "label": "CFA Feed",
         "disabled": false,
         "info": ""
     },
     {
         "id": "f51feb57.6cd738",
         "type": "tab",
-        "label": "BoM",
+        "label": "BoM Scraper",
         "disabled": false,
         "info": ""
     },
     {
         "id": "18ce424.75127be",
         "type": "tab",
+        "label": "File Upload Examples",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "59601007.fe581",
+        "type": "tab",
         "label": "Flow 1"
+    },
+    {
+        "id": "ee6c3ad0.573538",
+        "type": "tab",
+        "label": "AWRA-L",
+        "disabled": false,
+        "info": ""
     },
     {
         "id": "671e12d5.6bd4fc",
@@ -253,11 +267,11 @@
         "type": "http in",
         "z": "a9caf749.eb5048",
         "name": "",
-        "url": "/api/models",
+        "url": "/models",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 149,
+        "x": 139,
         "y": 261,
         "wires": [
             [
@@ -433,7 +447,7 @@
         "template": "{\n\"last_updated\":\"{{msg.timestamp}}\",\n\"name\":\"KBDI\",\n\"desc\":\"Keech-Byram Drought Index\",\n\"provider_org\":\"bom.gov.au\",\n\"frequency\":{\n\"value\":\"24\",\n\"units\":\"hours\"\n},\n\"provides\": [\n\"Indexed values\"\n]\n}",
         "output": "json",
         "x": 350,
-        "y": 1260,
+        "y": 1380,
         "wires": [
             [
                 "8f091de2.628ed"
@@ -452,7 +466,7 @@
         "crontab": "",
         "once": false,
         "x": 180,
-        "y": 1260,
+        "y": 1380,
         "wires": [
             [
                 "65af3eb8.bcb7d"
@@ -481,11 +495,11 @@
         "type": "http in",
         "z": "a9caf749.eb5048",
         "name": "",
-        "url": "/api/model/:abbr/datasources",
+        "url": "/model/:abbr/datasources",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 183,
+        "x": 163,
         "y": 512,
         "wires": [
             [
@@ -541,11 +555,11 @@
         "type": "http in",
         "z": "a9caf749.eb5048",
         "name": "",
-        "url": "/api/model/:abbr",
+        "url": "/model/:abbr",
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 138,
+        "x": 118,
         "y": 386,
         "wires": [
             [
@@ -1445,7 +1459,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "",
-        "func": "msg.filename = \"register/bom023/rKCm6dbQ/adfd\"\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\n\nif(dd<10) {\n    dd = '0'+dd;\n} \n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today =  yyyy + mm + dd;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today\n\nreturn msg;",
+        "func": "msg.filename = \"register/bom023/rKCm6dbQ/adfd\"\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\nvar h = today.getHours();\nvar m = today.getMinutes();\n\nif(h < 10) {\n    h ='0'+h;\n}\nif(m < 10) {\n    m = '0'+m;\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today =  yyyy + mm + dd + \" \" + h + m;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
@@ -1462,7 +1476,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "",
-        "func": "msg.filename = \"register/bom023/rKCm6dbQ/fwo\"\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\n\nif(dd<10) {\n    dd = '0'+dd;\n} \n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today =  yyyy + mm + dd;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today + \"/fwo\"\n\nreturn msg;",
+        "func": "msg.filename = \"register/bom023/rKCm6dbQ/fwo\"\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\nvar h = today.getHours();\nvar m = today.getMinutes();\n\nif(h < 10) {\n    h ='0'+h;\n}\nif(m < 10) {\n    m = '0'+m;\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n} \n\nif(mm<10) {\n    mm = '0'+mm;\n}\n\n\n\nmsg.today =  yyyy + mm + dd + \" \" + h + m;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today + \"/fwo\"\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
@@ -1515,7 +1529,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "Filter for ADFD",
-        "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\nreturn (\n    item.hasOwnProperty(\"name\") &&\n    ((item.name).includes('IDV') || // Victoria <-- Only Data we have access to with DELWP\n     (item.name).includes('IDN') || // NSW/ACT\n     (item.name).includes('IDQ') || // Queensland\n     (item.name).includes('IDT') || // Tasmania\n     (item.name).includes('IDW') || // Western Australia\n     (item.name).includes('IDS') || // South Australia\n     (item.name).includes('IDD')    // Northern Territory\n    )\n    );\n});\n\nmsg.path = msg.filename;\n\nmsg.filename = object_shortlist.map(function(item) {\n    return msg.path +\"/\"+ item.name;    \n});\n\nreturn msg;",
+        "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\nreturn (\n    item.hasOwnProperty(\"name\") &&\n    ((item.name).includes('IDV')  // Victoria <-- Only Data we have access to with DELWP\n    //  (item.name).includes('IDN') || // NSW/ACT\n    //  (item.name).includes('IDQ') || // Queensland\n    //  (item.name).includes('IDT') || // Tasmania\n    //  (item.name).includes('IDW') || // Western Australia\n    //  (item.name).includes('IDS') || // South Australia\n    //  (item.name).includes('IDD')    // Northern Territory\n    )\n    );\n});\n\nmsg.path = msg.filename;\n\nmsg.filename = object_shortlist.map(function(item) {\n    return msg.path +\"/\"+ item.name;    \n});\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 940,
@@ -1634,7 +1648,7 @@
         "template": "{\n\"last_updated\":\"{{msg.timestamp}}\",\n\"name\":\"MODIS\",\n\"desc\":\"Moderate Resolution Imaging Spectroradiometer\",\n\"provider_org\":\"https://modis.gsfc.nasa.gov/\",\n\"frequency\":{\n\"value\":\"8\",\n\"units\":\"days\"\n},\n\"provides\": [\n\"Surface Reflectance Bands\"\n]\n}",
         "output": "json",
         "x": 360,
-        "y": 1320,
+        "y": 1440,
         "wires": [
             [
                 "8f091de2.628ed"
@@ -1653,7 +1667,7 @@
         "crontab": "",
         "once": false,
         "x": 180,
-        "y": 1320,
+        "y": 1440,
         "wires": [
             [
                 "2a898bd3.7a8924"
@@ -1707,7 +1721,7 @@
         "template": "{\n\"last_updated\":\"{{msg.timestamp}}\",\n\"name\":\"AWAP\",\n\"desc\":\"Australian Water Availability Project AWAP - Australian Gridded Climate Data ( AGCD )\",\n\"provider_org\":\"http://www.bom.gov.au/metadata/catalogue/view/ANZCW0503900567.shtml\",\n\"frequency\":{\n\"value\":\"1\",\n\"units\":\"hours\"\n},\n\"provides\": [\n\"Maximum daily temperature\",\n\"Vapour Pressure @ 3pm\"\n]\n}",
         "output": "json",
         "x": 350,
-        "y": 1380,
+        "y": 1500,
         "wires": [
             [
                 "8f091de2.628ed"
@@ -1726,7 +1740,7 @@
         "crontab": "",
         "once": false,
         "x": 180,
-        "y": 1380,
+        "y": 1500,
         "wires": [
             [
                 "4ae5dbc7.c7db04"
@@ -2529,8 +2543,8 @@
         "active": true,
         "console": "false",
         "complete": "true",
-        "x": 1370,
-        "y": 260,
+        "x": 1910,
+        "y": 240,
         "wires": []
     },
     {
@@ -2557,7 +2571,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "Filter for ALL",
-        "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\nreturn (item.hasOwnProperty(\"name\"));\n});\n\nmsg.path = msg.filename;\n\nmsg.filename = object_shortlist.map(function(item) {\n    return msg.path +\"/\"+ item.name;    \n});\n\nreturn msg;",
+        "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\n    return (item.hasOwnProperty(\"name\"));\n});\n\nmsg.path = msg.filename;\n\nmsg.filename = object_shortlist.map(function(item) {\n    return msg.path + \"/\" + item.name;    \n});\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 930,
@@ -3087,7 +3101,8 @@
         "y": 240,
         "wires": [
             [
-                "9c2cacb8.9f915"
+                "71ec623a.22c3dc",
+                "1c553d9f.0c7002"
             ]
         ]
     },
@@ -3102,11 +3117,11 @@
         "output": "payload",
         "filesType": "msg",
         "directoryType": "msg",
-        "x": 860,
+        "x": 700,
         "y": 600,
         "wires": [
             [
-                "86a934ea.051b88"
+                "ef3da2ad.b36e4"
             ]
         ]
     },
@@ -3119,7 +3134,7 @@
         "console": "false",
         "complete": "true",
         "x": 1090,
-        "y": 600,
+        "y": 580,
         "wires": []
     },
     {
@@ -3271,7 +3286,8 @@
         "y": 280,
         "wires": [
             [
-                "9c2cacb8.9f915"
+                "71ec623a.22c3dc",
+                "1c553d9f.0c7002"
             ]
         ]
     },
@@ -3281,8 +3297,8 @@
         "z": "f51feb57.6cd738",
         "name": "",
         "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
+        "timeout": "3",
+        "timeoutUnits": "minutes",
         "rate": "1",
         "nbRateUnits": "1",
         "rateUnits": "second",
@@ -3297,5 +3313,223 @@
                 "ca7dca3a.8f90d8"
             ]
         ]
+    },
+    {
+        "id": "ef3da2ad.b36e4",
+        "type": "exec",
+        "z": "f51feb57.6cd738",
+        "command": "gzip -d ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 890,
+        "y": 600,
+        "wires": [
+            [
+                "86a934ea.051b88"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "4cd50c87.f69f54",
+        "type": "exec",
+        "z": "f51feb57.6cd738",
+        "command": "gzip -d ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 1750,
+        "y": 260,
+        "wires": [
+            [
+                "9c2cacb8.9f915"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "71ec623a.22c3dc",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "Filter for GZ",
+        "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\n    return ( item.includes('.nc.gz'));\n});\n\nmsg.payload = object_shortlist.map(function(item) {\n    return item.replace(msg.path, '');    \n});\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1390,
+        "y": 260,
+        "wires": [
+            [
+                "1c553d9f.0c7002",
+                "78be030d.4a464c"
+            ]
+        ]
+    },
+    {
+        "id": "1c553d9f.0c7002",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1450,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "78be030d.4a464c",
+        "type": "split",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 1590,
+        "y": 260,
+        "wires": [
+            [
+                "4cd50c87.f69f54"
+            ]
+        ]
+    },
+    {
+        "id": "1e9d4b0c.74c355",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model - Matthews",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\"type\":\"model\",\n\"rating\":\"7\",\n\"name\":\"Matthews et al.\",\n\"abbr\":\"matthews\",\n\"date\":\"14 September 2016\",\n\"title\":\"Modelling fuel moisture across the landscape for fire management\",\n\"href\":\"http://dx.doi.org/10.13140/RG.2.2.36184.70403\",\n\"version\":\"1.0\",\n\"validated\":{\n    \"validated\":true,\n    \"references\": [\n        {\"href\":\"http://dx.doi.org/10.13140/RG.2.2.36184.70403\",\n        \"authors\": [\"S. Matthews, S. Loveday, R. Hurley, S. Roxburgh\"],\n        \"date\":\"14 September 2016\"}\n        ]},\n        \"description\":{\n            \"author\":\"\",\n            \"date\":\"\",\n            \"abstract\":\"Fuels consumed in bushfires are a mix of live and dead plant material, the water content of which plays an important role in determining fire behaviour. Knowledge of FMC is thus required to predict fire behaviour and almost all fire models include dead FMC as an input variable. Existing systems for fire danger rating and forest fire behaviour prediction used in Australia are based on the McArthur Forest Fire Danger Meter (FFDM). This system includes an extremely simple fuel moisture model based only on instantaneous values of temperature and relative humidity. The effect of rainfall on fuel moisture is not included explicitly but rather indirectly via the Drought Factor, which depends only on amount of rainfall and time since rain, i.e. that is drying rate is independent of weather during the drying phase, which is incorrect. Furthermore the FFDM takes no account of topography or fuel or forest structure in making fuel moisture predictions. This project addressed these limitations by applying a physically based moisture model across the landscape for spatial applications and validation using experimental measurements in native forest landscapes in New South Wales and Victoria.\",\n    \"range\":{},\n    \"fuel\":{},\n    \"metric\":\"\",\n    \"index\":\"\",\n    \"resolutions\":{\n        \"minimum\":{\n            \"spatial\":{\n                \"value\":\"\",\"units\":\"\"\n                \n            },\n            \"temporal\":{\n                \"value\":\"\",\"units\":\"\"\n                \n            }\n        },\n        \"optimum\":{\n            \"spatial\":{\"value\":\"\",\"units\":\"\"},\n            \"temporal\":{\"value\":\"\",\"units\":\"\"}\n        },\n        \"maximum\":{\n            \"spatial\":{\"value\":\"\",\"units\":\"\"},\n            \"temporal\":{\"value\":\"\",\"units\":\"\"}\n            \n        }\n        \n    },\n    \"keywords\":{\n        \"strengths\": [\"fuel moisture\",\"API\",\"Comparison\",\"profile\"],\n        \"weaknesses\": []},\n        \"cavaets\":\"\"},\n        \"datasources\": [\"Observations\",\"WaterDyn\",\"BOM\"]\n    \n}\n",
+        "output": "json",
+        "x": 350,
+        "y": 1240,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "24828537.37e00a",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 1240,
+        "wires": [
+            [
+                "1e9d4b0c.74c355"
+            ]
+        ]
+    },
+    {
+        "id": "6212bcfa.359244",
+        "type": "http request",
+        "z": "59601007.fe581",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "",
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "c56ad8c8.895d38"
+            ]
+        ]
+    },
+    {
+        "id": "c56ad8c8.895d38",
+        "type": "debug",
+        "z": "59601007.fe581",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 810,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "927ce9f7.1820e8",
+        "type": "debug",
+        "z": "ee6c3ad0.573538",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 730,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "49f672a2.c2361c",
+        "type": "http request",
+        "z": "ee6c3ad0.573538",
+        "name": "",
+        "method": "GET",
+        "ret": "bin",
+        "url": "http://www.bom.gov.au/jsp/awra/thredds/fileServer/AWRA/values/day/sm_pct_2018.nc",
+        "tls": "",
+        "x": 470,
+        "y": 420,
+        "wires": [
+            [
+                "927ce9f7.1820e8",
+                "1834f583.79813a"
+            ]
+        ]
+    },
+    {
+        "id": "577b4e30.34bef",
+        "type": "inject",
+        "z": "ee6c3ad0.573538",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 240,
+        "y": 420,
+        "wires": [
+            [
+                "49f672a2.c2361c"
+            ]
+        ]
+    },
+    {
+        "id": "1834f583.79813a",
+        "type": "file",
+        "z": "ee6c3ad0.573538",
+        "name": "Save to AWRA folder",
+        "filename": "/mnt/awra_dir/sm_pct_2018.nc",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "x": 790,
+        "y": 440,
+        "wires": []
     }
 ]
