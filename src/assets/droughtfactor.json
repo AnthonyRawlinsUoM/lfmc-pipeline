@@ -1,0 +1,52 @@
+{"type":"model",
+"rating":"7",
+"name":"Drought Factor",
+"abbr":"df",
+"date":"14 September 2016",
+"title":"Drought Factor",
+"href":"http://dx.doi.org/10.13140/RG.2.2.36184.70403",
+"version":"1.0",
+"validated":{
+    "validated":true,
+    "references": [
+        {"href":"http://dx.doi.org/10.13140/RG.2.2.36184.70403",
+        "authors": ["McArthur"],
+        "date":"14 September 1950"}
+        ]},
+        "description":{
+            "author":"",
+            "date":"",
+            "abstract":"Drought Factor abstract",
+    "range":{},
+    "fuel":{},
+    "metric":"",
+    "index":"",
+    "resolutions":{
+        "minimum":{
+            "spatial":{
+                "value":"","units":""
+                
+            },
+            "temporal":{
+                "value":"","units":""
+                
+            }
+        },
+        "optimum":{
+            "spatial":{"value":"","units":""},
+            "temporal":{"value":"","units":""}
+        },
+        "maximum":{
+            "spatial":{"value":"","units":""},
+            "temporal":{"value":"","units":""}
+            
+        }
+        
+    },
+    "keywords":{
+        "strengths": ["fuel moisture","API","Comparison","profile"],
+        "weaknesses": []},
+        "cavaets":""},
+        "datasources": ["Observations","BOM"]
+    
+}

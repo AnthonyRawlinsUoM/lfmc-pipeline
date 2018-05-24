@@ -11,6 +11,7 @@ RUN apk add --update \
 	curl \
   && pip install virtualenv
 RUN apk add --no-cache tzdata
+RUN apk add --no-cache gcc musl-dev
 ENV TZ Australia/Melbourne
 RUN rm -rf /var/cache/apk/*
 
@@ -25,6 +26,7 @@ RUN npm install --no-optional
 COPY . .
 RUN mkdir /mnt/data_dir
 RUN mkdir /mnt/awra_dir
+RUN mkdir /mnt/queries
 
 # Production
 EXPOSE 1880/tcp

@@ -63,6 +63,8 @@
         "port": "",
         "secureOptions": "",
         "user": "anonymous",
+        "pass": "anon",
+        "password": "anon",
         "connTimeout": "",
         "pasvTimeout": "",
         "keepalive": ""
@@ -74,6 +76,8 @@
         "host": "ftp.bom.gov.au",
         "port": "21",
         "user": "anonymous",
+        "pass": "anon",
+        "password": "anon",
         "connTimeout": "10000",
         "pasvTimeout": "10000",
         "keepalive": "10000",
@@ -84,11 +88,11 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": false,
+        "active": true,
         "console": "false",
         "complete": "true",
-        "x": 818,
-        "y": 112,
+        "x": 870,
+        "y": 280,
         "wires": []
     },
     {
@@ -98,8 +102,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 810,
-        "y": 180,
+        "x": 910,
+        "y": 40,
         "wires": []
     },
     {
@@ -107,7 +111,7 @@
         "type": "function",
         "z": "a9caf749.eb5048",
         "name": "",
-        "func": "var fields = msg.req.files;\nmsg.fields = Object.keys(fields);\nvar myFile = fields[\"file\"][0];\n\nmsg.test = myFile;\nvar response = {};\n\nif(msg.test) {\nresponse.statusCode=0;\nresponse.localFilenamePath=myFile.path;\nresponse.fileSize = myFile.size;\nresponse.sendMessage=\"Successful\";\n} else {\nresponse.statusCode=1;\nresponse.sendMessage=\"Failed\";\n}\nmsg.payload = response;\n\nreturn msg;",
+        "func": "var fields = msg.req.files;\nmsg.fields = Object.keys(fields);\nvar myFile = fields[\"file\"][0];\n\nmsg.test = myFile;\nvar response = {};\n\nif(msg.test) {\n    response.statusCode=0;\n    response.localFilenamePath=myFile.path;\n    response.fileSize = myFile.size;\n    response.sendMessage=\"Successful\";\n} else {\n    response.statusCode=1;\n    response.sendMessage=\"Failed\";\n}\nmsg.payload = response;\n\nreturn msg;",
         "outputs": "2",
         "noerr": 0,
         "x": 455,
@@ -115,7 +119,7 @@
         "wires": [
             [
                 "4518fe2.7ae9d",
-                "386edb7c.509784"
+                "2e3110e4.50b8"
             ],
             [
                 "4518fe2.7ae9d"
@@ -1438,15 +1442,15 @@
         "id": "f6d491d8.1c757",
         "type": "inject",
         "z": "f51feb57.6cd738",
-        "name": "",
+        "name": "6AM",
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "repeat": "21600",
-        "crontab": "",
-        "once": true,
-        "x": 130,
-        "y": 240,
+        "repeat": "",
+        "crontab": "00 06 * * *",
+        "once": false,
+        "x": 90,
+        "y": 260,
         "wires": [
             [
                 "7badd851.9e4b38",
@@ -1459,7 +1463,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "",
-        "func": "msg.filename = \"register/bom023/rKCm6dbQ/adfd\"\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\nvar h = today.getHours();\nvar m = today.getMinutes();\n\nif(h < 10) {\n    h ='0'+h;\n}\nif(m < 10) {\n    m = '0'+m;\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today =  yyyy + mm + dd + \" \" + h + m;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today\n\nreturn msg;",
+        "func": "msg.filename = \"register/bom023/rKCm6dbQ/adfd\"\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\nvar h = today.getHours();\nvar m = today.getMinutes();\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today =  yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
@@ -1476,7 +1480,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "",
-        "func": "msg.filename = \"register/bom023/rKCm6dbQ/fwo\"\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\nvar h = today.getHours();\nvar m = today.getMinutes();\n\nif(h < 10) {\n    h ='0'+h;\n}\nif(m < 10) {\n    m = '0'+m;\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n} \n\nif(mm<10) {\n    mm = '0'+mm;\n}\n\n\n\nmsg.today =  yyyy + mm + dd + \" \" + h + m;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today + \"/fwo\"\n\nreturn msg;",
+        "func": "msg.filename = \"register/bom023/rKCm6dbQ/fwo\"\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\nvar h = today.getHours();\nvar m = today.getMinutes();\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today =  yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today + \"/fwo\"\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
@@ -3361,7 +3365,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "Filter for GZ",
-        "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\n    return ( item.includes('.nc.gz'));\n});\n\nmsg.payload = object_shortlist.map(function(item) {\n    return item.replace(msg.path, '');    \n});\n\nreturn msg;",
+        "func": "// ID strings from http://www.bom.gov.au/catalogue/anon-ftp.shtml\n\nvar object_shortlist = msg.payload.filter(function(item) {\n    return ( item.includes('.gz'));\n});\n\nmsg.payload = object_shortlist.map(function(item) {\n    return item.replace(msg.path, '');    \n});\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 1390,
@@ -3531,5 +3535,407 @@
         "x": 790,
         "y": 440,
         "wires": []
+    },
+    {
+        "id": "3aab2fac.f0b15",
+        "type": "inject",
+        "z": "f51feb57.6cd738",
+        "name": "4PM",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 16 * * *",
+        "once": false,
+        "x": 90,
+        "y": 220,
+        "wires": [
+            [
+                "f1d1df7a.e3cf8",
+                "7badd851.9e4b38"
+            ]
+        ]
+    },
+    {
+        "id": "82cb3513.7e9b18",
+        "type": "template",
+        "z": "a9caf749.eb5048",
+        "name": "Single Model - Matthews",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "json",
+        "syntax": "plain",
+        "template": "{\"type\":\"model\",\n\"rating\":\"7\",\n\"name\":\"Drought Factor\",\n\"abbr\":\"df\",\n\"date\":\"14 September 2016\",\n\"title\":\"Drought Factor\",\n\"href\":\"http://dx.doi.org/10.13140/RG.2.2.36184.70403\",\n\"version\":\"1.0\",\n\"validated\":{\n    \"validated\":true,\n    \"references\": [\n        {\"href\":\"http://dx.doi.org/10.13140/RG.2.2.36184.70403\",\n        \"authors\": [\"McArthur\"],\n        \"date\":\"14 September 1950\"}\n        ]},\n        \"description\":{\n            \"author\":\"\",\n            \"date\":\"\",\n            \"abstract\":\"Drought Factor abstract\",\n    \"range\":{},\n    \"fuel\":{},\n    \"metric\":\"\",\n    \"index\":\"\",\n    \"resolutions\":{\n        \"minimum\":{\n            \"spatial\":{\n                \"value\":\"\",\"units\":\"\"\n                \n            },\n            \"temporal\":{\n                \"value\":\"\",\"units\":\"\"\n                \n            }\n        },\n        \"optimum\":{\n            \"spatial\":{\"value\":\"\",\"units\":\"\"},\n            \"temporal\":{\"value\":\"\",\"units\":\"\"}\n        },\n        \"maximum\":{\n            \"spatial\":{\"value\":\"\",\"units\":\"\"},\n            \"temporal\":{\"value\":\"\",\"units\":\"\"}\n            \n        }\n        \n    },\n    \"keywords\":{\n        \"strengths\": [\"fuel moisture\",\"API\",\"Comparison\",\"profile\"],\n        \"weaknesses\": []},\n        \"cavaets\":\"\"},\n        \"datasources\": [\"Observations\",\"BOM\"]\n    \n}\n",
+        "output": "json",
+        "x": 350,
+        "y": 1300,
+        "wires": [
+            [
+                "1722bc97.40aaa3"
+            ]
+        ]
+    },
+    {
+        "id": "f5f07515.6cda08",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 140,
+        "y": 1300,
+        "wires": [
+            [
+                "82cb3513.7e9b18"
+            ]
+        ]
+    },
+    {
+        "id": "2d52e84b.8dbf78",
+        "type": "inject",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 1103,
+        "y": 63,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "2e3110e4.50b8",
+        "type": "switch",
+        "z": "a9caf749.eb5048",
+        "name": "wasSuccessful",
+        "property": "payload.sendMessage",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "Successful",
+                "vt": "str"
+            },
+            {
+                "t": "neq",
+                "v": "Successful",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 700,
+        "y": 160,
+        "wires": [
+            [
+                "e029bf10.6fc9a",
+                "386edb7c.509784"
+            ],
+            [
+                "4518fe2.7ae9d",
+                "386edb7c.509784"
+            ]
+        ],
+        "outputLabels": [
+            "Successful",
+            null
+        ]
+    },
+    {
+        "id": "e029bf10.6fc9a",
+        "type": "switch",
+        "z": "a9caf749.eb5048",
+        "name": "Matching Extensions for SHP File Grouping",
+        "property": "test.originalname",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": ".shp",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": ".dbf",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": ".prj",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": ".sbn",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": ".sbx",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": ".shp.xml",
+                "vt": "str"
+            },
+            {
+                "t": "cont",
+                "v": ".shx",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 8,
+        "x": 1030,
+        "y": 140,
+        "wires": [
+            [
+                "d72902ea.bb778"
+            ],
+            [
+                "d72902ea.bb778"
+            ],
+            [
+                "d72902ea.bb778"
+            ],
+            [
+                "d72902ea.bb778"
+            ],
+            [
+                "d72902ea.bb778"
+            ],
+            [
+                "d72902ea.bb778"
+            ],
+            [
+                "d72902ea.bb778"
+            ],
+            [
+                "29ff02aa.00896e"
+            ]
+        ]
+    },
+    {
+        "id": "29ff02aa.00896e",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1370,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3d0ab8a7.154e48",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1810,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d72902ea.bb778",
+        "type": "function",
+        "z": "a9caf749.eb5048",
+        "name": "move params",
+        "func": "msg.payload = msg.test.path + ' /mnt/queries/' + msg.test.originalname;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1360,
+        "y": 80,
+        "wires": [
+            [
+                "4447d249.ac11ac"
+            ]
+        ]
+    },
+    {
+        "id": "4447d249.ac11ac",
+        "type": "exec",
+        "z": "a9caf749.eb5048",
+        "command": "mv ",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": true,
+        "name": "",
+        "x": 1570,
+        "y": 80,
+        "wires": [
+            [
+                "3d0ab8a7.154e48",
+                "cead2179.9401c"
+            ],
+            [
+                "3d0ab8a7.154e48"
+            ],
+            [
+                "3d0ab8a7.154e48"
+            ]
+        ]
+    },
+    {
+        "id": "60de278e.1a2368",
+        "type": "exec",
+        "z": "a9caf749.eb5048",
+        "command": "ls -al /mnt/queries/",
+        "addpay": false,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": true,
+        "name": "",
+        "x": 1670,
+        "y": 200,
+        "wires": [
+            [
+                "b3a7d6d5.247b28"
+            ],
+            [
+                "b3a7d6d5.247b28"
+            ],
+            [
+                "b3a7d6d5.247b28"
+            ]
+        ]
+    },
+    {
+        "id": "abb97cb7.ac833",
+        "type": "inject",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 1440,
+        "y": 200,
+        "wires": [
+            [
+                "60de278e.1a2368"
+            ]
+        ]
+    },
+    {
+        "id": "b3a7d6d5.247b28",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 2030,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "9ac3dded.08cfa",
+        "type": "function",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "func": "msg.payload = {'shp': msg.test.originalname};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1790,
+        "y": 120,
+        "wires": [
+            [
+                "e53eb21b.80183"
+            ]
+        ]
+    },
+    {
+        "id": "cead2179.9401c",
+        "type": "switch",
+        "z": "a9caf749.eb5048",
+        "name": "has .shp",
+        "property": "test.originalname",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": ".shp",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1520,
+        "y": 140,
+        "wires": [
+            [
+                "d760f3e2.bd768"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "d760f3e2.bd768",
+        "type": "switch",
+        "z": "a9caf749.eb5048",
+        "name": "not .xml",
+        "property": "test.originalname",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": ".shp.xml",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 1660,
+        "y": 140,
+        "wires": [
+            [],
+            [
+                "9ac3dded.08cfa"
+            ]
+        ]
+    },
+    {
+        "id": "e53eb21b.80183",
+        "type": "http request",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "http://api:8002/v1/convert.json",
+        "tls": "",
+        "x": 1970,
+        "y": 120,
+        "wires": [
+            [
+                "b3a7d6d5.247b28"
+            ]
+        ]
     }
 ]
