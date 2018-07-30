@@ -132,7 +132,7 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 870,
@@ -146,8 +146,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 890,
-        "y": 40,
+        "x": 2977,
+        "y": 325,
         "wires": []
     },
     {
@@ -1830,7 +1830,7 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 1690,
@@ -1877,7 +1877,7 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 650,
@@ -1889,7 +1889,7 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 1150,
@@ -3665,7 +3665,7 @@
         "wires": [
             [
                 "e029bf10.6fc9a",
-                "386edb7c.509784"
+                "b06f0003.b0e23"
             ],
             [
                 "4518fe2.7ae9d",
@@ -3674,7 +3674,7 @@
         ],
         "outputLabels": [
             "Successful",
-            null
+            ""
         ]
     },
     {
@@ -3760,7 +3760,7 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 1370,
@@ -3772,11 +3772,11 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
-        "x": 1810,
-        "y": 60,
+        "x": 1907,
+        "y": 31,
         "wires": []
     },
     {
@@ -3806,8 +3806,8 @@
         "timer": "",
         "oldrc": true,
         "name": "",
-        "x": 1570,
-        "y": 80,
+        "x": 1543,
+        "y": 68,
         "wires": [
             [
                 "3d0ab8a7.154e48",
@@ -3832,18 +3832,12 @@
         "timer": "",
         "oldrc": true,
         "name": "",
-        "x": 1670,
-        "y": 200,
+        "x": 2182,
+        "y": 505,
         "wires": [
-            [
-                "b3a7d6d5.247b28"
-            ],
-            [
-                "b3a7d6d5.247b28"
-            ],
-            [
-                "b3a7d6d5.247b28"
-            ]
+            [],
+            [],
+            []
         ]
     },
     {
@@ -3857,8 +3851,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 1440,
-        "y": 200,
+        "x": 1926,
+        "y": 471,
         "wires": [
             [
                 "60de278e.1a2368"
@@ -3873,8 +3867,8 @@
         "active": true,
         "console": "false",
         "complete": "true",
-        "x": 2030,
-        "y": 200,
+        "x": 2549,
+        "y": 22,
         "wires": []
     },
     {
@@ -3882,14 +3876,15 @@
         "type": "function",
         "z": "a9caf749.eb5048",
         "name": "",
-        "func": "msg.payload = {'shp': msg.test.originalname};\nreturn msg;",
+        "func": "msg.payload = {\n    'convert': {'shp': msg.test.originalname},\n    'original': msg.test\n};\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1830,
-        "y": 120,
+        "x": 1832,
+        "y": 134,
         "wires": [
             [
-                "e53eb21b.80183"
+                "2f3ce3e5.cdd66c",
+                "c8e28258.8bc75"
             ]
         ]
     },
@@ -3912,13 +3907,16 @@
         ],
         "checkall": "true",
         "outputs": 2,
-        "x": 1520,
-        "y": 140,
+        "x": 1507,
+        "y": 178,
         "wires": [
             [
                 "d760f3e2.bd768"
             ],
-            []
+            [
+                "ab076842.519578",
+                "605e7bc7.546d94"
+            ]
         ]
     },
     {
@@ -3940,10 +3938,12 @@
         ],
         "checkall": "true",
         "outputs": 2,
-        "x": 1660,
-        "y": 140,
+        "x": 1675,
+        "y": 166,
         "wires": [
-            [],
+            [
+                "ab076842.519578"
+            ],
             [
                 "9ac3dded.08cfa"
             ]
@@ -3958,8 +3958,8 @@
         "ret": "txt",
         "url": "http://api:8002/v1/convert.json",
         "tls": "",
-        "x": 1970,
-        "y": 120,
+        "x": 2359,
+        "y": 33,
         "wires": [
             [
                 "b3a7d6d5.247b28",
@@ -4436,8 +4436,8 @@
         "func": "msg.payload = msg.payload.replace('/FuelModels/queries/', '/mnt/queries/');\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 2210,
-        "y": 80,
+        "x": 2553,
+        "y": 70,
         "wires": [
             [
                 "c67201f2.8956d"
@@ -4449,11 +4449,11 @@
         "type": "debug",
         "z": "a9caf749.eb5048",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "false",
-        "x": 2610,
-        "y": 80,
+        "x": 2860,
+        "y": 76,
         "wires": []
     },
     {
@@ -4462,11 +4462,12 @@
         "z": "a9caf749.eb5048",
         "name": "",
         "pretty": false,
-        "x": 2390,
-        "y": 80,
+        "x": 2685,
+        "y": 73,
         "wires": [
             [
-                "e971561a.afcde8"
+                "e971561a.afcde8",
+                "635d2b10.805794"
             ]
         ]
     },
@@ -6225,5 +6226,199 @@
                 "f2c5da76.025038"
             ]
         ]
+    },
+    {
+        "id": "ab076842.519578",
+        "type": "function",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "func": "var response = {};\n\nif(msg.payload.convert !== undefined) {\n    response.statusCode=0;\n    response.sendMessage=\"Successful\";\n    response.converted_url = \"http://cdn/\"+msg.payload.original.originalname + \".json\";\n    response.localFilenamePath=msg.test.path;\n    response.fileSize = msg.test.size;\n} else if(msg.test){\n    response.statusCode=0;\n    response.sendMessage=\"Successful\";\n    response.localFilenamePath=msg.test.path;\n    response.fileSize = msg.test.size;\n} else {\n    response.statusCode=1;\n    response.sendMessage=\"Failed\";\n}\n\nmsg.payload = response;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2880,
+        "y": 254,
+        "wires": [
+            [
+                "386edb7c.509784"
+            ]
+        ]
+    },
+    {
+        "id": "635d2b10.805794",
+        "type": "function",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "func": "msg.converted = msg.payload;\nmsg.topic=\"convert\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2687,
+        "y": 114,
+        "wires": [
+            [
+                "80a44725.e83548"
+            ]
+        ]
+    },
+    {
+        "id": "2f3ce3e5.cdd66c",
+        "type": "split",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": true,
+        "addname": "topic",
+        "x": 1939,
+        "y": 97,
+        "wires": [
+            [
+                "6eef3cd9.183e14",
+                "f3adcab5.edb178"
+            ]
+        ]
+    },
+    {
+        "id": "6eef3cd9.183e14",
+        "type": "switch",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "property": "topic",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "convert",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "original",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "outputs": 2,
+        "x": 2054,
+        "y": 97,
+        "wires": [
+            [
+                "e5bfac60.4bdc8",
+                "e53eb21b.80183"
+            ],
+            [
+                "80a44725.e83548",
+                "93291818.8b7fb8"
+            ]
+        ]
+    },
+    {
+        "id": "80a44725.e83548",
+        "type": "join",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "x": 2682,
+        "y": 152,
+        "wires": [
+            [
+                "ee4b7bc.9075488",
+                "ab076842.519578"
+            ]
+        ]
+    },
+    {
+        "id": "ee4b7bc.9075488",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 2869,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "93291818.8b7fb8",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 2250,
+        "y": 163,
+        "wires": []
+    },
+    {
+        "id": "e5bfac60.4bdc8",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 2218,
+        "y": 83,
+        "wires": []
+    },
+    {
+        "id": "b06f0003.b0e23",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 894,
+        "y": 33,
+        "wires": []
+    },
+    {
+        "id": "605e7bc7.546d94",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1801,
+        "y": 330,
+        "wires": []
+    },
+    {
+        "id": "c8e28258.8bc75",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 2032,
+        "y": 153,
+        "wires": []
+    },
+    {
+        "id": "f3adcab5.edb178",
+        "type": "debug",
+        "z": "a9caf749.eb5048",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 2300,
+        "y": 350,
+        "wires": []
     }
 ]
