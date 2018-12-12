@@ -21,12 +21,21 @@ WORKDIR /usr/src/app
 COPY package.json .
 COPY package-lock.json .
 RUN npm i -g npm
+RUN npm i node-red-contrib-redis
 RUN npm install --no-optional
 
-COPY . .
+# Patch the ftp.js
+COPY node_modules/node-red-contrib-ftp ./node_modules/node-red-contrib-ftp
+# Patch the FTP-Download.js
+COPY node_modules/node-red-contrib-ftp-download/ftp-download.js ./node_modules/node-red-contrib-ftp-download/ftp-download.js
+
+COPY flows.json .
+COPY settings.js .
+
 RUN mkdir /mnt/data_dir
 RUN mkdir /mnt/awra_dir
 RUN mkdir /mnt/queries
+
 
 # Production
 EXPOSE 1880/tcp
