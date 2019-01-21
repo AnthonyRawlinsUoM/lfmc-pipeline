@@ -31,20 +31,6 @@
         "id": "52e16c81.960bb4",
         "type": "tab",
         "label": "Temporal Availability",
-        "disabled": true,
-        "info": ""
-    },
-    {
-        "id": "d00e8f9b.7ce64",
-        "type": "tab",
-        "label": "Example Parallel",
-        "disabled": true,
-        "info": ""
-    },
-    {
-        "id": "1b36fe01.5f7492",
-        "type": "tab",
-        "label": "Query Monitor",
         "disabled": false,
         "info": ""
     },
@@ -52,6 +38,20 @@
         "id": "4fa05f41.e5ec6",
         "type": "tab",
         "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d00e8f9b.7ce64",
+        "type": "tab",
+        "label": "Example Parallel",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1b36fe01.5f7492",
+        "type": "tab",
+        "label": "Query Monitor",
         "disabled": false,
         "info": ""
     },
@@ -192,7 +192,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "",
-        "func": "msg.filename = \"register/bom023/rKCm6dbQ/adfd\";\n\nvar today = new Date();\nvar dd = today.getDate().toString();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear().toString();\nvar h = today.getHours();\nvar m = today.getMinutes();\nvar meridian = '';\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today = yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today;\n\nreturn msg;",
+        "func": "msg.filename = \"register/bom023/rKCm6dbQ/adfd\";\n\nvar today = new Date();\nvar dd = today.getDate().toString();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear().toString();\nvar h = today.getHours();\nvar m = today.getMinutes();\nvar meridian = '';\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today = ''+ yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
@@ -210,7 +210,7 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "",
-        "func": "msg.filename = \"register/bom023/rKCm6dbQ/fwo\";\n\nvar today = new Date();\nvar dd = today.getDate().toString();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear().toString();\nvar h = today.getHours();\nvar m = today.getMinutes();\nvar meridian = '';\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today = yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today + \"/fwo\";\n\nreturn msg;",
+        "func": "msg.filename = \"register/bom023/rKCm6dbQ/fwo\";\n\nvar today = new Date();\nvar dd = today.getDate().toString();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear().toString();\nvar h = today.getHours();\nvar m = today.getMinutes();\nvar meridian = '';\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today = ''+ yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today + \"/fwo\";\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 390,
@@ -1475,8 +1475,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 1410,
-        "y": 1260,
+        "x": 1150,
+        "y": 1240,
         "wires": []
     },
     {
@@ -1524,8 +1524,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 180,
-        "y": 620,
+        "x": 80,
+        "y": 1240,
         "wires": [
             [
                 "54b63391.c68c4c"
@@ -1545,71 +1545,6 @@
         "wires": [
             [
                 "5d42da90.82b564"
-            ]
-        ]
-    },
-    {
-        "id": "309160b3.cb7f",
-        "type": "http request",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "url": "",
-        "tls": "",
-        "x": 1270,
-        "y": 180,
-        "wires": [
-            [
-                "dfd41d3.5d1c5e"
-            ]
-        ]
-    },
-    {
-        "id": "7346a900.09c008",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "Extract the data we need",
-        "func": "var obj = {};\nvar pay = msg.payload;\n\nif(pay.Domains &&\n    pay.Domains.DimensionDomain &&\n    pay.Domains.DimensionDomain[0]['ows:Identifier'][0] == 'time') {\n    \n    obj.time = pay.Domains.DimensionDomain[0].Domain[0].split(',');\n    obj.space = msg.payload.Domains.SpaceDomain[0].BoundingBox[0]['$'];\n}\n\nmsg.payload = obj;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1630,
-        "y": 200,
-        "wires": [
-            [
-                "46fe169.8d2b2e8"
-            ]
-        ]
-    },
-    {
-        "id": "dfd41d3.5d1c5e",
-        "type": "xml",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "attr": "",
-        "chr": "",
-        "x": 1410,
-        "y": 180,
-        "wires": [
-            [
-                "7346a900.09c008",
-                "be4b6da0.f559c"
-            ]
-        ]
-    },
-    {
-        "id": "9af60de8.aeb44",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "Build WMTS Dimensions Query",
-        "func": "layer_name = msg.payload;\nmsg.url = 'http://geoserver:8080/geoserver/gwc/service/wmts?REQUEST=DescribeDomains&Version=1.0.0&Layer=lfmc:'+ layer_name +'&TileMatrixSet=EPSG:4326';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1030,
-        "y": 180,
-        "wires": [
-            [
-                "309160b3.cb7f"
             ]
         ]
     },
@@ -1761,7 +1696,8 @@
         "y": 134,
         "wires": [
             [
-                "b8a64f55.c6905"
+                "b8a64f55.c6905",
+                "baab402d.b2574"
             ]
         ]
     },
@@ -1775,47 +1711,6 @@
         "x": 1167.5,
         "y": 134,
         "wires": []
-    },
-    {
-        "id": "cc299b79.d88d48",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "single granule",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "name",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "granule",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "layer",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 3,
-        "x": 680,
-        "y": 80,
-        "wires": [
-            [
-                "6e488c3b.a61324"
-            ],
-            [
-                "872db7e2.0bdf58",
-                "48391313.2edb6c"
-            ],
-            [
-                "6e488c3b.a61324"
-            ]
-        ]
     },
     {
         "id": "41b25b44.699844",
@@ -1985,11 +1880,12 @@
         "accumulate": false,
         "timeout": "",
         "count": "",
-        "x": 1270,
-        "y": 1220,
+        "x": 950,
+        "y": 1160,
         "wires": [
             [
-                "6f668fa7.f52ae"
+                "6f668fa7.f52ae",
+                "83e945db.13da38"
             ]
         ]
     },
@@ -2001,8 +1897,8 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 1530,
-        "y": 1220,
+        "x": 1170,
+        "y": 1160,
         "wires": []
     },
     {
@@ -2020,25 +1916,13 @@
         "accumulate": false,
         "timeout": "",
         "count": "",
-        "x": 1290,
-        "y": 1140,
+        "x": 950,
+        "y": 1100,
         "wires": [
             [
                 "82e9f3ac.70ccc"
             ]
         ]
-    },
-    {
-        "id": "be4b6da0.f559c",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 1590,
-        "y": 160,
-        "wires": []
     },
     {
         "id": "53c0309.86f18d",
@@ -2068,7 +1952,8 @@
         "y": 880,
         "wires": [
             [
-                "cc4fefa3.00171"
+                "cc4fefa3.00171",
+                "def6867b.e18298"
             ]
         ]
     },
@@ -2138,8 +2023,8 @@
         "accumulate": false,
         "timeout": "",
         "count": "",
-        "x": 1280,
-        "y": 1060,
+        "x": 940,
+        "y": 1020,
         "wires": [
             [
                 "1445bc65.a22eb4"
@@ -2152,7 +2037,7 @@
         "z": "52e16c81.960bb4",
         "name": "",
         "method": "GET",
-        "ret": "txt",
+        "ret": "obj",
         "url": "",
         "tls": "",
         "x": 390,
@@ -2168,12 +2053,14 @@
         "type": "json",
         "z": "52e16c81.960bb4",
         "name": "",
+        "property": "payload",
+        "action": "",
         "pretty": false,
         "x": 530,
         "y": 880,
         "wires": [
             [
-                "885b59f2.0405d8"
+                "7397c958.ea99a8"
             ]
         ]
     },
@@ -2185,8 +2072,8 @@
         "func": "msg.topic = 'layergroups';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1270,
-        "y": 1020,
+        "x": 930,
+        "y": 980,
         "wires": [
             [
                 "433db664.ec7198"
@@ -2201,25 +2088,13 @@
         "func": "msg.topic = 'layers'\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1260,
-        "y": 1102,
+        "x": 920,
+        "y": 1062,
         "wires": [
             [
                 "1221b3d6.f55e9c"
             ]
         ]
-    },
-    {
-        "id": "c05f56c.17617a8",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 2030,
-        "y": 140,
-        "wires": []
     },
     {
         "id": "f91a1ca3.f791f",
@@ -2236,28 +2111,12 @@
         "accumulate": false,
         "timeout": "",
         "count": "",
-        "x": 1270,
-        "y": 720,
+        "x": 870,
+        "y": 880,
         "wires": [
             [
                 "e3fdb8a7.b230e8",
                 "18d4de01.a428b2"
-            ]
-        ]
-    },
-    {
-        "id": "885b59f2.0405d8",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.payload = {\n    'layerGroup': msg.payload.layerGroup,\n    'bounds': msg.payload.layerGroup.bounds\n};\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 190,
-        "y": 720,
-        "wires": [
-            [
-                "7397c958.ea99a8"
             ]
         ]
     },
@@ -2272,7 +2131,7 @@
         "arraySpltType": "len",
         "stream": false,
         "addname": "topic",
-        "x": 330,
+        "x": 250,
         "y": 720,
         "wires": [
             [
@@ -2290,16 +2149,17 @@
         "rules": [
             {
                 "t": "eq",
-                "v": "layerGroup",
+                "v": "href",
                 "vt": "str"
             },
             {
                 "t": "eq",
-                "v": "bounds",
+                "v": "name",
                 "vt": "str"
             }
         ],
         "checkall": "true",
+        "repair": false,
         "outputs": 2,
         "x": 470,
         "y": 720,
@@ -2314,69 +2174,6 @@
         ]
     },
     {
-        "id": "63a4a023.1e29",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "Single or Multiple?",
-        "func": "\nif (msg.payload.publishables.published.name) {\n    msg.payload = {\n        'name': msg.payload.publishables.published.name,\n        'granule': msg.payload.publishables.published.name,\n        'layer': msg.payload.name,\n        'multipart': false\n    };\n    return msg;\n} else if(msg.payload.publishables.published && msg.payload.publishables.published[0]) {\n    var domains = [];\n    var oldpayload = msg.payload;\n    \n    for (var n = 0; n < oldpayload.publishables.published.length; n++) {\n        domains.push({\n            'name': oldpayload.publishables.published[n].name,\n            'granule': oldpayload.publishables.published[n].name\n        });\n    }\n    msg.payload = {\n        'layer': oldpayload.name,\n        'multipart': true,\n        'domains': domains\n    }\n    \n    return msg;\n}",
-        "outputs": "1",
-        "noerr": 0,
-        "x": 450,
-        "y": 500,
-        "wires": [
-            [
-                "b69b4bb6.477068",
-                "d7db6736.813da8"
-            ]
-        ],
-        "outputLabels": [
-            "single"
-        ]
-    },
-    {
-        "id": "379396d1.6c3f0a",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 530,
-        "y": 80,
-        "wires": [
-            [
-                "cc299b79.d88d48"
-            ]
-        ]
-    },
-    {
-        "id": "6e488c3b.a61324",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 1830,
-        "y": 140,
-        "wires": [
-            [
-                "c05f56c.17617a8",
-                "349144ad.14d88c"
-            ]
-        ]
-    },
-    {
         "id": "e3fdb8a7.b230e8",
         "type": "debug",
         "z": "52e16c81.960bb4",
@@ -2384,8 +2181,8 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 1590,
-        "y": 720,
+        "x": 1130,
+        "y": 880,
         "wires": []
     },
     {
@@ -2403,195 +2200,11 @@
         "accumulate": false,
         "timeout": "",
         "count": "",
-        "x": 1230,
-        "y": 980,
+        "x": 890,
+        "y": 940,
         "wires": [
             [
                 "2b04b5f9.2c533a"
-            ]
-        ]
-    },
-    {
-        "id": "1f65076e.04c9c9",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 470,
-        "y": 220,
-        "wires": [
-            [
-                "b424b387.edcf4",
-                "d7e43007.9eec1"
-            ]
-        ]
-    },
-    {
-        "id": "df28af3.b6b2c5",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "granule domains",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "granule",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "name",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 690,
-        "y": 180,
-        "wires": [
-            [
-                "9af60de8.aeb44",
-                "31da7db3.9208c2"
-            ],
-            [
-                "73bb14fc.21c94c",
-                "cd6f6fb.6217d9"
-            ]
-        ]
-    },
-    {
-        "id": "73bb14fc.21c94c",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 1830,
-        "y": 240,
-        "wires": [
-            [
-                "e45d90a2.5132b",
-                "e2e14c1.77513b"
-            ]
-        ]
-    },
-    {
-        "id": "e45d90a2.5132b",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 2030,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "89f065d4.dc67f8",
-        "type": "http request",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "method": "GET",
-        "ret": "txt",
-        "url": "",
-        "tls": "",
-        "x": 1270,
-        "y": 80,
-        "wires": [
-            [
-                "50f841ee.5b5d5"
-            ]
-        ]
-    },
-    {
-        "id": "d1b7c14c.5664d",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "Extract the data we need",
-        "func": "var obj = {};\nvar pay = msg.payload;\n\nif(pay.Domains &&\n    pay.Domains.DimensionDomain &&\n    pay.Domains.DimensionDomain[0]['ows:Identifier'][0] == 'time') {\n    \n    obj.time = pay.Domains.DimensionDomain[0].Domain[0].split(',');\n    obj.space = msg.payload.Domains.SpaceDomain[0].BoundingBox[0]['$'];\n    msg.payload = obj;\n    return msg;\n}\nreturn;\n",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1630,
-        "y": 100,
-        "wires": [
-            [
-                "beaf357e.34ebc8"
-            ]
-        ]
-    },
-    {
-        "id": "50f841ee.5b5d5",
-        "type": "xml",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "attr": "",
-        "chr": "",
-        "x": 1410,
-        "y": 80,
-        "wires": [
-            [
-                "d1b7c14c.5664d",
-                "526007a6.40ef08"
-            ]
-        ]
-    },
-    {
-        "id": "872db7e2.0bdf58",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "Build WMTS Dimensions Query",
-        "func": "layer_name = msg.payload;\nmsg.url = 'http://geoserver:8080/geoserver/gwc/service/wmts?REQUEST=DescribeDomains&Version=1.0.0&Layer=lfmc:'+ layer_name +'&TileMatrixSet=EPSG:4326';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1030,
-        "y": 80,
-        "wires": [
-            [
-                "89f065d4.dc67f8"
-            ]
-        ]
-    },
-    {
-        "id": "526007a6.40ef08",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 1590,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "beaf357e.34ebc8",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.topic = 'granule';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1830,
-        "y": 100,
-        "wires": [
-            [
-                "6e488c3b.a61324",
-                "dd2652bc.12dc6"
             ]
         ]
     },
@@ -2603,8 +2216,8 @@
         "active": true,
         "console": "false",
         "complete": "payload",
-        "x": 1590,
-        "y": 580,
+        "x": 1330,
+        "y": 620,
         "wires": []
     },
     {
@@ -2641,8 +2254,8 @@
         "accumulate": false,
         "timeout": "",
         "count": "",
-        "x": 1270,
-        "y": 580,
+        "x": 1110,
+        "y": 620,
         "wires": [
             [
                 "7e48984f.6fa3e8",
@@ -2672,11 +2285,11 @@
         "type": "debug",
         "z": "52e16c81.960bb4",
         "name": "",
-        "active": false,
+        "active": true,
         "console": "false",
         "complete": "payload",
         "x": 830,
-        "y": 760,
+        "y": 700,
         "wires": []
     },
     {
@@ -2716,8 +2329,7 @@
         "y": 560,
         "wires": [
             [
-                "618b5716.c0cb48",
-                "63a4a023.1e29"
+                "618b5716.c0cb48"
             ],
             [
                 "1034f4a2.e1be1b"
@@ -2744,157 +2356,11 @@
         "func": "msg.topic = 'granules';\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 1270,
+        "x": 1070,
         "y": 520,
         "wires": [
             [
                 "1034f4a2.e1be1b"
-            ]
-        ]
-    },
-    {
-        "id": "b69b4bb6.477068",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "property": "payload.multipart",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "false"
-            },
-            {
-                "t": "true"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 170,
-        "y": 260,
-        "wires": [
-            [
-                "379396d1.6c3f0a"
-            ],
-            [
-                "50aadba5.3f6fb4",
-                "cde5c32b.08a8d"
-            ]
-        ]
-    },
-    {
-        "id": "e3c21eaf.3deca",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 2030,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "f2c5da76.025038",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 1830,
-        "y": 400,
-        "wires": [
-            [
-                "349144ad.14d88c",
-                "e3c21eaf.3deca"
-            ]
-        ]
-    },
-    {
-        "id": "46fe169.8d2b2e8",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.topic = 'granule';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1830,
-        "y": 200,
-        "wires": [
-            [
-                "73bb14fc.21c94c",
-                "a4f6d34d.a863f"
-            ]
-        ]
-    },
-    {
-        "id": "a4f6d34d.a863f",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 2030,
-        "y": 200,
-        "wires": []
-    },
-    {
-        "id": "50aadba5.3f6fb4",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 310,
-        "y": 260,
-        "wires": [
-            [
-                "b2cac434.a82e28"
-            ]
-        ]
-    },
-    {
-        "id": "b2cac434.a82e28",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "multi granule",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "domains",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "layer",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 450,
-        "y": 260,
-        "wires": [
-            [
-                "1f65076e.04c9c9",
-                "4dafd131.340d"
-            ],
-            [
-                "f2c5da76.025038"
             ]
         ]
     },
@@ -2909,190 +2375,6 @@
         "x": 830,
         "y": 460,
         "wires": []
-    },
-    {
-        "id": "4dafd131.340d",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 650,
-        "y": 300,
-        "wires": []
-    },
-    {
-        "id": "cde5c32b.08a8d",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 170,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "31da7db3.9208c2",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "true",
-        "x": 990,
-        "y": 140,
-        "wires": []
-    },
-    {
-        "id": "cd6f6fb.6217d9",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "true",
-        "x": 990,
-        "y": 240,
-        "wires": []
-    },
-    {
-        "id": "b424b387.edcf4",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 650,
-        "y": 260,
-        "wires": []
-    },
-    {
-        "id": "d7e43007.9eec1",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 470,
-        "y": 180,
-        "wires": [
-            [
-                "df28af3.b6b2c5",
-                "1330becd.52cd11"
-            ]
-        ]
-    },
-    {
-        "id": "1330becd.52cd11",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 650,
-        "y": 220,
-        "wires": []
-    },
-    {
-        "id": "e2e14c1.77513b",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.topic = 'domains';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1830,
-        "y": 280,
-        "wires": [
-            [
-                "242622a.adcfade"
-            ]
-        ]
-    },
-    {
-        "id": "3adfd272.ae6dae",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 2030,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "242622a.adcfade",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "mode": "custom",
-        "build": "array",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 1833,
-        "y": 320,
-        "wires": [
-            [
-                "3adfd272.ae6dae",
-                "a08ed3.5be2513"
-            ]
-        ]
-    },
-    {
-        "id": "48391313.2edb6c",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 970,
-        "y": 20,
-        "wires": []
-    },
-    {
-        "id": "dd2652bc.12dc6",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 2030,
-        "y": 100,
-        "wires": []
-    },
-    {
-        "id": "a08ed3.5be2513",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.topic = 'domains';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1830,
-        "y": 360,
-        "wires": [
-            [
-                "f2c5da76.025038"
-            ]
-        ]
     },
     {
         "id": "4d422dd1.ab4934",
@@ -3126,7 +2408,7 @@
         "type": "debug",
         "z": "1b36fe01.5f7492",
         "name": "",
-        "active": false,
+        "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -3140,11 +2422,11 @@
         "type": "http in",
         "z": "1b36fe01.5f7492",
         "name": "",
-        "url": "/submit_query",
+        "url": "/submit",
         "method": "post",
         "upload": false,
         "swaggerDoc": "",
-        "x": 310,
+        "x": 290,
         "y": 340,
         "wires": [
             [
@@ -3297,20 +2579,6 @@
                 "ee9aeb35.9fcf38"
             ]
         ]
-    },
-    {
-        "id": "d4d3482a.2d4cf8",
-        "type": "debug",
-        "z": "1b36fe01.5f7492",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "x": 810,
-        "y": 520,
-        "wires": []
     },
     {
         "id": "6243a200.758fc",
@@ -3490,7 +2758,9 @@
         "y": 460,
         "wires": [
             [
-                "9718be8b.5d1f2"
+                "9718be8b.5d1f2",
+                "a3018e4b.8b367",
+                "10b6f304.cc572d"
             ]
         ]
     },
@@ -3596,7 +2866,7 @@
         "z": "1b36fe01.5f7492",
         "name": "",
         "pauseType": "delay",
-        "timeout": "500",
+        "timeout": "1500",
         "timeoutUnits": "milliseconds",
         "rate": "1",
         "nbRateUnits": "1",
@@ -3605,7 +2875,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": false,
-        "x": 510,
+        "x": 520,
         "y": 260,
         "wires": [
             [
@@ -3626,7 +2896,7 @@
         "y": 520,
         "wires": [
             [
-                "d4d3482a.2d4cf8"
+                "4a261902.d35258"
             ]
         ]
     },
@@ -3759,5 +3029,1344 @@
                 "7e7b84a.d0f9e7c"
             ]
         ]
+    },
+    {
+        "id": "275ceee0.ec7862",
+        "type": "http in",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "url": "/revoke",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 680,
+        "wires": [
+            [
+                "71913b1c.9bb944"
+            ]
+        ]
+    },
+    {
+        "id": "4cf7e31c.32e89c",
+        "type": "http in",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "url": "/abort",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 720,
+        "wires": [
+            [
+                "b8ed3f02.fad08",
+                "f79bf8ae.c09868"
+            ]
+        ]
+    },
+    {
+        "id": "ff7c6a82.83cff8",
+        "type": "http request",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "url": "",
+        "tls": "",
+        "x": 850,
+        "y": 680,
+        "wires": [
+            [
+                "82aaf483.7260e8"
+            ]
+        ]
+    },
+    {
+        "id": "41bd74b2.1e628c",
+        "type": "http request",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "url": "",
+        "tls": "",
+        "x": 850,
+        "y": 720,
+        "wires": [
+            [
+                "ede9587e.1a11b8"
+            ]
+        ]
+    },
+    {
+        "id": "71913b1c.9bb944",
+        "type": "function",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "func": "msg.url = \"http://flower:5555/api/task/revoke/\" + msg.payload.uuid;\nmsg.payload = {\"terminate\": \"true\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 680,
+        "wires": [
+            [
+                "ff7c6a82.83cff8"
+            ]
+        ]
+    },
+    {
+        "id": "b8ed3f02.fad08",
+        "type": "function",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "func": "msg.url = \"http://flower:5555/api/task/abort/\" + msg.payload.uuid;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 720,
+        "wires": [
+            [
+                "41bd74b2.1e628c"
+            ]
+        ]
+    },
+    {
+        "id": "82aaf483.7260e8",
+        "type": "http response",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "ede9587e.1a11b8",
+        "type": "http response",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "63799701.db4558",
+        "type": "http in",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "url": "/result",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 260,
+        "y": 760,
+        "wires": [
+            [
+                "27fca062.4f41d",
+                "f79bf8ae.c09868"
+            ]
+        ]
+    },
+    {
+        "id": "27fca062.4f41d",
+        "type": "function",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "func": "msg.url = \"http://api:8002/v1/result.json\";\n\nif (msg.payload.id) {\n    msg.payload.uuid = msg.payload.id;\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 760,
+        "wires": [
+            [
+                "1fddd7c5.06c168",
+                "72a23d85.37f2a4"
+            ]
+        ]
+    },
+    {
+        "id": "1fddd7c5.06c168",
+        "type": "http request",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "url": "",
+        "tls": "",
+        "x": 850,
+        "y": 760,
+        "wires": [
+            [
+                "e457cad2.ec01e8",
+                "483b5867.44b388"
+            ]
+        ]
+    },
+    {
+        "id": "483b5867.44b388",
+        "type": "http response",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "394823b5.bf0e3c",
+        "type": "http in",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "url": "/progress",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 270,
+        "y": 800,
+        "wires": [
+            [
+                "484d695c.2fdc48"
+            ]
+        ]
+    },
+    {
+        "id": "a3018e4b.8b367",
+        "type": "http response",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 520,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "10b6f304.cc572d",
+        "type": "debug",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 550,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "484d695c.2fdc48",
+        "type": "function",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "func": "msg.url = \"http://flower:5555/api/task/info/\" + msg.payload.uuid;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 710,
+        "y": 800,
+        "wires": [
+            [
+                "451d03ca.9ba6ac"
+            ]
+        ]
+    },
+    {
+        "id": "451d03ca.9ba6ac",
+        "type": "http request",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "",
+        "tls": "",
+        "x": 850,
+        "y": 800,
+        "wires": [
+            [
+                "2d38a002.4242d"
+            ]
+        ]
+    },
+    {
+        "id": "2d38a002.4242d",
+        "type": "http response",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 990,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "bfd147b8.1885f8",
+        "type": "inject",
+        "z": "1b36fe01.5f7492",
+        "name": "Example",
+        "topic": "",
+        "payload": "{\"uuid\":\"51bc10c2-9e25-4ca7-a6e8-1104f7ae44e3\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 180,
+        "y": 860,
+        "wires": [
+            [
+                "9b24ed9d.92dd3"
+            ]
+        ]
+    },
+    {
+        "id": "d8837e37.f1b07",
+        "type": "http in",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "url": "/submit_query.json",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 330,
+        "y": 300,
+        "wires": [
+            [
+                "52c890a9.8fb37"
+            ]
+        ]
+    },
+    {
+        "id": "4a261902.d35258",
+        "type": "debug",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1050,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "e457cad2.ec01e8",
+        "type": "debug",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1170,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "9b24ed9d.92dd3",
+        "type": "http request",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "http://pipeline:1880/result",
+        "tls": "",
+        "x": 430,
+        "y": 860,
+        "wires": [
+            [
+                "f79bf8ae.c09868"
+            ]
+        ]
+    },
+    {
+        "id": "f79bf8ae.c09868",
+        "type": "debug",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 770,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "72a23d85.37f2a4",
+        "type": "debug",
+        "z": "1b36fe01.5f7492",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1170,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "c26ee8fb.1d3a68",
+        "type": "inject",
+        "z": "4fa05f41.e5ec6",
+        "name": "TemporalAvailabilty of Layer",
+        "topic": "",
+        "payload": "{\"name\":\"DFMC_2018\",\"href\":\"test\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 160,
+        "y": 40,
+        "wires": [
+            [
+                "317518be.8ee1f8"
+            ]
+        ]
+    },
+    {
+        "id": "25ee8e12.48fa72",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "func": "msg.url = \"http://geoserver:8080/geoserver/gwc/service/wmts?REQUEST=DescribeDomains&Version=1.0.0&TileMatrixSet=EPSG:4326&Layer=lfmc:\" + msg.payload.name;\nmsg.topic = msg.payload.name;\nmsg.href = msg.payload.href;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "2829f5ba.8ce16a",
+                "388a56d9.7ca54a"
+            ]
+        ]
+    },
+    {
+        "id": "2829f5ba.8ce16a",
+        "type": "http request",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "url": "",
+        "tls": "",
+        "x": 310,
+        "y": 400,
+        "wires": [
+            [
+                "c8d21636.bd4058"
+            ]
+        ]
+    },
+    {
+        "id": "c8d21636.bd4058",
+        "type": "xml",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "property": "payload",
+        "attr": "",
+        "chr": "",
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "3f4bde6a.81b2f2",
+                "921d50e0.9bee2"
+            ]
+        ]
+    },
+    {
+        "id": "3f4bde6a.81b2f2",
+        "type": "json",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "property": "payload",
+        "action": "str",
+        "pretty": false,
+        "x": 590,
+        "y": 400,
+        "wires": [
+            [
+                "f85876f6.4adf48"
+            ]
+        ]
+    },
+    {
+        "id": "f85876f6.4adf48",
+        "type": "json",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 710,
+        "y": 400,
+        "wires": [
+            [
+                "caeacce2.14a67",
+                "e8eca46a.661cc8"
+            ]
+        ]
+    },
+    {
+        "id": "d651ae7a.48668",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "func": "msg.payload = msg.payload.Domain[0].split(\",\");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1250,
+        "y": 440,
+        "wires": [
+            [
+                "914c3acc.e829d8"
+            ]
+        ]
+    },
+    {
+        "id": "9a633dec.fa4f3",
+        "type": "http request",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "url": "",
+        "tls": "",
+        "x": 790,
+        "y": 100,
+        "wires": [
+            [
+                "18f4d42.5ba6f2c",
+                "37bdb49e.a1972c"
+            ]
+        ]
+    },
+    {
+        "id": "6c6a5d6d.87a334",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "func": "msg.url = msg.payload.href;\nmsg.layerGroup = msg.payload.name;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 650,
+        "y": 100,
+        "wires": [
+            [
+                "9a633dec.fa4f3"
+            ]
+        ]
+    },
+    {
+        "id": "18f4d42.5ba6f2c",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "func": "msg.payload = msg.payload.layerGroup.publishables.published;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 930,
+        "y": 100,
+        "wires": [
+            [
+                "4af5bb90.896074"
+            ]
+        ]
+    },
+    {
+        "id": "1be7c58c.0f5dfa",
+        "type": "split",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "published_layers",
+        "x": 450,
+        "y": 160,
+        "wires": [
+            [
+                "fca8b286.afa01"
+            ]
+        ]
+    },
+    {
+        "id": "ff8ac81c.d26648",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4af5bb90.896074",
+        "type": "switch",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "array",
+                "vt": "array"
+            },
+            {
+                "t": "istype",
+                "v": "object",
+                "vt": "object"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "1be7c58c.0f5dfa"
+            ],
+            [
+                "883bda8b.dbef98"
+            ]
+        ]
+    },
+    {
+        "id": "a87ee443.206a58",
+        "type": "inject",
+        "z": "d00e8f9b.7ce64",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "f468fa9f.5ee938"
+            ]
+        ]
+    },
+    {
+        "id": "baab402d.b2574",
+        "type": "debug",
+        "z": "d00e8f9b.7ce64",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1190,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "def6867b.e18298",
+        "type": "debug",
+        "z": "52e16c81.960bb4",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 610,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "883bda8b.dbef98",
+        "type": "split",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "layers",
+        "x": 450,
+        "y": 220,
+        "wires": [
+            [
+                "ff8ac81c.d26648",
+                "25ee8e12.48fa72"
+            ]
+        ]
+    },
+    {
+        "id": "caeacce2.14a67",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 850,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1487e851.032a18",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "Workaround for Temporal Range",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1910,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "388a56d9.7ca54a",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 330,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "921d50e0.9bee2",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 610,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "3c421fd.1ef25e",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "Found Times",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1010,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "e8eca46a.661cc8",
+        "type": "switch",
+        "z": "4fa05f41.e5ec6",
+        "name": "Has Dimensions?",
+        "property": "payload.Domains.DimensionDomain",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "istype",
+                "v": "array",
+                "vt": "array"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 170,
+        "y": 500,
+        "wires": [
+            [
+                "ce261ca.d4876e"
+            ],
+            [
+                "f0e6f768.4593c8"
+            ]
+        ]
+    },
+    {
+        "id": "f0e6f768.4593c8",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "No Dimensions!",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 180,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "edc40b69.60d7b8",
+        "type": "split",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "domain",
+        "x": 530,
+        "y": 480,
+        "wires": [
+            [
+                "99fd68b2.6e8c08"
+            ]
+        ]
+    },
+    {
+        "id": "ce261ca.d4876e",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "Get Dimensions",
+        "func": "msg.payload = msg.payload.Domains.DimensionDomain;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 480,
+        "wires": [
+            [
+                "edc40b69.60d7b8"
+            ]
+        ]
+    },
+    {
+        "id": "99fd68b2.6e8c08",
+        "type": "switch",
+        "z": "4fa05f41.e5ec6",
+        "name": "Is Time Dimension?",
+        "property": "payload[\"ows:Identifier\"]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "time",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 710,
+        "y": 480,
+        "wires": [
+            [
+                "3c421fd.1ef25e",
+                "c320306e.eacd2"
+            ],
+            [
+                "39422acc.be5e26"
+            ]
+        ]
+    },
+    {
+        "id": "39422acc.be5e26",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "Not a Time Dimension",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 960,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "914c3acc.e829d8",
+        "type": "split",
+        "z": "4fa05f41.e5ec6",
+        "name": "Extract Timestamps",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "timestamp",
+        "x": 1290,
+        "y": 480,
+        "wires": [
+            [
+                "74c7d6b3.8f40b8",
+                "41d42005.6621f"
+            ]
+        ]
+    },
+    {
+        "id": "74c7d6b3.8f40b8",
+        "type": "switch",
+        "z": "4fa05f41.e5ec6",
+        "name": "Is valid UTC? or is it a Range?",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "regex",
+                "v": "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z)?$",
+                "vt": "str",
+                "case": true
+            },
+            {
+                "t": "cont",
+                "v": "--",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 3,
+        "x": 1550,
+        "y": 440,
+        "wires": [
+            [
+                "64f0cbbf.093c24",
+                "bb1b381c.2062c8"
+            ],
+            [
+                "f870d07.ebc313",
+                "1487e851.032a18"
+            ],
+            [
+                "ade5f0e4.b50d7"
+            ]
+        ]
+    },
+    {
+        "id": "64f0cbbf.093c24",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "Valid UTC",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1840,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "c320306e.eacd2",
+        "type": "switch",
+        "z": "4fa05f41.e5ec6",
+        "name": "Complete Year? (ie., 365 days)",
+        "property": "payload.Size[0]",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "365",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 990,
+        "y": 460,
+        "wires": [
+            [
+                "ffa79146.6c919",
+                "3bdab4d4.fdbc4c"
+            ],
+            [
+                "d651ae7a.48668"
+            ]
+        ]
+    },
+    {
+        "id": "ffa79146.6c919",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1270,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "41d42005.6621f",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "Individual Timestamps",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1540,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f870d07.ebc313",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "Formatting Result",
+        "func": "var ranged = msg.payload.split(\"--\");\n\ndaysBetween = function( date1, date2 ) {\n  //Get 1 day in milliseconds\n  var one_day=1000*60*60*24;\n\n  // Convert both dates to milliseconds\n  var date1_ms = date1.getTime();\n  var date2_ms = date2.getTime();\n\n  // Calculate the difference in milliseconds\n  var difference_ms = date2_ms - date1_ms;\n    \n  // Convert back to days and return\n  return Math.round(difference_ms/one_day); \n}\nvar d1 = new Date(ranged[0]);\nvar d2 = new Date(ranged[1]);\n\nvar size = daysBetween(d1, d2);\n\nmsg.payload = {\n    \"name\": ranged[0],\n    \"value\": size\n}\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1870,
+        "y": 500,
+        "wires": [
+            [
+                "ac3170cb.4f532",
+                "c4cc0774.ba4738"
+            ]
+        ]
+    },
+    {
+        "id": "ac3170cb.4f532",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2090,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "2eb26010.6f159",
+        "type": "http in",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "url": "/temporal",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 100,
+        "y": 100,
+        "wires": [
+            [
+                "ba639340.1321c"
+            ]
+        ]
+    },
+    {
+        "id": "ba639340.1321c",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "func": "msg.payload = {\n    \"name\": msg.payload.model,\n    \"href\":\"http://geoserver:8080/geoserver/rest/workspaces/lfmc/layergroups/\"+ msg.payload.model +\".json\"\n}\n\nmsg.layerGroup = msg.payload.model;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 490,
+        "y": 100,
+        "wires": [
+            [
+                "2307e167.9d195e",
+                "6c6a5d6d.87a334"
+            ]
+        ]
+    },
+    {
+        "id": "2307e167.9d195e",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 650,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "72fd89ac.becb48",
+        "type": "http response",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 2550,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "bb1b381c.2062c8",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "func": "var d = new Date(msg.payload);\n\n\n\nmsg.payload = {\n    \"name\": d.toLocaleDateString(\"en-AU\"),\n    \"value\": 1\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1830,
+        "y": 400,
+        "wires": [
+            [
+                "c4cc0774.ba4738"
+            ]
+        ]
+    },
+    {
+        "id": "c4cc0774.ba4738",
+        "type": "join",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "mode": "auto",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 2030,
+        "y": 340,
+        "wires": [
+            [
+                "dd71e8aa.cb9158",
+                "cbab180c.6ae888"
+            ]
+        ]
+    },
+    {
+        "id": "aeaccc62.ea483",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2590,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "317518be.8ee1f8",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "func": "msg.payload = {\n    \"model\": \"DFMC\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 40,
+        "wires": [
+            [
+                "ba639340.1321c"
+            ]
+        ]
+    },
+    {
+        "id": "572a1c6.116b9e4",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "func": "function formatDate(date) {\n    var d = new Date(date),\n        month = '' + (d.getMonth() + 1),\n        day = '' + d.getDate(),\n        year = d.getFullYear();\n\n    if (month.length < 2) month = '0' + month;\n    if (day.length < 2) day = '0' + day;\n\n    return [year, month, day].join('-');\n}\n\nmsg.topic = msg.layerGroup;\n\nvar series = [];\n\nfor (var k of Object.keys(msg.payload)) {\n    for (var q of msg.payload[k]) {\n        var d = new Date(q.name);\n        series.push({\"name\": formatDate(d), \"value\": q.value});\n    }\n}\n\nmsg.payload = {\n    \"name\": msg.layerGroup,\n    \"series\": series\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 2350,
+        "y": 340,
+        "wires": [
+            [
+                "72fd89ac.becb48",
+                "aeaccc62.ea483"
+            ]
+        ]
+    },
+    {
+        "id": "dd71e8aa.cb9158",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2150,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "3bdab4d4.fdbc4c",
+        "type": "function",
+        "z": "4fa05f41.e5ec6",
+        "name": "Year to range",
+        "func": "var all = msg.payload.Domain[0].split(\",\");\n\nmsg.payload = all[0] + \"--\" + all[all.length -1];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1280,
+        "y": 400,
+        "wires": [
+            [
+                "74c7d6b3.8f40b8"
+            ]
+        ]
+    },
+    {
+        "id": "cbab180c.6ae888",
+        "type": "join",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "mode": "custom",
+        "build": "object",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": false,
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "reduceExp": "",
+        "reduceInit": "",
+        "reduceInitType": "",
+        "reduceFixup": "",
+        "x": 2190,
+        "y": 340,
+        "wires": [
+            [
+                "572a1c6.116b9e4",
+                "fddb0cc1.c0e62"
+            ]
+        ]
+    },
+    {
+        "id": "fddb0cc1.c0e62",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 2410,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "704476f8.ea21b8",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 750,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fca8b286.afa01",
+        "type": "join",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "mode": "auto",
+        "build": "string",
+        "property": "payload",
+        "propertyType": "msg",
+        "key": "topic",
+        "joiner": "\\n",
+        "joinerType": "str",
+        "accumulate": "false",
+        "timeout": "",
+        "count": "",
+        "reduceRight": false,
+        "x": 570,
+        "y": 160,
+        "wires": [
+            [
+                "704476f8.ea21b8",
+                "883bda8b.dbef98"
+            ]
+        ]
+    },
+    {
+        "id": "ade5f0e4.b50d7",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "INVALID DATE",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1840,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "37bdb49e.a1972c",
+        "type": "debug",
+        "z": "4fa05f41.e5ec6",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 950,
+        "y": 40,
+        "wires": []
     }
 ]

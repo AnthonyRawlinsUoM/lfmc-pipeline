@@ -1,6 +1,5 @@
 FROM node:alpine
 MAINTAINER Anthony Rawlins <anthony.rawlins@unimelb.edu.au>
-
 RUN apk add --update \
     python \
     python-dev \
@@ -36,6 +35,14 @@ RUN mkdir /mnt/data_dir
 RUN mkdir /mnt/awra_dir
 RUN mkdir /mnt/queries
 
+RUN addgroup -g 1024 dockerdata
+RUN adduser -D -g dockerdata dockeruser 
+
+RUN chown :dockerdata /mnt/data_dir
+RUN chown :dockerdata /mnt/awra_dir
+RUN chown :dockerdata /mnt/queries
+RUN chown -R dockeruser:dockerdata /usr/src/app
+USER dockeruser
 
 # Production
 EXPOSE 1880/tcp
