@@ -10,7 +10,7 @@ RUN apk add --update \
 	curl \
   && pip install virtualenv
 RUN apk add --no-cache tzdata
-RUN apk add --no-cache gcc musl-dev
+RUN apk add --no-cache gcc musl-dev nano
 ENV TZ Australia/Melbourne
 RUN rm -rf /var/cache/apk/*
 

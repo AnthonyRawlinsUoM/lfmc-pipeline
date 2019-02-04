@@ -42,6 +42,13 @@
         "info": ""
     },
     {
+        "id": "27de4edd.91f382",
+        "type": "tab",
+        "label": "DFMC",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "4fa05f41.e5ec6",
         "type": "tab",
         "label": "Temporal Data Availability",
@@ -3640,16 +3647,16 @@
         "id": "9560857c.5f1b38",
         "type": "function",
         "z": "f51feb57.6cd738",
-        "name": "s0",
-        "func": "var year = new Date(msg.payload).getFullYear().toString();\n\nmsg.payload = \"curl --list-only --socks5-hostname tor:9050 \" + msg.url + \" -o \" + msg.filename +\"index.txt\";\nreturn msg;",
+        "name": "fwo",
+        "func": "//msg.payload = \"curl --list-only --socks5-hostname tor:9050 \" + msg.url + \"/fwo/ -o \" + msg.directory +\"fwo.txt\";\nmsg.url = msg.url + \"/fwo\";\nmsg.uri = msg.url;\n\nmsg.directory = msg.directory+\"/fwo\";\nmsg.payload = \"curl --list-only \" + msg.url + \" -o \" + msg.directory +\"/fwo.txt\";\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 630,
+        "x": 430,
         "y": 560,
         "wires": [
             [
-                "379c16d7.78d08a",
-                "1148d2a1.052d3d"
+                "d270bfe9.2690a",
+                "521276a3.500848"
             ]
         ]
     },
@@ -3664,11 +3671,12 @@
         "timer": "",
         "oldrc": false,
         "name": "",
-        "x": 830,
-        "y": 580,
+        "x": 810,
+        "y": 480,
         "wires": [
             [
-                "f1aafe76.a625"
+                "f1aafe76.a625",
+                "cb81f6de.87e3a8"
             ],
             [
                 "4627d5d0.41823c"
@@ -3690,8 +3698,8 @@
         "crontab": "",
         "once": false,
         "onceDelay": "",
-        "x": 320,
-        "y": 560,
+        "x": 120,
+        "y": 480,
         "wires": [
             [
                 "2ac88d9.1cec572"
@@ -3703,13 +3711,14 @@
         "type": "function",
         "z": "f51feb57.6cd738",
         "name": "",
-        "func": "msg.url = \"ftp.bom.gov.au/register/bom023/rKCm6dbQ/adfd\";\n\nvar today = new Date();\nvar dd = today.getDate().toString();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear().toString();\nvar h = today.getHours();\nvar m = today.getMinutes();\nvar meridian = '';\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today = ''+ yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today;\n\nreturn msg;",
+        "func": "msg.url = \"ftp.bom.gov.au/register/bom023/rKCm6dbQ\";\n\nvar today = new Date();\nvar dd = today.getDate().toString();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear().toString();\nvar h = today.getHours();\nvar m = today.getMinutes();\nvar meridian = '';\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today = ''+ yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today;\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 470,
-        "y": 560,
+        "x": 270,
+        "y": 540,
         "wires": [
             [
+                "144b0928.405707",
                 "9560857c.5f1b38"
             ]
         ]
@@ -3724,8 +3733,8 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 800,
-        "y": 500,
+        "x": 1090,
+        "y": 520,
         "wires": []
     },
     {
@@ -3738,8 +3747,8 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 1030,
-        "y": 540,
+        "x": 1090,
+        "y": 640,
         "wires": []
     },
     {
@@ -3752,8 +3761,8 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 1030,
-        "y": 580,
+        "x": 1090,
+        "y": 420,
         "wires": []
     },
     {
@@ -3766,8 +3775,578 @@
         "console": false,
         "tostatus": false,
         "complete": "true",
-        "x": 1030,
+        "x": 1090,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "eea1800c.555db",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "mkdir",
+        "func": "msg.payload= \"Mirrored from BOM FTP by LFMC Pipeline @ \" + msg.today;\nmsg.filename =  msg.directory + \"/meta.txt\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
         "y": 620,
+        "wires": [
+            [
+                "eb518519.9b1518"
+            ]
+        ]
+    },
+    {
+        "id": "eb518519.9b1518",
+        "type": "file",
+        "z": "f51feb57.6cd738",
+        "name": "metadata",
+        "filename": "",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "x": 820,
+        "y": 540,
+        "wires": [
+            [
+                "379c16d7.78d08a"
+            ]
+        ]
+    },
+    {
+        "id": "c542e8aa.d31218",
+        "type": "delay",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 620,
+        "y": 520,
+        "wires": [
+            [
+                "1148d2a1.052d3d"
+            ]
+        ]
+    },
+    {
+        "id": "144b0928.405707",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "adfd",
+        "func": "// msg.payload = \"curl --list-only --socks5-hostname tor:9050 \" + msg.url + \"/adfd/ -o \" + msg.directory +\"adfd.txt\";\nmsg.url = msg.url + \"/adfd\";\nmsg.uri = msg.url;\n\nmsg.payload = \"curl --list-only \" + msg.url + \" -o \" + msg.directory + \"/adfd.txt\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 430,
+        "y": 520,
+        "wires": [
+            [
+                "57657c1a.4f66e4",
+                "c542e8aa.d31218"
+            ]
+        ]
+    },
+    {
+        "id": "521276a3.500848",
+        "type": "delay",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "3",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 620,
+        "y": 560,
+        "wires": [
+            [
+                "773dd7fd.4f4d88"
+            ]
+        ]
+    },
+    {
+        "id": "57657c1a.4f66e4",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "mkdir",
+        "func": "msg.payload= \"Mirrored from BOM FTP by LFMC Pipeline @ \" + msg.today;\nmsg.filename =  msg.directory + \"/meta.txt\"\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 610,
+        "y": 460,
+        "wires": [
+            [
+                "eb518519.9b1518"
+            ]
+        ]
+    },
+    {
+        "id": "773dd7fd.4f4d88",
+        "type": "exec",
+        "z": "f51feb57.6cd738",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 810,
+        "y": 600,
+        "wires": [
+            [
+                "f1aafe76.a625",
+                "1f1e7a25.4b9306"
+            ],
+            [
+                "4627d5d0.41823c"
+            ],
+            [
+                "8932f05c.8e35a"
+            ]
+        ]
+    },
+    {
+        "id": "d270bfe9.2690a",
+        "type": "delay",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "1",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 480,
+        "y": 620,
+        "wires": [
+            [
+                "eea1800c.555db"
+            ]
+        ]
+    },
+    {
+        "id": "df973b23.7bcd58",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "func": "msg.payload = \"cd \" + msg.directory + \" && xargs -n 1 curl -O < \" + msg.index;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1290,
+        "y": 640,
+        "wires": [
+            [
+                "7aff73fe.42fc2c"
+            ]
+        ]
+    },
+    {
+        "id": "6decaaab.5ea2c4",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1590,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "cb81f6de.87e3a8",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "func": "msg.index = msg.directory + \"/adfd.txt\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1090,
+        "y": 600,
+        "wires": [
+            [
+                "df973b23.7bcd58"
+            ]
+        ]
+    },
+    {
+        "id": "7aff73fe.42fc2c",
+        "type": "exec",
+        "z": "f51feb57.6cd738",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 1430,
+        "y": 640,
+        "wires": [
+            [
+                "6decaaab.5ea2c4"
+            ],
+            [
+                "aaec8f22.c0fe5"
+            ],
+            [
+                "453c2ae0.7b27a4"
+            ]
+        ]
+    },
+    {
+        "id": "aaec8f22.c0fe5",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1590,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "453c2ae0.7b27a4",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1590,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "1f1e7a25.4b9306",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "func": "msg.index = msg.directory + \"/fwo.txt\"\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1090,
+        "y": 680,
+        "wires": [
+            [
+                "df973b23.7bcd58"
+            ]
+        ]
+    },
+    {
+        "id": "b4d0fcc7.6a30e",
+        "type": "exec",
+        "z": "27de4edd.91f382",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 730,
+        "y": 140,
+        "wires": [
+            [
+                "89197dcd.8e1a6",
+                "a73ce674.145608",
+                "e891fdc2.f8914"
+            ],
+            [
+                "a73ce674.145608"
+            ],
+            [
+                "a73ce674.145608"
+            ]
+        ]
+    },
+    {
+        "id": "373d1ae3.4ed046",
+        "type": "function",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "func": "var d = new Date(msg.payload),\n    month = '' + (d.getMonth() + 1),\n    day = '' + d.getDate(),\n    year = d.getFullYear();\n\nif (month.length < 2) month = '0' + month;\nif (day.length < 2) day = '0' + day;\n\nvar dt = [year,month,day].join('');\n\n\nmsg.filename = dt + dt + \".grid.Z\";\nmsg.uri = msg.url + msg.filename;\nmsg.out = msg.prefix + \"_\" + dt + \".grid.Z\";\n\nmsg.payload = \"cd \"+msg.path+\" && curl \" + msg.uri + \" -o \" + msg.out;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 550,
+        "y": 140,
+        "wires": [
+            [
+                "b4d0fcc7.6a30e",
+                "e891fdc2.f8914"
+            ]
+        ]
+    },
+    {
+        "id": "1a482ab8.1c9495",
+        "type": "debug",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1170,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "6990dd19.7436e4",
+        "type": "inject",
+        "z": "27de4edd.91f382",
+        "name": "15:15 Daily",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "15 15 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 140,
+        "wires": [
+            [
+                "fc6ef07a.208a8",
+                "a9b10347.3b972",
+                "c14b1c86.5e8d6"
+            ]
+        ]
+    },
+    {
+        "id": "fc6ef07a.208a8",
+        "type": "function",
+        "z": "27de4edd.91f382",
+        "name": "VP3pm",
+        "func": "msg.url = \"http://www.bom.gov.au/web03/ncc/www/awap/vprp/vprph15/daily/grid/0.05/history/nat/\";\nmsg.path = \"/mnt/fuel/Dead_FM/VP3pm/\";\nmsg.prefix = \"VP3pm\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 340,
+        "y": 100,
+        "wires": [
+            [
+                "373d1ae3.4ed046"
+            ]
+        ]
+    },
+    {
+        "id": "a9b10347.3b972",
+        "type": "function",
+        "z": "27de4edd.91f382",
+        "name": "Tmx",
+        "func": "msg.url = \"http://www.bom.gov.au/web03/ncc/www/awap/temperature/maxave/daily/grid/0.05/history/nat/\";\nmsg.path = \"/mnt/fuel/Dead_FM/Tmx/\";\nmsg.prefix = \"Tmx\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 140,
+        "wires": [
+            [
+                "373d1ae3.4ed046"
+            ]
+        ]
+    },
+    {
+        "id": "c14b1c86.5e8d6",
+        "type": "function",
+        "z": "27de4edd.91f382",
+        "name": "P",
+        "func": "msg.url = \"http://www.bom.gov.au/web03/ncc/www/awap/rainfall/totals/daily/grid/0.05/history/nat/\";\nmsg.path = \"/mnt/fuel/Dead_FM/P/\";\nmsg.prefix = \"P\";\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "373d1ae3.4ed046"
+            ]
+        ]
+    },
+    {
+        "id": "89197dcd.8e1a6",
+        "type": "function",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "func": "msg.payload = \"cd \"+msg.path+\" && gunzip -f \" + msg.out;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 870,
+        "y": 140,
+        "wires": [
+            [
+                "eeaea28.bc49a6",
+                "e891fdc2.f8914"
+            ]
+        ]
+    },
+    {
+        "id": "eeaea28.bc49a6",
+        "type": "exec",
+        "z": "27de4edd.91f382",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 990,
+        "y": 140,
+        "wires": [
+            [
+                "1a482ab8.1c9495",
+                "8ab74d55.6f6fe"
+            ],
+            [
+                "f3163c0e.f860c",
+                "74d57aa4.4e9854"
+            ],
+            [
+                "ee71f1b0.36ed9"
+            ]
+        ]
+    },
+    {
+        "id": "a73ce674.145608",
+        "type": "debug",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 870,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8ab74d55.6f6fe",
+        "type": "debug",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1150,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "e891fdc2.f8914",
+        "type": "debug",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 1030,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "fec9a0d1.fcf73",
+        "type": "delay",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "6",
+        "timeoutUnits": "hours",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 1000,
+        "y": 380,
+        "wires": [
+            [
+                "373d1ae3.4ed046"
+            ]
+        ]
+    },
+    {
+        "id": "74d57aa4.4e9854",
+        "type": "switch",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "gunzip: invalid magic",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 840,
+        "y": 400,
+        "wires": [
+            [
+                "fec9a0d1.fcf73"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f3163c0e.f860c",
+        "type": "debug",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1150,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ee71f1b0.36ed9",
+        "type": "debug",
+        "z": "27de4edd.91f382",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1150,
+        "y": 240,
         "wires": []
     }
 ]
