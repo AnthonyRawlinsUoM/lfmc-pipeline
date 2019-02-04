@@ -16,6 +16,7 @@ RUN rm -rf /var/cache/apk/*
 
 # Make working dir
 WORKDIR /usr/src/app
+RUN chown -R 1000:1000 /usr/src/app
 
 COPY package.json .
 COPY package-lock.json .
@@ -33,17 +34,20 @@ COPY settings.js .
 
 RUN mkdir /mnt/data_dir
 RUN mkdir /mnt/awra_dir
+RUN mkdir /mnt/fuel
 RUN mkdir /mnt/queries
 
-RUN addgroup -g 1024 dockerdata
-RUN adduser -D -g dockerdata dockeruser 
+RUN chown 1000:1000 /mnt/data_dir
+RUN chown 1000:1000 /mnt/awra_dir
+RUN chown 1000:1000 /mnt/fuel
+RUN chown 1000:1000 /mnt/queries
+#RUN apk --update add tor torsocks
+#RUN sed "1s/^/SocksPort 0.0.0.0:9050\n/" /etc/tor/torrc.sample > /etc/tor/torrc
+#RUN tor -f /etc/tor/torrc &
 
-RUN chown :dockerdata /mnt/data_dir
-RUN chown :dockerdata /mnt/awra_dir
-RUN chown :dockerdata /mnt/queries
-RUN chown -R dockeruser:dockerdata /usr/src/app
-USER dockeruser
+USER 1000
 
 # Production
+EXPOSE 9050
 EXPOSE 1880/tcp
 CMD ["npm", "start"]

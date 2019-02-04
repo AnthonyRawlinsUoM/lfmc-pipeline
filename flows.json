@@ -28,16 +28,23 @@
         "info": ""
     },
     {
-        "id": "52e16c81.960bb4",
+        "id": "1c278495.e2b9eb",
         "type": "tab",
-        "label": "Temporal Availability",
+        "label": "JASMIN",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "3ead8668.6bfe7a",
+        "type": "tab",
+        "label": "Yebra",
         "disabled": false,
         "info": ""
     },
     {
         "id": "4fa05f41.e5ec6",
         "type": "tab",
-        "label": "Flow 1",
+        "label": "Temporal Data Availability",
         "disabled": false,
         "info": ""
     },
@@ -81,30 +88,6 @@
         "type": "ftp-download-server",
         "z": "",
         "host": "ftp.bom.gov.au",
-        "port": "21",
-        "user": "anonymous",
-        "connTimeout": "10000",
-        "pasvTimeout": "10000",
-        "keepalive": "10000",
-        "name": ""
-    },
-    {
-        "id": "ec0c7e55.88cd8",
-        "type": "ftp",
-        "z": "",
-        "host": "ftp.drivehq.com",
-        "port": "",
-        "secureOptions": "",
-        "user": "anonymous",
-        "connTimeout": "",
-        "pasvTimeout": "",
-        "keepalive": ""
-    },
-    {
-        "id": "560b96ae.ac1db8",
-        "type": "ftp-download-server",
-        "z": 0,
-        "host": "ftp.drivehq.com",
         "port": "21",
         "user": "anonymous",
         "connTimeout": "10000",
@@ -364,25 +347,6 @@
         "wires": []
     },
     {
-        "id": "58cbaf3.cff095",
-        "type": "inject",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 140,
-        "y": 560,
-        "wires": [
-            [
-                "ca7dca3a.8f90d8"
-            ]
-        ]
-    },
-    {
         "id": "62c6943e.03631c",
         "type": "function",
         "z": "f51feb57.6cd738",
@@ -396,167 +360,6 @@
             [
                 "1e7b8b8d.634644",
                 "bc51a0b1.9b47c"
-            ]
-        ]
-    },
-    {
-        "id": "7e3f6d53.40dbd4",
-        "type": "debug",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 1770,
-        "y": 780,
-        "wires": []
-    },
-    {
-        "id": "3262dce8.4cfdd4",
-        "type": "http request",
-        "z": "f51feb57.6cd738",
-        "name": "upload to weather",
-        "method": "POST",
-        "ret": "txt",
-        "url": "localhost:1880/uploadsimple_post",
-        "tls": "",
-        "x": 2370,
-        "y": 680,
-        "wires": [
-            [
-                "190cdf9.7b9c72"
-            ]
-        ]
-    },
-    {
-        "id": "8087c833.e549c8",
-        "type": "split",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 1630,
-        "y": 680,
-        "wires": [
-            [
-                "b0b309ba.1938d8",
-                "8701eb5d.710798"
-            ]
-        ]
-    },
-    {
-        "id": "e88ce5b0.fd1338",
-        "type": "split",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "",
-        "x": 1630,
-        "y": 720,
-        "wires": [
-            [
-                "7e3f6d53.40dbd4"
-            ]
-        ]
-    },
-    {
-        "id": "b0b309ba.1938d8",
-        "type": "debug",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 1770,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "15cc88bc.ec4827",
-        "type": "file in",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "filename": "",
-        "format": "",
-        "chunk": false,
-        "sendError": false,
-        "x": 2050,
-        "y": 680,
-        "wires": [
-            [
-                "f9d7176b.dfa508",
-                "8165e640.26b108"
-            ]
-        ]
-    },
-    {
-        "id": "8701eb5d.710798",
-        "type": "function",
-        "z": "f51feb57.6cd738",
-        "name": "Local Filename",
-        "func": "msg.payload = msg.directory + msg.payload.split(msg.path)[1];\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1880,
-        "y": 680,
-        "wires": [
-            [
-                "15cc88bc.ec4827"
-            ]
-        ]
-    },
-    {
-        "id": "190cdf9.7b9c72",
-        "type": "debug",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 2630,
-        "y": 680,
-        "wires": []
-    },
-    {
-        "id": "30c6e72f.569af8",
-        "type": "inject",
-        "z": "f51feb57.6cd738",
-        "name": "TEST",
-        "topic": "",
-        "payload": "/tmp/20180509/IDV71001_VIC_Td_SFC.grb",
-        "payloadType": "str",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 1750,
-        "y": 560,
-        "wires": [
-            [
-                "70e9bae4.156474"
-            ]
-        ]
-    },
-    {
-        "id": "70e9bae4.156474",
-        "type": "function",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "func": "msg.filename = msg.payload;\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1890,
-        "y": 560,
-        "wires": [
-            [
-                "15cc88bc.ec4827"
             ]
         ]
     },
@@ -851,34 +654,6 @@
         "wires": []
     },
     {
-        "id": "f9d7176b.dfa508",
-        "type": "debug",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 2270,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "8165e640.26b108",
-        "type": "function",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "func": "\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 2190,
-        "y": 680,
-        "wires": [
-            [
-                "3262dce8.4cfdd4"
-            ]
-        ]
-    },
-    {
         "id": "9d24ea12.277e58",
         "type": "debug",
         "z": "f51feb57.6cd738",
@@ -923,73 +698,6 @@
         ]
     },
     {
-        "id": "9ee99725.4621f8",
-        "type": "ftp-download",
-        "z": "f51feb57.6cd738",
-        "server": "5eb4cf6e.eb139",
-        "files": "filename",
-        "directory": "directory",
-        "name": "",
-        "output": "payload",
-        "filesType": "msg",
-        "directoryType": "msg",
-        "x": 700,
-        "y": 600,
-        "wires": [
-            [
-                "ef3da2ad.b36e4"
-            ]
-        ]
-    },
-    {
-        "id": "86a934ea.051b88",
-        "type": "debug",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 1090,
-        "y": 580,
-        "wires": []
-    },
-    {
-        "id": "edba8b4f.d37c78",
-        "type": "inject",
-        "z": "f51feb57.6cd738",
-        "name": "RUN TEST",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 140,
-        "y": 600,
-        "wires": [
-            [
-                "e47e1200.776d"
-            ]
-        ]
-    },
-    {
-        "id": "e47e1200.776d",
-        "type": "function",
-        "z": "f51feb57.6cd738",
-        "name": "TEST CASE",
-        "func": "msg.filename= [\"register/bom023/rKCm6dbQ/adfd/IDV71199_VIC_WindMagKmh_1000mAMSL.nc.gz\"];\n\n\nvar today = new Date();\nvar dd = today.getDate();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear();\n\nif(dd<10) {\n    dd = '0'+dd;\n} \n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today =  yyyy + mm + dd;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 310,
-        "y": 600,
-        "wires": [
-            [
-                "90dd1846.c372d8",
-                "a6dab755.a28928"
-            ]
-        ]
-    },
-    {
         "id": "871bb05f.ecfd4",
         "type": "file",
         "z": "f51feb57.6cd738",
@@ -1002,29 +710,6 @@
         "y": 340,
         "wires": [
             []
-        ]
-    },
-    {
-        "id": "90dd1846.c372d8",
-        "type": "delay",
-        "z": "f51feb57.6cd738",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 500,
-        "y": 600,
-        "wires": [
-            [
-                "9ee99725.4621f8"
-            ]
         ]
     },
     {
@@ -1133,27 +818,6 @@
         ]
     },
     {
-        "id": "ef3da2ad.b36e4",
-        "type": "exec",
-        "z": "f51feb57.6cd738",
-        "command": "gzip -d ",
-        "addpay": true,
-        "append": "",
-        "useSpawn": "false",
-        "timer": "",
-        "oldrc": false,
-        "name": "",
-        "x": 890,
-        "y": 600,
-        "wires": [
-            [
-                "86a934ea.051b88"
-            ],
-            [],
-            []
-        ]
-    },
-    {
         "id": "4cd50c87.f69f54",
         "type": "exec",
         "z": "f51feb57.6cd738",
@@ -1233,70 +897,6 @@
         "x": 530,
         "y": 100,
         "wires": []
-    },
-    {
-        "id": "927ce9f7.1820e8",
-        "type": "debug",
-        "z": "ee6c3ad0.573538",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 730,
-        "y": 360,
-        "wires": []
-    },
-    {
-        "id": "49f672a2.c2361c",
-        "type": "http request",
-        "z": "ee6c3ad0.573538",
-        "name": "",
-        "method": "GET",
-        "ret": "bin",
-        "url": "http://www.bom.gov.au/jsp/awra/thredds/fileServer/AWRA/values/day/sm_pct_2018.nc",
-        "tls": "",
-        "x": 470,
-        "y": 420,
-        "wires": [
-            [
-                "927ce9f7.1820e8",
-                "1834f583.79813a"
-            ]
-        ]
-    },
-    {
-        "id": "577b4e30.34bef",
-        "type": "inject",
-        "z": "ee6c3ad0.573538",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 240,
-        "y": 420,
-        "wires": [
-            [
-                "49f672a2.c2361c"
-            ]
-        ]
-    },
-    {
-        "id": "1834f583.79813a",
-        "type": "file",
-        "z": "ee6c3ad0.573538",
-        "name": "Save to AWRA folder",
-        "filename": "/mnt/awra_dir/sm_pct_2018.nc",
-        "appendNewline": true,
-        "createDir": true,
-        "overwriteFile": "true",
-        "x": 790,
-        "y": 440,
-        "wires": [
-            []
-        ]
     },
     {
         "id": "3aab2fac.f0b15",
@@ -1469,86 +1069,6 @@
         ]
     },
     {
-        "id": "83e945db.13da38",
-        "type": "http response",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "statusCode": "",
-        "headers": {},
-        "x": 1150,
-        "y": 1240,
-        "wires": []
-    },
-    {
-        "id": "54b63391.c68c4c",
-        "type": "http request",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "url": "http://geoserver:8080/geoserver/rest/workspaces/lfmc/layergroups.json",
-        "tls": "",
-        "x": 250,
-        "y": 1240,
-        "wires": [
-            [
-                "54e5c13a.47aa5"
-            ]
-        ]
-    },
-    {
-        "id": "663fb322.744ffc",
-        "type": "http in",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "url": "/availability",
-        "method": "get",
-        "upload": false,
-        "swaggerDoc": "",
-        "x": 240,
-        "y": 1280,
-        "wires": [
-            [
-                "54b63391.c68c4c"
-            ]
-        ]
-    },
-    {
-        "id": "6d64d5de.6e268c",
-        "type": "inject",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 80,
-        "y": 1240,
-        "wires": [
-            [
-                "54b63391.c68c4c"
-            ]
-        ]
-    },
-    {
-        "id": "54e5c13a.47aa5",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "if(msg.payload.layerGroups) {\n    msg.payload = msg.payload.layerGroups.layerGroup;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 1200,
-        "wires": [
-            [
-                "5d42da90.82b564"
-            ]
-        ]
-    },
-    {
         "id": "f089465e.aa9848",
         "type": "http in",
         "z": "d00e8f9b.7ce64",
@@ -1710,670 +1230,6 @@
         "headers": {},
         "x": 1167.5,
         "y": 134,
-        "wires": []
-    },
-    {
-        "id": "41b25b44.699844",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "Each LayerGroup",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 490,
-        "y": 940,
-        "wires": [
-            [
-                "cf4a2bc3.d20d28"
-            ]
-        ]
-    },
-    {
-        "id": "6ff8d184.18092",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "Layers + Names",
-        "func": "msg.payload = {'layers': msg.payload, 'name': 'lfmc'};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 240,
-        "y": 1080,
-        "wires": [
-            [
-                "4b59587e.24bb28"
-            ]
-        ]
-    },
-    {
-        "id": "4b59587e.24bb28",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 410,
-        "y": 1080,
-        "wires": [
-            [
-                "782c5edb.fe4d5"
-            ]
-        ]
-    },
-    {
-        "id": "782c5edb.fe4d5",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "Layers",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "layers",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "name",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 530,
-        "y": 1080,
-        "wires": [
-            [
-                "53c0309.86f18d"
-            ],
-            [
-                "1221b3d6.f55e9c"
-            ]
-        ]
-    },
-    {
-        "id": "5d42da90.82b564",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "AllLayers + Name",
-        "func": "msg.payload = {'all_layers': msg.payload, 'name': 'AllLayers'};\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 230,
-        "y": 1160,
-        "wires": [
-            [
-                "b8212754.5b3288"
-            ]
-        ]
-    },
-    {
-        "id": "b8212754.5b3288",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 390,
-        "y": 1160,
-        "wires": [
-            [
-                "830a3ce.ad440c"
-            ]
-        ]
-    },
-    {
-        "id": "830a3ce.ad440c",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "All Layers",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "all_layers",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "name",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 520,
-        "y": 1160,
-        "wires": [
-            [
-                "6ff8d184.18092"
-            ],
-            [
-                "82e9f3ac.70ccc"
-            ]
-        ]
-    },
-    {
-        "id": "82e9f3ac.70ccc",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "Combine AllLayers",
-        "mode": "auto",
-        "build": "string",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 950,
-        "y": 1160,
-        "wires": [
-            [
-                "6f668fa7.f52ae",
-                "83e945db.13da38"
-            ]
-        ]
-    },
-    {
-        "id": "6f668fa7.f52ae",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 1170,
-        "y": 1160,
-        "wires": []
-    },
-    {
-        "id": "1221b3d6.f55e9c",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "Combine Layers + Names",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 950,
-        "y": 1100,
-        "wires": [
-            [
-                "82e9f3ac.70ccc"
-            ]
-        ]
-    },
-    {
-        "id": "53c0309.86f18d",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.payload = {'layergroups': msg.payload, 'layergroup_name': msg.payload.name}; \nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 270,
-        "y": 1000,
-        "wires": [
-            [
-                "a2e1afc1.b6a37"
-            ]
-        ]
-    },
-    {
-        "id": "cf4a2bc3.d20d28",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "LayerGroup's Layer Metadata",
-        "func": "msg.url = msg.payload.href;\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 170,
-        "y": 880,
-        "wires": [
-            [
-                "cc4fefa3.00171",
-                "def6867b.e18298"
-            ]
-        ]
-    },
-    {
-        "id": "a2e1afc1.b6a37",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 410,
-        "y": 1000,
-        "wires": [
-            [
-                "b9fa2669.d5d308"
-            ]
-        ]
-    },
-    {
-        "id": "b9fa2669.d5d308",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "layergroups",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "layergroup_name",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 530,
-        "y": 1000,
-        "wires": [
-            [
-                "41b25b44.699844"
-            ],
-            [
-                "433db664.ec7198"
-            ]
-        ]
-    },
-    {
-        "id": "433db664.ec7198",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "Combine LayerGroup",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 940,
-        "y": 1020,
-        "wires": [
-            [
-                "1445bc65.a22eb4"
-            ]
-        ]
-    },
-    {
-        "id": "cc4fefa3.00171",
-        "type": "http request",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "method": "GET",
-        "ret": "obj",
-        "url": "",
-        "tls": "",
-        "x": 390,
-        "y": 880,
-        "wires": [
-            [
-                "593cfe36.f5251"
-            ]
-        ]
-    },
-    {
-        "id": "593cfe36.f5251",
-        "type": "json",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "property": "payload",
-        "action": "",
-        "pretty": false,
-        "x": 530,
-        "y": 880,
-        "wires": [
-            [
-                "7397c958.ea99a8"
-            ]
-        ]
-    },
-    {
-        "id": "2b04b5f9.2c533a",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.topic = 'layergroups';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 930,
-        "y": 980,
-        "wires": [
-            [
-                "433db664.ec7198"
-            ]
-        ]
-    },
-    {
-        "id": "1445bc65.a22eb4",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.topic = 'layers'\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 920,
-        "y": 1062,
-        "wires": [
-            [
-                "1221b3d6.f55e9c"
-            ]
-        ]
-    },
-    {
-        "id": "f91a1ca3.f791f",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 870,
-        "y": 880,
-        "wires": [
-            [
-                "e3fdb8a7.b230e8",
-                "18d4de01.a428b2"
-            ]
-        ]
-    },
-    {
-        "id": "7397c958.ea99a8",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 250,
-        "y": 720,
-        "wires": [
-            [
-                "d7e9b5ac.2bb768"
-            ]
-        ]
-    },
-    {
-        "id": "d7e9b5ac.2bb768",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "LayerGroups",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "href",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "name",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 470,
-        "y": 720,
-        "wires": [
-            [
-                "e2b2461e.c3aed8",
-                "916846b2.499ea8"
-            ],
-            [
-                "f91a1ca3.f791f"
-            ]
-        ]
-    },
-    {
-        "id": "e3fdb8a7.b230e8",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 1130,
-        "y": 880,
-        "wires": []
-    },
-    {
-        "id": "18d4de01.a428b2",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "mode": "custom",
-        "build": "array",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 890,
-        "y": 940,
-        "wires": [
-            [
-                "2b04b5f9.2c533a"
-            ]
-        ]
-    },
-    {
-        "id": "7e48984f.6fa3e8",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 1330,
-        "y": 620,
-        "wires": []
-    },
-    {
-        "id": "dca10516.326828",
-        "type": "split",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "splt": "\\n",
-        "spltType": "str",
-        "arraySplt": 1,
-        "arraySpltType": "len",
-        "stream": false,
-        "addname": "topic",
-        "x": 330,
-        "y": 560,
-        "wires": [
-            [
-                "e00d4fd5.e88c2"
-            ]
-        ]
-    },
-    {
-        "id": "1034f4a2.e1be1b",
-        "type": "join",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "mode": "custom",
-        "build": "object",
-        "property": "payload",
-        "propertyType": "msg",
-        "key": "topic",
-        "joiner": "\\n",
-        "joinerType": "str",
-        "accumulate": false,
-        "timeout": "",
-        "count": "",
-        "x": 1110,
-        "y": 620,
-        "wires": [
-            [
-                "7e48984f.6fa3e8",
-                "f91a1ca3.f791f"
-            ]
-        ]
-    },
-    {
-        "id": "e2b2461e.c3aed8",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.payload = {\n    'granules': {\n        'publishables': msg.payload.publishables,\n        'name': msg.payload.name,\n    },\n    'meta': {\n        'mode': msg.payload.mode,\n        'workspace': msg.payload.workspace,\n        'styles': msg.payload.styles,\n        'bounds': msg.payload.bounds,\n        'attribution': msg.payload.attribution\n    }\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 630,
-        "y": 660,
-        "wires": [
-            [
-                "dca10516.326828",
-                "234166f7.8278fa"
-            ]
-        ]
-    },
-    {
-        "id": "916846b2.499ea8",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 830,
-        "y": 700,
-        "wires": []
-    },
-    {
-        "id": "234166f7.8278fa",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 830,
-        "y": 660,
-        "wires": []
-    },
-    {
-        "id": "e00d4fd5.e88c2",
-        "type": "switch",
-        "z": "52e16c81.960bb4",
-        "name": "LayerGroup",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "granules",
-                "vt": "str"
-            },
-            {
-                "t": "eq",
-                "v": "meta",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "outputs": 2,
-        "x": 470,
-        "y": 560,
-        "wires": [
-            [
-                "618b5716.c0cb48"
-            ],
-            [
-                "1034f4a2.e1be1b"
-            ]
-        ]
-    },
-    {
-        "id": "618b5716.c0cb48",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 830,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "349144ad.14d88c",
-        "type": "function",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "func": "msg.topic = 'granules';\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1070,
-        "y": 520,
-        "wires": [
-            [
-                "1034f4a2.e1be1b"
-            ]
-        ]
-    },
-    {
-        "id": "d7db6736.813da8",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": false,
-        "console": "false",
-        "complete": "payload",
-        "x": 830,
-        "y": 460,
         "wires": []
     },
     {
@@ -3684,18 +2540,6 @@
         "wires": []
     },
     {
-        "id": "def6867b.e18298",
-        "type": "debug",
-        "z": "52e16c81.960bb4",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "payload",
-        "x": 610,
-        "y": 800,
-        "wires": []
-    },
-    {
         "id": "883bda8b.dbef98",
         "type": "split",
         "z": "4fa05f41.e5ec6",
@@ -4367,6 +3211,563 @@
         "complete": "false",
         "x": 950,
         "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e483b484.535278",
+        "type": "function",
+        "z": "ee6c3ad0.573538",
+        "name": "s0",
+        "func": "var year = new Date(msg.payload).getFullYear().toString();\nmsg.url = \"http://www.bom.gov.au/jsp/awra/thredds/fileServer/AWRACMS/values/day/s0_pct_\"+year+\".nc\";\nmsg.filename = \"/mnt/awra_dir/s0_pct_\"+year+\"_Actual_day.nc\"\n\nmsg.payload = \"curl --socks5-hostname tor:9050 \" + msg.url + \" -o \" + msg.filename + \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 40,
+        "wires": [
+            [
+                "e372a7d9.2803e8"
+            ]
+        ]
+    },
+    {
+        "id": "ecd19fd6.ec8b3",
+        "type": "function",
+        "z": "ee6c3ad0.573538",
+        "name": "ss",
+        "func": "var year = new Date(msg.payload).getFullYear().toString();\nmsg.url = \"http://www.bom.gov.au/jsp/awra/thredds/fileServer/AWRACMS/values/day/ss_pct_\"+year+\".nc\";\nmsg.filename = \"/mnt/awra_dir/ss_pct_\"+year+\"_Actual_day.nc\"\n\nmsg.payload = \"curl --socks5-hostname tor:9050 \" + msg.url + \" -o \" + msg.filename+ \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "9e8a028f.60ae9"
+            ]
+        ]
+    },
+    {
+        "id": "25ae85a9.fe872a",
+        "type": "function",
+        "z": "ee6c3ad0.573538",
+        "name": "sm",
+        "func": "var year = new Date(msg.payload).getFullYear().toString();\nmsg.url = \"http://www.bom.gov.au/jsp/awra/thredds/fileServer/AWRACMS/values/day/sm_pct_\"+year+\".nc\";\nmsg.filename = \"/mnt/awra_dir/sm_pct_\"+year+\"_Actual_day.nc\"\n\nmsg.payload = \"curl --socks5-hostname tor:9050 \" + msg.url + \" -o \" + msg.filename+ \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 160,
+        "wires": [
+            [
+                "b78d5801.f16568"
+            ]
+        ]
+    },
+    {
+        "id": "ba80588.00359a8",
+        "type": "function",
+        "z": "3ead8668.6bfe7a",
+        "name": "",
+        "func": "var year = new Date(msg.payload).getFullYear().toString();\nmsg.url = \"http://dapds00.nci.org.au/thredds/fileServer/ub8/au/FMC/c6/mosaics/fmc_c6_\"+year+\".nc\";\nmsg.filename = \"/mnt/fuel/Yebra/c6/fmc_c6_\" + year + \".nc\";\n\nmsg.payload = \"curl --socks5-hostname tor:9050 \" + msg.url + \" -o \" + msg.filename+ \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "dfd8f329.25c1f"
+            ]
+        ]
+    },
+    {
+        "id": "55e9bf9b.82ad",
+        "type": "inject",
+        "z": "3ead8668.6bfe7a",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 15 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "ba80588.00359a8"
+            ]
+        ]
+    },
+    {
+        "id": "dce43fee.730c4",
+        "type": "debug",
+        "z": "3ead8668.6bfe7a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "dfd8f329.25c1f",
+        "type": "exec",
+        "z": "3ead8668.6bfe7a",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "dce43fee.730c4"
+            ],
+            [
+                "1acbddb2.6bd012"
+            ],
+            [
+                "f831b827.d19c38"
+            ]
+        ]
+    },
+    {
+        "id": "1acbddb2.6bd012",
+        "type": "debug",
+        "z": "3ead8668.6bfe7a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "f831b827.d19c38",
+        "type": "debug",
+        "z": "3ead8668.6bfe7a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e75d5846.0fe018",
+        "type": "function",
+        "z": "1c278495.e2b9eb",
+        "name": "",
+        "func": "var year = new Date(msg.payload).getFullYear().toString();\nmsg.url = \"http://opendap.bom.gov.au:8080/thredds/fileServer/c35ee8d2a475e10ea06d0ad53b46ce2a/JASMIN_land_dryness/native/jasmin.vol.smc.\"+year+\".nc\"\nmsg.filename = \"/mnt/fuel/JASMIN/native/jasmin.vol.smc.\"+year+\".nc\";\n\nmsg.payload = \"curl --socks5-hostname tor:9050 \" + msg.url + \" -o \" + msg.filename+ \"\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 290,
+        "y": 100,
+        "wires": [
+            [
+                "b2f3ba93.eb87e8"
+            ]
+        ]
+    },
+    {
+        "id": "1d5ec1ca.07bb1e",
+        "type": "inject",
+        "z": "1c278495.e2b9eb",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 15 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 150,
+        "y": 100,
+        "wires": [
+            [
+                "e75d5846.0fe018"
+            ]
+        ]
+    },
+    {
+        "id": "b1a5b57.ee6ed48",
+        "type": "debug",
+        "z": "1c278495.e2b9eb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b2f3ba93.eb87e8",
+        "type": "exec",
+        "z": "1c278495.e2b9eb",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "b1a5b57.ee6ed48"
+            ],
+            [
+                "1432d2e2.0f3bed"
+            ],
+            [
+                "20be007a.0db8c"
+            ]
+        ]
+    },
+    {
+        "id": "1432d2e2.0f3bed",
+        "type": "debug",
+        "z": "1c278495.e2b9eb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "20be007a.0db8c",
+        "type": "debug",
+        "z": "1c278495.e2b9eb",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 590,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "8841d5b7.1f9618",
+        "type": "inject",
+        "z": "ee6c3ad0.573538",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "00 15 * * *",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 100,
+        "wires": [
+            [
+                "e483b484.535278",
+                "ecd19fd6.ec8b3",
+                "25ae85a9.fe872a"
+            ]
+        ]
+    },
+    {
+        "id": "3eb9de08.ee4472",
+        "type": "debug",
+        "z": "ee6c3ad0.573538",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "b2f31d68.98ce",
+        "type": "debug",
+        "z": "ee6c3ad0.573538",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3e4a4d64.b39872",
+        "type": "debug",
+        "z": "ee6c3ad0.573538",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 630,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "e372a7d9.2803e8",
+        "type": "exec",
+        "z": "ee6c3ad0.573538",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 410,
+        "y": 40,
+        "wires": [
+            [
+                "3eb9de08.ee4472"
+            ],
+            [
+                "b2f31d68.98ce"
+            ],
+            [
+                "3e4a4d64.b39872"
+            ]
+        ]
+    },
+    {
+        "id": "9e8a028f.60ae9",
+        "type": "exec",
+        "z": "ee6c3ad0.573538",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 410,
+        "y": 100,
+        "wires": [
+            [
+                "3eb9de08.ee4472"
+            ],
+            [
+                "b2f31d68.98ce"
+            ],
+            [
+                "3e4a4d64.b39872"
+            ]
+        ]
+    },
+    {
+        "id": "b78d5801.f16568",
+        "type": "exec",
+        "z": "ee6c3ad0.573538",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "3eb9de08.ee4472"
+            ],
+            [
+                "b2f31d68.98ce"
+            ],
+            [
+                "3e4a4d64.b39872"
+            ]
+        ]
+    },
+    {
+        "id": "65a0d588.f7debc",
+        "type": "status",
+        "z": "3ead8668.6bfe7a",
+        "name": "",
+        "scope": [
+            "dfd8f329.25c1f"
+        ],
+        "x": 400,
+        "y": 240,
+        "wires": [
+            [
+                "b1b361a9.535ad"
+            ]
+        ]
+    },
+    {
+        "id": "b1b361a9.535ad",
+        "type": "debug",
+        "z": "3ead8668.6bfe7a",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 570,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9560857c.5f1b38",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "s0",
+        "func": "var year = new Date(msg.payload).getFullYear().toString();\n\nmsg.payload = \"curl --list-only --socks5-hostname tor:9050 \" + msg.url + \" -o \" + msg.filename +\"index.txt\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 630,
+        "y": 560,
+        "wires": [
+            [
+                "379c16d7.78d08a",
+                "1148d2a1.052d3d"
+            ]
+        ]
+    },
+    {
+        "id": "1148d2a1.052d3d",
+        "type": "exec",
+        "z": "f51feb57.6cd738",
+        "command": "",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "oldrc": false,
+        "name": "",
+        "x": 830,
+        "y": 580,
+        "wires": [
+            [
+                "f1aafe76.a625"
+            ],
+            [
+                "4627d5d0.41823c"
+            ],
+            [
+                "8932f05c.8e35a"
+            ]
+        ]
+    },
+    {
+        "id": "5741afff.fe8a5",
+        "type": "inject",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "",
+        "x": 320,
+        "y": 560,
+        "wires": [
+            [
+                "2ac88d9.1cec572"
+            ]
+        ]
+    },
+    {
+        "id": "2ac88d9.1cec572",
+        "type": "function",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "func": "msg.url = \"ftp.bom.gov.au/register/bom023/rKCm6dbQ/adfd\";\n\nvar today = new Date();\nvar dd = today.getDate().toString();\nvar mm = today.getMonth()+1; //January is 0!\nvar yyyy = today.getFullYear().toString();\nvar h = today.getHours();\nvar m = today.getMinutes();\nvar meridian = '';\n\nif(h < 12 || (h==12 && m===0)) {\n    meridian ='AM';\n}\nif(h > 12) {\n    meridian = 'PM';\n}\n\nif(dd<10) {\n    dd = '0'+dd;\n}\n\nif(mm<10) {\n    mm = '0'+mm;\n} \n\nmsg.today = ''+ yyyy + mm + dd + meridian;\n\nmsg.directory = \"/mnt/data_dir/\" + msg.today;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 470,
+        "y": 560,
+        "wires": [
+            [
+                "9560857c.5f1b38"
+            ]
+        ]
+    },
+    {
+        "id": "379c16d7.78d08a",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 800,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "f1aafe76.a625",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1030,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "4627d5d0.41823c",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1030,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "8932f05c.8e35a",
+        "type": "debug",
+        "z": "f51feb57.6cd738",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 1030,
+        "y": 620,
         "wires": []
     }
 ]
