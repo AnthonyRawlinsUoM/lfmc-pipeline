@@ -7,7 +7,7 @@ IMAGE=lfmc-pipeline
 git pull
 
 # bump version
-docker run --rm -v "$PWD":/app treeder/bump minor
+docker run --rm -v "$PWD":/app treeder/bump bump
 version=`cat VERSION`
 echo "version: $version"
 
