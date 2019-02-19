@@ -1,0 +1,7 @@
+machine urs.earthdata.nasa.gov
+	login AnthonyRawlinsUoM
+	password FuelMoisture2017
+
+machine e4ftl01.cr.usgs.gov
+	login AnthonyRawlinsUoM
+	password FuelMoisture2017

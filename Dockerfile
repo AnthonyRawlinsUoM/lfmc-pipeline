@@ -10,8 +10,11 @@ RUN apk add --update \
 	curl \
   && pip install virtualenv
 RUN apk add --no-cache tzdata
-RUN apk add --no-cache gcc musl-dev nano
+RUN apk add --no-cache gcc musl-dev nano parallel
 ENV TZ Australia/Melbourne
+RUN apk update
+RUN apk add --no-cache ca-certificates
+RUN apk add wget curl openssl
 RUN rm -rf /var/cache/apk/*
 
 # Make working dir
@@ -25,12 +28,13 @@ RUN npm i node-red-contrib-redis
 RUN npm install --no-optional
 
 # Patch the ftp.js
-COPY node_modules/node-red-contrib-ftp ./node_modules/node-red-contrib-ftp
+#COPY node_modules/node-red-contrib-ftp ./node_modules/node-red-contrib-ftp
 # Patch the FTP-Download.js
-COPY node_modules/node-red-contrib-ftp-download/ftp-download.js ./node_modules/node-red-contrib-ftp-download/ftp-download.js
+#COPY node_modules/node-red-contrib-ftp-download/ftp-download.js ./node_modules/node-red-contrib-ftp-download/ftp-download.js
 
 COPY flows.json .
 COPY settings.js .
+COPY netrc /home/node/.netrc
 
 RUN mkdir /mnt/data_dir
 RUN mkdir /mnt/awra_dir

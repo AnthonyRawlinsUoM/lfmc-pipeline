@@ -1,8 +1,8 @@
 all: build install pull
 
 stack:
-	@docker build --tag=127.0.0.1:5000/lfmc-pipeline .
-	@docker push 127.0.0.1:5000/lfmc-pipeline
+	@docker build --tag=128.250.160.167:5000/lfmc-pipeline .
+	@docker push 128.250.160.167:5000/lfmc-pipeline
 
 build:
 	@npm install --no-optional
